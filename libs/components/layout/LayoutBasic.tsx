@@ -115,8 +115,8 @@ const withLayoutBasic = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
+						<title>Carmart</title>
+						<meta name={'title'} content={`Carmart`} />
 					</Head>
 					<Stack id="pc-wrap">
 						<Stack id={'top'}>
