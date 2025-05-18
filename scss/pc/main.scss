@@ -66,7 +66,7 @@ body::-webkit-scrollbar {
 					justify-content: space-between;
 					.logo-box {
 						img {
-							width: 150px;
+							width: 100px;
 							cursor: pointer;
 						}
 					}
@@ -175,31 +175,49 @@ body::-webkit-scrollbar {
 		position: relative;
 		width: 100%;
 		height: 860px;
-		background-image: url('/img/banner/header1.svg');
+		background-image: url('/img/bg1.webp');
 		background-size: cover;
+		background-position: center;
 		.container {
 			position: relative;
-			margin-top: 20px;
+			margin-top: 230px;
 			flex-direction: column;
 			align-items: center;
+			margin-left: -10px;
+			.search-title {
+				text-align: left;
+				align-items:start;
+				margin-bottom: 20px;
+				margin-left: -165px;
+				div {
+					font-size: 56px;
+					font-weight: 600;
+					line-height: 1.4;
+					color: white;
+					text-align: left;
+					font-family: $font;
+				}
+			}
 			.search-box {
 				position: relative;
-				margin-top: 56px;
 				padding: 16px 29px;
-				width: 1094px;
-				height: 96px;
+				width: auto;
+				height: 100%;
 				display: flex;
 				flex-direction: row;
-				justify-content: space-between;
+				justify-content: center;
+				align-items: center;
 				background: rgba(255, 255, 255, 0.28);
 				border-radius: 12px;
 				.select-box {
 					width: 712px;
 					display: flex;
+					gap: 20px;
 					flex-direction: row;
-					justify-content: space-between;
+					justify-content: center;
+					align-items: center;
 					.box {
-						padding: 24px 22px;
+						padding: 10px;
 						width: 213px;
 						height: 56px;
 						display: flex;
@@ -223,42 +241,43 @@ body::-webkit-scrollbar {
 							font-weight: 400;
 							line-height: 26px;
 						}
-						svg {
+					}
+					.search-button {
+						// background-color: #bb4bbb !important;
+						// color: black !important;
+						justify-content: center;
+						text-align: center;
+						font-weight: bold;
+						transition: background-color 0.4s ease, color 0.4s ease;
+						&:hover {
+							background-color:  #e685b5 !important;
+							color: white !important;
+						span {
+							color: white !important;
+						    }
 						}
+					}
+					.divider {
+						width: 1px;
+						height: 32px;
+						background-color: #d1d1d1;
+						margin: 0 10px;
+						display: inline-block;
 					}
 				}
 				.search-box-other {
 					display: flex;
 					flex-direction: row;
 					align-items: center;
-					.advanced-filter {
-						display: flex;
-						flex-direction: row;
-						align-items: center;
-						img {
-							margin-right: 10px;
-							width: 25px;
-							height: 22px;
-							cursor: pointer;
-						}
-						span {
-							color: #fff;
-							font-family: $font;
-							font-size: 20px;
-							font-style: normal;
-							font-weight: 600;
-							line-height: normal;
-							cursor: pointer;
-						}
-					}
+					justify-content: center;
 					.search-btn {
-						margin-left: 12px;
-						width: 62px;
+						// margin-left: 12px;
+						width: auto;
 						height: 62px;
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						border-radius: 55px;
+						border-radius: 10px;
 						background: #f17742;
 						cursor: pointer;
 						svg {
@@ -270,46 +289,65 @@ body::-webkit-scrollbar {
 				}
 				.filter-location {
 					position: absolute;
-					padding: 40px 60px;
-					width: 1094px;
-					min-height: 120px;
+					padding: 10px 20px;
+					width: 250px;
+					max-height: 400px;
 					height: auto;
 					top: 96px;
-					right: 0px;
+					left: 0;
 					display: flex;
-					flex-direction: row;
-					flex-wrap: wrap;
-					gap: 40px;
+					flex-direction: column;
+					gap: 10px;
+					overflow-y: auto;
 					visibility: hidden;
 					border-radius: 12px;
 					background: #ffffff;
 					box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 					box-sizing: border-box;
 					z-index: 2;
+					scrollbar-width: none; // Firefox uchun
+					-ms-overflow-style: none; // IE/Edge uchun
+
+					&::-webkit-scrollbar {
+						width: 6px;
+					}
+
+					&::-webkit-scrollbar-thumb {
+						background-color: transparent; // default ko‘rinmas
+						border-radius: 4px;
+					}
+
+					// Hover qilinganda ko‘rsin
+					&:hover {
+						&::-webkit-scrollbar-thumb {
+						background-color: rgba(0, 0, 0, 0.3); // qora yarim shaffof
+						}
+					}
 					&.on {
 						visibility: visible;
 						transition: 0.2s ease-out;
-						background: #fffdfd;
+						background: #cccaca;
 					}
 					div {
-						width: 295px;
+						width: 20px;
 						display: flex;
 						flex-direction: row;
 						align-items: center;
+						gap: 5px;
 						img {
-							width: 122px;
-							height: 85px;
-							border-radius: 15px;
+							width: 60px;
+							height: 40px;
+							border-radius: 10px;
 							cursor: pointer;
+							object-fit: cover;
 						}
 						span {
-							margin-left: 22px;
 							color: #181a20;
 							font-family: $font;
-							font-size: 20px;
+							font-size: 14px;
 							font-style: normal;
 							font-weight: 400;
-							line-height: 26px;
+							line-height: 18px;
 							cursor: pointer;
 							text-transform: capitalize;
 						}
@@ -320,15 +358,14 @@ body::-webkit-scrollbar {
 				}
 				.filter-type {
 					position: absolute;
-					padding: 50px;
-					width: 1094px;
-					min-height: 120px;
+					padding: 10px;
+					width: 194px;
+					min-height: 60px;
 					height: auto;
 					top: 96px;
-					right: 0px;
 					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
+					flex-direction: column;
+					gap: 10px;
 					visibility: hidden;
 					border-radius: 12px;
 					background: #fff;
@@ -338,73 +375,15 @@ body::-webkit-scrollbar {
 					&.on {
 						visibility: visible;
 						transition: 0.2s ease-out;
-						background: #fffdfd;
+						background: #cccaca;
 					}
 					div {
 						position: relative;
 						width: 272px;
-						height: 168px;
+						height: 18px;
 						border-radius: 15px;
 						cursor: pointer;
 						background-size: cover;
-						span {
-							position: absolute;
-							top: 13px;
-							right: 12px;
-							padding: 1px 5px 5px 5px;
-							border-radius: 2px 2px 0px 0px;
-							font-family: $font;
-							font-size: 20px;
-							font-style: normal;
-							font-weight: 700;
-							line-height: 26px;
-							background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
-							// -webkit-background-clip: text;
-							// -webkit-text-fill-color: transparent;
-							text-transform: capitalize;
-						}
-					}
-				}
-				.filter-rooms {
-					position: absolute;
-					padding: 10px 92px;
-					width: 1094px;
-					min-height: 120px;
-					height: auto;
-					top: 96px;
-					right: 0px;
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					align-items: center;
-					visibility: hidden;
-					border-radius: 12px;
-					background: #fff;
-					box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-					box-sizing: border-box;
-					z-index: 1;
-					&.on {
-						visibility: visible;
-						transition: 0.2s ease-out;
-						background: #fffdfd;
-					}
-					span {
-						display: flex;
-						align-items: center;
-						padding: 10px 30px;
-						border: 1px solid #fffdfd;
-						color: #181a20;
-						font-family: $font;
-						font-size: 20px;
-						font-style: normal;
-						font-weight: 400;
-						line-height: 26px;
-						cursor: pointer;
-						&:hover {
-							border-radius: 5px;
-							border: 1px solid #b9b9b9;
-							box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-						}
 					}
 				}
 			}

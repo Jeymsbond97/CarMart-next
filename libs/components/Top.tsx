@@ -166,7 +166,7 @@ const Top = () => {
 					<Stack className={'container'}>
 						<Box component={'div'} className={'logo-box'}>
 							<Link href={'/'}>
-								<img src="/img/logo/5.png" alt="" />
+								<img style={{width:""}} src="/img/logo/111.png" alt="" />
 							</Link>
 						</Box>
 						<Box component={'div'} className={'router-box'}>
@@ -174,13 +174,13 @@ const Top = () => {
 								<div>{t('Home')}</div>
 							</Link>
 							<Link href={'/property'}>
-								<div>{t('Properties')}</div>
+								<div>{t('Cars')}</div>
 							</Link>
 							<Link href={'/agent'}>
-								<div> {t('Agents')} </div>
+								<div> {t('Dealers')} </div>
 							</Link>
 							<Link href={'/community?articleCategory=FREE'}>
-								<div> {t('Community')} </div>
+								<div> {t('Blog')} </div>
 							</Link>
 							{user?._id && (
 								<Link href={'/mypage'}>
@@ -188,22 +188,24 @@ const Top = () => {
 								</Link>
 							)}
 							<Link href={'/cs'}>
-								<div> {t('CS')} </div>
+								<div> {t('Faq')} </div>
 							</Link>
 						</Box>
 						<Box component={'div'} className={'user-box'}>
 							{user?._id ? (
 								<>
 									<div className={'login-user'} onClick={(event: any) => setLogoutAnchor(event.currentTarget)}>
+										<Link href={'/mypage'}>
 										<img
 											src={
 												user?.memberImage ? `${REACT_APP_API_URL}/${user?.memberImage}` : '/img/profile/defaultUser.svg'
 											}
 											alt=""
 										/>
+										</Link>
 									</div>
 
-									<Menu
+									{/* <Menu
 										id="basic-menu"
 										anchorEl={logoutAnchor}
 										open={logoutOpen}
@@ -216,14 +218,14 @@ const Top = () => {
 											<Logout fontSize="small" style={{ color: 'blue', marginRight: '10px' }} />
 											Logout
 										</MenuItem>
-									</Menu>
+									</Menu> */}
 								</>
 							) : (
 								<Link href={'/account/join'}>
 									<div className={'join-box'}>
 										<AccountCircleOutlinedIcon />
 										<span>
-											{t('Login')} / {t('Register')}
+											{t('Register')}
 										</span>
 									</div>
 								</Link>

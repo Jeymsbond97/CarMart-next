@@ -453,7 +453,7 @@ const Filter = (props: FilterType) => {
 	};
 
 	if (device === 'mobile') {
-		return <div>PROPERTIES FILTER</div>;
+		return <div>CARS FILTER</div>;
 	} else {
 		return (
 			<Stack className={'filter-main'}>
@@ -464,7 +464,7 @@ const Filter = (props: FilterType) => {
 							value={searchText}
 							type={'text'}
 							className={'search-input'}
-							placeholder={'What are you looking for?'}
+							placeholder={'Find car by name'}
 							onChange={(e: any) => setSearchText(e.target.value)}
 							onKeyDown={(event: any) => {
 								if (event.key == 'Enter') {

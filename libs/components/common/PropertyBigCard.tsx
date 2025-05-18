@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactComponentElement, ReactElement, ReactEventHandler, ReactHTMLElement } from 'react';
 import { Stack, Box, Divider, Typography } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
@@ -10,6 +10,7 @@ import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { useRouter } from 'next/router';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { T } from '../../types/common';
 
 interface PropertyBigCardProps {
 	property: Property;
@@ -75,7 +76,7 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 							<Typography className="view-cnt">{property?.propertyViews}</Typography>
 							<IconButton
 								color={'default'}
-								onClick={(e) => {
+								onClick={(e: T) => {
 									e.stopPropagation();
 								}}
 							>

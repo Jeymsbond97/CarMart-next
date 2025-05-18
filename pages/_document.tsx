@@ -5,7 +5,7 @@ export default function Document() {
 		<Html lang="en">
 			<Head>
 				<meta name="robots" content="index,follow" />
-				<link rel="icon" type="image/png" href="/img/logo/5.png" />
+				<link rel="icon" type="image/png" href="/img/logo/111.png" />
 
 				{/* SEO */}
 				<meta name="keyword" content={'carmart, carmart.uz, cars, carbuys, carsell, mern nestjs fullstack'} />

@@ -1,7 +1,6 @@
 export enum PropertyType {
-	APARTMENT = 'APARTMENT',
-	VILLA = 'VILLA',
-	HOUSE = 'HOUSE',
+	AVTOMATIC = 'AVTOMATIC',
+	MANUAL = 'MANUAL',
 }
 
 export enum PropertyStatus {
@@ -11,13 +10,13 @@ export enum PropertyStatus {
 }
 
 export enum PropertyLocation {
-	SEOUL = 'SEOUL',
-	BUSAN = 'BUSAN',
-	INCHEON = 'INCHEON',
-	DAEGU = 'DAEGU',
-	GYEONGJU = 'GYEONGJU',
-	GWANGJU = 'GWANGJU',
-	CHONJU = 'CHONJU',
-	DAEJON = 'DAEJON',
-	JEJU = 'JEJU',
+	KIA = 'KIA',
+	GENESIS = 'GENESIS',
+	BMW = 'BMW',
+	FERRARI = 'FERRARI',
+	JAGUAR = 'JAGUAR',
+	ROLLS_ROYCE = 'ROLLS_ROYCE',
+	VOLVO = 'VOLVO',
+	AUDI = 'AUDI',
+	MERCEDES = 'MERCEDES',
 }
