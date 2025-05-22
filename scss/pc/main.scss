@@ -174,7 +174,7 @@ body::-webkit-scrollbar {
 	.header-main {
 		position: relative;
 		width: 100%;
-		height: 860px;
+		height: 800px;
 		background-image: url('/img/bg1.webp');
 		background-size: cover;
 		background-position: center;
@@ -229,9 +229,9 @@ body::-webkit-scrollbar {
 						box-sizing: border-box;
 						cursor: pointer;
 						&.on {
-							background: #ffffff;
-							border: 1px solid #000;
+							background:  rgba(255, 255, 255, 0.28);
 							color: #181a20;
+							transition: background-color 0.7s ease, color 0.7s ease;
 						}
 						span {
 							color: #181a20;
@@ -248,9 +248,9 @@ body::-webkit-scrollbar {
 						justify-content: center;
 						text-align: center;
 						font-weight: bold;
-						transition: background-color 0.4s ease, color 0.4s ease;
+						transition: background-color 0.7s ease, color 0.7s ease;
 						&:hover {
-							background-color:  #e685b5 !important;
+							background-color:  #3a2f34 !important;
 							color: white !important;
 						span {
 							color: white !important;
@@ -291,7 +291,7 @@ body::-webkit-scrollbar {
 					position: absolute;
 					padding: 10px 20px;
 					width: 250px;
-					max-height: 400px;
+					max-height: 337px;
 					height: auto;
 					top: 96px;
 					left: 0;
@@ -300,90 +300,189 @@ body::-webkit-scrollbar {
 					gap: 10px;
 					overflow-y: auto;
 					visibility: hidden;
+					opacity: 0;
 					border-radius: 12px;
-					background: #ffffff;
-					box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+					background:  rgba(255, 255, 255, 0.28); // Transparent orqa fon
+					backdrop-filter: blur(4px); // Shisha effekt
+					box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
 					box-sizing: border-box;
 					z-index: 2;
-					scrollbar-width: none; // Firefox uchun
-					-ms-overflow-style: none; // IE/Edge uchun
+					transition: opacity 0.3s ease;
+
+					&.on {
+						visibility: visible;
+						opacity: 1;
+					  // Location item animatsiyasini ishga tushiramiz
+					> div {
+						opacity: 0;
+						transform: translateY(-10px);
+						animation: slideFadeIn 0.4s ease forwards;
+					}
+					  // Har bir elementga kechikish (delay) beramiz
+						> div:nth-child(1) { animation-delay: 0.05s; }
+						> div:nth-child(2) { animation-delay: 0.1s; }
+						> div:nth-child(3) { animation-delay: 0.15s; }
+						> div:nth-child(4) { animation-delay: 0.2s; }
+						> div:nth-child(5) { animation-delay: 0.25s; }
+						> div:nth-child(6) { animation-delay: 0.3s; }
+						> div:nth-child(7) { animation-delay: 0.35s; }
+						> div:nth-child(8) { animation-delay: 0.4s; }
+						> div:nth-child(9) { animation-delay: 0.45s; }
+						> div:nth-child(10) { animation-delay: 0.5s; }
+					}
+
+					// Animatsiya keyframes
+					@keyframes slideFadeIn {
+					from {
+						opacity: 0;
+						transform: translateY(-10px);
+					}
+					to {
+						opacity: 1;
+						transform: translateY(0);
+					}
+					}
+
+					// Scrollbar styles
+					scrollbar-width: none;
+					-ms-overflow-style: none;
 
 					&::-webkit-scrollbar {
-						width: 6px;
+					    width: 6px;
 					}
 
 					&::-webkit-scrollbar-thumb {
-						background-color: transparent; // default ko‘rinmas
+						background-color: transparent;
 						border-radius: 4px;
 					}
 
-					// Hover qilinganda ko‘rsin
-					&:hover {
-						&::-webkit-scrollbar-thumb {
-						background-color: rgba(0, 0, 0, 0.3); // qora yarim shaffof
-						}
+					&:hover::-webkit-scrollbar-thumb {
+					    background-color: rgba(0, 0, 0, 0.3);
 					}
-					&.on {
-						visibility: visible;
-						transition: 0.2s ease-out;
-						background: #cccaca;
-					}
+
+					// Location item style
 					div {
-						width: 20px;
 						display: flex;
 						flex-direction: row;
 						align-items: center;
+						padding: 1px 10px;
+						border-radius: 10px;
 						gap: 5px;
-						img {
-							width: 60px;
-							height: 40px;
-							border-radius: 10px;
-							cursor: pointer;
-							object-fit: cover;
+						transition: background 0.2s;
+						&:hover {
+							background-color: rgba(0, 0, 0, 0.1);
+						}
+					img {
+						width: 40px;
+						height: 30px;
+						border-radius: 6px;
+						object-position: center;
+                        flex-shrink: 0;
+						cursor: pointer;
+						object-fit: cover;
+					}
+
+					span {
+						color: #181a20;
+						font-family: $font;
+						font-size: 14px;
+						font-weight: 500;
+						line-height: 18px;
+						cursor: pointer;
+						text-transform: capitalize;
+					}
+
+					label {
+						line-height: 13px;
+					}
+					}
+				}
+				.filter-type {
+					position: absolute;
+					padding: 10px 20px;
+					width: 250px;
+					max-height: 400px;
+					height: auto;
+					top: 96px;
+					left: 260px; // Location'dan keyin chiqishi uchun
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					overflow-y: auto;
+					visibility: hidden;
+					opacity: 0;
+					border-radius: 12px;
+					background: rgba(255, 255, 255, 0.28);
+					backdrop-filter: blur(4px);
+					box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+					box-sizing: border-box;
+					z-index: 2;
+					transition: opacity 0.3s ease;
+
+					&.on {
+						visibility: visible;
+						opacity: 1;
+
+						> div {
+							opacity: 0;
+							transform: translateY(-10px);
+							animation: slideFadeIn 0.4s ease forwards;
+						}
+						> div:nth-child(1) { animation-delay: 0.05s; }
+						> div:nth-child(2) { animation-delay: 0.1s; }
+						> div:nth-child(3) { animation-delay: 0.15s; }
+						> div:nth-child(4) { animation-delay: 0.2s; }
+						> div:nth-child(5) { animation-delay: 0.25s; }
+						> div:nth-child(6) { animation-delay: 0.3s; }
+						> div:nth-child(7) { animation-delay: 0.35s; }
+						> div:nth-child(8) { animation-delay: 0.4s; }
+						> div:nth-child(9) { animation-delay: 0.45s; }
+						> div:nth-child(10) { animation-delay: 0.5s; }
+					}
+					@keyframes slideFadeIn {
+						from {
+							opacity: 0;
+							transform: translateY(-10px);
+						}
+						to {
+							opacity: 1;
+							transform: translateY(0);
+						}
+					}
+					// Scrollbar styles
+					scrollbar-width: none;
+					-ms-overflow-style: none;
+					&::-webkit-scrollbar {
+						width: 6px;
+					}
+					&::-webkit-scrollbar-thumb {
+						background-color: transparent;
+						border-radius: 4px;
+					}
+					&:hover::-webkit-scrollbar-thumb {
+						background-color: rgba(0, 0, 0, 0.3);
+					}
+
+					// Type item style
+					div {
+						display: flex;
+						align-items: center;
+						padding: 6px 10px;
+						border-radius: 10px;
+						cursor: pointer;
+						transition: background 0.2s;
+						&:hover {
+							background-color: rgba(0, 0, 0, 0.1);
 						}
 						span {
 							color: #181a20;
 							font-family: $font;
 							font-size: 14px;
-							font-style: normal;
-							font-weight: 400;
+							font-weight: 500;
 							line-height: 18px;
 							cursor: pointer;
 							text-transform: capitalize;
 						}
-						label {
-							line-height: 13px;
-						}
-					}
-				}
-				.filter-type {
-					position: absolute;
-					padding: 10px;
-					width: 194px;
-					min-height: 60px;
-					height: auto;
-					top: 96px;
-					display: flex;
-					flex-direction: column;
-					gap: 10px;
-					visibility: hidden;
-					border-radius: 12px;
-					background: #fff;
-					box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-					box-sizing: border-box;
-					z-index: 1;
-					&.on {
-						visibility: visible;
-						transition: 0.2s ease-out;
-						background: #cccaca;
-					}
-					div {
-						position: relative;
-						width: 272px;
-						height: 18px;
-						border-radius: 15px;
-						cursor: pointer;
-						background-size: cover;
 					}
 				}
 			}

@@ -47,14 +47,10 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	const typeRef: any = useRef();
 	const roomsRef: any = useRef();
 	const router = useRouter();
-	const [openAdvancedFilter, setOpenAdvancedFilter] = useState(false);
 	const [openLocation, setOpenLocation] = useState(false);
 	const [openType, setOpenType] = useState(false);
-	const [openRooms, setOpenRooms] = useState(false);
 	const [propertyLocation, setPropertyLocation] = useState<PropertyLocation[]>(Object.values(PropertyLocation));
 	const [propertyType, setPropertyType] = useState<PropertyType[]>(Object.values(PropertyType));
-	const [yearCheck, setYearCheck] = useState({ start: 1990, end: thisYear });
-	const [optionCheck, setOptionCheck] = useState('all');
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -76,22 +72,20 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 		};
 	}, []);
 
+
 	/** HANDLERS **/
 
 	const locationStateChangeHandler = () => {
 		setOpenLocation((prev) => !prev);
-		setOpenRooms(false);
 		setOpenType(false);
 	};
 
 	const typeStateChangeHandler = () => {
 		setOpenType((prev) => !prev);
 		setOpenLocation(false);
-		setOpenRooms(false);
 	};
 
 	const disableAllStateHandler = () => {
-		setOpenRooms(false);
 		setOpenType(false);
 		setOpenLocation(false);
 	};
@@ -163,12 +157,12 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				<Stack className={'search-box'}>
 					<Stack className={'select-box'}>
 						<Box component={'div'} className={`box ${openLocation ? 'on' : ''}`} onClick={locationStateChangeHandler}>
-							<span>{searchFilter?.search?.locationList ? searchFilter?.search?.locationList[0] : t('Location')} </span>
+							<span>{searchFilter?.search?.locationList ? searchFilter?.search?.locationList[0] : t('Brand type')} </span>
 							<ExpandMoreIcon />
 						</Box>
 						<span className="divider" />
 						<Box className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
-							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Property type')} </span>
+							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Transmission type')} </span>
 							<ExpandMoreIcon />
 						</Box>
 						<span className="divider" />
@@ -178,17 +172,17 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					</Stack>
 
 					{/*MENU */}
-					<div className={`filter-location ${openLocation ? 'on' : ''}`} ref={locationRef}>
+					<div className={`filter-location ${openLocation ? 'on' : ''}`}
+						ref={locationRef}>
 						{propertyLocation.map((location: string) => {
 							return (
 								<div onClick={() => propertyLocationSelectHandler(location)} key={location}>
-									<img src={`img/banner/cities/${location}.webp`} alt="" />
+									<img src={`img/banner/brands/${location}.png`} alt="" />
 									<span>{location}</span>
 								</div>
 							);
 						})}
 					</div>
-
 					<div className={`filter-type ${openType ? 'on' : ''}`} ref={typeRef}>
 						{propertyType.map((type: string) => {
 							return (
