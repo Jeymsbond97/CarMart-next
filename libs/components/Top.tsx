@@ -18,6 +18,13 @@ import { userVar } from '../../apollo/store';
 import { Logout } from '@mui/icons-material';
 import { REACT_APP_API_URL } from '../config';
 
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import EmailIcon from '@mui/icons-material/Email';
+
+
 const Top = () => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
@@ -32,6 +39,7 @@ const Top = () => {
 	const [bgColor, setBgColor] = useState<boolean>(false);
 	const [logoutAnchor, setLogoutAnchor] = React.useState<null | HTMLElement>(null);
 	const logoutOpen = Boolean(logoutAnchor);
+
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -169,28 +177,32 @@ const Top = () => {
 								<img style={{width:""}} src="/img/logo/111.png" alt="" />
 							</Link>
 						</Box>
-						<Box component={'div'} className={'router-box'}>
-							<Link href={'/'}>
-								<div>{t('Home')}</div>
-							</Link>
-							<Link href={'/property'}>
-								<div>{t('Cars')}</div>
-							</Link>
-							<Link href={'/agent'}>
-								<div> {t('Dealers')} </div>
-							</Link>
-							<Link href={'/community?articleCategory=FREE'}>
-								<div> {t('Blog')} </div>
-							</Link>
-							{user?._id && (
-								<Link href={'/mypage'}>
-									<div> {t('My Page')} </div>
-								</Link>
-							)}
-							<Link href={'/cs'}>
-								<div> {t('Faq')} </div>
-							</Link>
+						<Box className="local-info">
+							<div className="info-block">
+								<LocationOnIcon className="info-icon" />
+								<div className="info-text">
+								<p className="info-title">KOREA</p>
+								<p className="info-sub">SEOUL, 12B Street</p>
+								</div>
+							</div>
+							<div className="divider" />
+							<div className="info-block">
+								<AccessTimeIcon className="info-icon" />
+								<div className="info-text">
+								<p className="info-title">Mon - Sat: 9AM - 22PM</p>
+								<p className="info-sub">Sunday Closed</p>
+								</div>
+							</div>
+							<div className="divider" />
+							<div className="info-block">
+								<EmailIcon className="info-icon" />
+								<div className="info-text">
+								<p className="info-title">+82 10 3945 0097</p>
+								<p className="info-sub">jeyms@gmail.com</p>
+								</div>
+							</div>
 						</Box>
+
 						<Box component={'div'} className={'user-box'}>
 							{user?._id ? (
 								<>
@@ -232,7 +244,6 @@ const Top = () => {
 							)}
 
 							<div className={'lan-box'}>
-								{user?._id && <NotificationsOutlinedIcon className={'notification-icon'} />}
 								<Button
 									disableRipple
 									className="btn-lang"
@@ -264,7 +275,7 @@ const Top = () => {
 											className="img-flag"
 											src={'/img/flag/langkr.png'}
 											onClick={langChoice}
-											id="uz"
+											id="kr"
 											alt={'koreanFlag'}
 										/>
 										{t('Korean')}
@@ -283,6 +294,49 @@ const Top = () => {
 							</div>
 						</Box>
 					</Stack>
+
+					<div className="horizontal-divider">&nbsp;</div>
+
+					<Stack className={'container-bottom'}>
+						    <Box component={'div'} className={'router-box'}>
+								<Link href={'/'}>
+								<div className={router.pathname === '/' ? 'active' : ''}>{t('Home')}</div>
+								</Link>
+								<Link href={'/property'}>
+								<div className={router.pathname === '/property' ? 'active' : ''}>{t('Cars')}</div>
+								</Link>
+								<Link href={'/agent'}>
+								<div className={router.pathname === '/agent' ? 'active' : ''}>{t('Dealers')}</div>
+								</Link>
+								<Link href={'/community?articleCategory=FREE'}>
+								<div className={router.pathname.startsWith('/community') ? 'active' : ''}>{t('Blog')}</div>
+								</Link>
+								{user?._id && (
+								<Link href={'/mypage'}>
+									<div className={router.pathname === '/mypage' ? 'active' : ''}>{t('My Page')}</div>
+								</Link>
+								)}
+								<Link href={'/cs'}>
+								<div className={router.pathname === '/cs' ? 'active' : ''}>{t('Faq')}</div>
+								</Link>
+							</Box>
+							<Box className={'router-icons'}>
+								<div className="icon-badge">
+									<FavoriteBorderIcon />
+									<span className="badge">3</span>
+								</div>
+								<div className="icon-badge">
+									<VisibilityOutlinedIcon />
+									<span className="badge">5</span>
+								</div>
+								<div className="icon-badge">
+									<NotificationsOutlinedIcon />
+									<span className="badge">2</span>
+								</div>
+							</Box>
+					</Stack>
+
+					<div className="horizontal-divider">&nbsp;</div>
 				</Stack>
 			</Stack>
 		);
