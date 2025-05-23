@@ -6,6 +6,7 @@ import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread';
 import { useRouter } from 'next/router';
 import ScrollableFeed from 'react-scrollable-feed';
+import { MdClose, MdChatBubbleOutline, MdSend } from 'react-icons/md';
 
 const NewMessage = (type: any) => {
 	if (type === 'right') {
@@ -36,6 +37,7 @@ const Chat = () => {
 	const [messagesList, setMessagesList] = useState([]);
 	const [onlineUsers, setOnlineUsers] = useState<number>(0);
 	const textInput = useRef(null);
+	const chatRef = useRef<HTMLDivElement>(null);
 	const [message, setMessage] = useState<string>('');
 	const [open, setOpen] = useState(false);
 	const [openButton, setOpenButton] = useState(false);
@@ -52,6 +54,18 @@ const Chat = () => {
 	useEffect(() => {
 		setOpenButton(false);
 	}, [router.pathname]);
+
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent) {
+			if (chatRef.current && !chatRef.current.contains(event.target as Node)) {
+				setOpen(false);
+			}
+		}
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, []);
 
 	/** HANDLERS **/
 	const handleOpenChat = () => {
@@ -82,10 +96,10 @@ const Chat = () => {
 		<Stack className="chatting">
 			{openButton ? (
 				<button className="chat-button" onClick={handleOpenChat}>
-					{open ? <CloseFullscreenIcon /> : <MarkChatUnreadIcon />}
+					{open ? <MdClose size={22} /> : <MdChatBubbleOutline size={22} />}
 				</button>
 			) : null}
-			<Stack className={`chat-frame ${open ? 'open' : ''}`}>
+			<Stack className={`chat-frame ${open ? 'open' : ''}`} ref={chatRef}>
 				<Box className={'chat-top'} component={'div'}>
 					<div style={{ fontFamily: 'Nunito' }}>Online Chat</div>
 					<Badge
@@ -134,7 +148,7 @@ const Chat = () => {
 						onKeyDown={getKeyHandler}
 					/>
 					<button className={'send-msg-btn'} onClick={onClickHandler}>
-						<SendIcon style={{ color: '#fff' }} />
+					<MdSend size={22} color="#fff" />
 					</button>
 				</Box>
 			</Stack>

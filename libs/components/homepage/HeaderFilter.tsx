@@ -45,7 +45,6 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	const [searchFilter, setSearchFilter] = useState<PropertiesInquiry>(initialInput);
 	const locationRef: any = useRef();
 	const typeRef: any = useRef();
-	const roomsRef: any = useRef();
 	const router = useRouter();
 	const [openLocation, setOpenLocation] = useState(false);
 	const [openType, setOpenType] = useState(false);
@@ -207,14 +206,6 @@ HeaderFilter.defaultProps = {
 		page: 1,
 		limit: 9,
 		search: {
-			squaresRange: {
-				start: 0,
-				end: 500,
-			},
-			pricesRange: {
-				start: 0,
-				end: 2000000,
-			},
 		},
 	},
 };
