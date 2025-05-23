@@ -12,7 +12,7 @@
 				display: flex;
 				flex-direction: column;
 				span {
-					color: #181a20;
+					color: #dee2e6;
 					font-family: $font;
 					font-size: 34px;
 					font-style: normal;
@@ -25,7 +25,7 @@
 					}
 				}
 				p {
-					color: #181a20;
+					color: #dee2e6;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -45,23 +45,27 @@
 					flex-direction: row;
 					align-items: center;
 					.swiper-pagination-bullet.swiper-pagination-bullet-active {
-						background: #000000;
+						background: #dee2e6;
 					}
 					.swiper-trend-next {
 						margin-left: 20px;
 						cursor: pointer;
+						color: #dee2e6;
 					}
 					.swiper-trend-prev {
 						margin-right: 20px;
 						cursor: pointer;
+						color: #dee2e6;
 					}
 					.swiper-top-next {
 						margin-left: 20px;
 						cursor: pointer;
+						color: #dee2e6;
 					}
 					.swiper-top-prev {
 						margin-right: 20px;
 						cursor: pointer;
+						color: #dee2e6;
 					}
 				}
 				.more-box {
@@ -70,7 +74,7 @@
 					cursor: pointer;
 					align-items: center;
 					span {
-						color: #181a20;
+						color: #dee2e6;
 						font-family: $font;
 						font-size: 15px;
 						font-style: normal;
@@ -120,6 +124,7 @@
 			height: 697px;
 			display: flex;
 			flex-direction: row;
+			background: #212529;
 			.container {
 				flex-direction: column;
 				.card-box {
@@ -133,6 +138,7 @@
 						display: flex;
 						justify-content: center;
 						align-items: center;
+						color: #dee2e6;
 					}
 					.trend-property-swiper {
 						width: 100%;
@@ -284,7 +290,7 @@
 			height: 816px;
 			display: flex;
 			flex-direction: row;
-			background: #f6f6f6;
+			background: #2b3035;
 			.container {
 				flex-direction: column;
 				align-items: center;
@@ -482,7 +488,7 @@
 		}
 		.video-frame {
 			width: 100%;
-			height: 678px;
+			height: 648px;
 			background: black;
 			transform: perspective(0px);
 			box-shadow: -3px 0px 20px 14px #34343480;
@@ -493,6 +499,7 @@
 			height: 697px;
 			display: flex;
 			flex-direction: row;
+			background: #212529;
 			.container {
 				flex-direction: column;
 				.card-box {
@@ -651,7 +658,7 @@
 			height: 722px;
 			display: flex;
 			flex-direction: row;
-			background: #f6f6f6;
+			background: #2b3035;
 			.container {
 				position: relative;
 				flex-direction: column;
@@ -742,7 +749,7 @@
 			height: 810px;
 			display: flex;
 			flex-direction: row;
-			background: #181a20;
+			background: #212529;
 			.container {
 				flex-direction: column;
 				align-items: center;
@@ -830,9 +837,13 @@
 			height: 860px;
 			display: flex;
 			flex-direction: row;
+			background: #2b3035;
 			.container {
 				flex-direction: column;
 				align-items: center;
+				.board-title{
+					color: #dee2e6;
+				}
 				.community-main {
 					width: 100%;
 					margin-top: 60px;
@@ -857,13 +868,14 @@
 							font-weight: 500;
 							font-size: 16px;
 							line-height: 36px;
-							color: #616161;
+							color: #dee2e6;
 							cursor: pointer;
 						}
 						img {
 							margin-left: 10px;
 							width: 12px;
 							height: 12px;
+							color: #dee2e6;
 						}
 					}
 					.community-left {

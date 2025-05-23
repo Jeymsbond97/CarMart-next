@@ -16,7 +16,7 @@ const Advertisement = () => {
 					preload="auto"
 					style={{ width: '100%', height: '100%', objectFit: 'cover' }}
 				>
-					<source src="/video/ads.mov" type="video/mp4" />
+					<source src="/video/1.mp4" type="video/mp4" />
 				</video>
 			</Stack>
 		);
@@ -29,9 +29,10 @@ const Advertisement = () => {
 					loop
 					playsInline
 					preload="auto"
+					poster="/video/3.jpg"
 					style={{ width: '100%', height: '100%', objectFit: 'cover' }}
 				>
-					<source src="/video/ads.mov" type="video/mp4" />
+					<source src="/video/video.mp4" type="video/mp4" />
 				</video>
 			</Stack>
 		);
