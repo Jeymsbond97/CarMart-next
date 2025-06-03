@@ -74,6 +74,11 @@ const withLayoutBasic = (Component: any) => {
 					desc = 'Home / For Rent';
 					bgImage = '/img/banner/header1.svg';
 					break;
+				case '/price':
+					title = 'Price Page';
+					desc = 'Home / price';
+					bgImage = '/img/banner/header1.svg';
+					break;
 				default:
 					break;
 			}

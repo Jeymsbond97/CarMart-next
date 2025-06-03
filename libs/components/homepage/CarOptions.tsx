@@ -11,12 +11,8 @@ import Link from 'next/link';
 import NorthEastIcon from '@mui/icons-material/NorthEast';
 import { PropertiesInquiry } from '../../types/property/property.input';
 
-interface PopularPropertiesProps {
-    initialInput: PropertiesInquiry;
-}
 
-const CarOptions = (props: PopularPropertiesProps) => {
-    const { initialInput } = props;
+const CarOptions = () => {
     const device = useDeviceDetect();
 
     // Static brand data
