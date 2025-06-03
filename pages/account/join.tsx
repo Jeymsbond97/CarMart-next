@@ -6,6 +6,7 @@ import { Box, Button, Checkbox, FormControlLabel, FormGroup, Stack } from '@mui/
 import { useRouter } from 'next/router';
 import { logIn, signUp } from '../../libs/auth';
 import { sweetMixinErrorAlert } from '../../libs/sweetAlert';
+import { Google, GitHub } from '@mui/icons-material';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export const getStaticProps = async ({ locale }: any) => ({
@@ -125,7 +126,7 @@ const Join: NextPage = () => {
 							<Box className={'register'}>
 								{!loginView && (
 									<div className={'type-option'}>
-										<span className={'text'}>I want to be registered as:</span>
+										<div className={'text'}>Register as:</div>
 										<div>
 											<FormGroup>
 												<FormControlLabel
@@ -135,6 +136,11 @@ const Join: NextPage = () => {
 															name={'USER'}
 															onChange={checkUserTypeHandler}
 															checked={input?.type == 'USER'}
+															sx={{
+																'&.Mui-checked': {
+																    color: ' #dee2e6;',
+																},
+															}}
 														/>
 													}
 													label="User"
@@ -148,6 +154,11 @@ const Join: NextPage = () => {
 															name={'AGENT'}
 															onChange={checkUserTypeHandler}
 															checked={input?.type == 'AGENT'}
+															sx={{
+																'&.Mui-checked': {
+																    color: ' #dee2e6;',
+																},
+															}}
 														/>
 													}
 													label="Agent"
@@ -185,28 +196,61 @@ const Join: NextPage = () => {
 										SIGNUP
 									</Button>
 								)}
+								{loginView && (
+									<>
+									<div className={'divider'}>
+										<span>OR</span>
+									</div>
+									<div className={'social-buttons'}>
+										<div className={'social-btn google'}>
+										<Google sx={{ fontSize: 20 }} />
+										<span>Login with Google</span>
+										</div>
+									</div>
+									</>
+								)}
+
+								{!loginView && (
+									<>
+										{/* OR divider */}
+										<div className={'divider'}>
+										<span>OR</span>
+										</div>
+
+										{/* Social login buttons */}
+										<div className={'social-buttons'}>
+										<div className={'social-btn google'}>
+											<Google sx={{ fontSize: 20 }} />
+											<span>Sign up with Google</span>
+										</div>
+										<div className={'social-btn github'}>
+											<GitHub sx={{ fontSize: 20 }} />
+											<span>Sign up with GitHub</span>
+										</div>
+										</div>
+									</>
+									)}
 							</Box>
 							<Box className={'ask-info'}>
 								{loginView ? (
 									<p>
-										Not registered yet?
+										Don't have an account?
 										<b
 											onClick={() => {
 												viewChangeHandler(false);
 											}}
 										>
-											SIGNUP
+											SingUp
 										</b>
 									</p>
 								) : (
 									<p>
-										Have account?
+										Already have an account?
 										<b onClick={() => viewChangeHandler(true)}> LOGIN</b>
 									</p>
 								)}
 							</Box>
 						</Stack>
-						<Stack className={'right'}></Stack>
 					</Stack>
 				</Stack>
 			</Stack>
