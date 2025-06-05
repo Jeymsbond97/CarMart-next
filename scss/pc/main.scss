@@ -74,16 +74,16 @@ body::-webkit-scrollbar {
 						flex-direction: row;
 						align-items: center;
 						background: transparent;
-						color: #ffffff;
+						color: #dee2e6;
 						.info-block {
 							display: flex;
 							flex-direction: row;
 							align-items: center;
 							gap: 10px;
 						.info-icon {
-							color: rgb(236, 108, 172);
-							font-size: 26px;
-							font-weight: 700;
+							color: rgb(232, 112, 27);
+							font-size: 30px;
+							font-weight: 900;
 						}
 						.info-text {
 							display: flex;
@@ -93,7 +93,7 @@ body::-webkit-scrollbar {
 								font-size: 14px;
 								font-weight: 600;
 								line-height: 1.2;
-								color: #ffffff;
+								color: #dee2e6;
 							}
 							.info-sub {
 								font-family: $font;
@@ -107,7 +107,7 @@ body::-webkit-scrollbar {
 						.divider {
 							width: 1px;
 							height: 35px;
-							background-color: rgba(255, 255, 255, 0.2);
+							background-color: #2b3035;
 							margin: 0 20px;
 						}
 					}
@@ -123,10 +123,10 @@ body::-webkit-scrollbar {
 							align-items: center;
 							justify-content: center;
 							border-radius: 60px;
-							border: 1px solid #ffffff;
+							border: 1px solid #dee2e6;
 							cursor: pointer;
 							svg {
-								color: #ffffff;
+								color: #dee2e6;
 								margin-right: 10px;
 							}
 							span {
@@ -135,7 +135,7 @@ body::-webkit-scrollbar {
 								font-style: normal;
 								font-weight: 600;
 								line-height: normal;
-								color: #ffffff;
+								color: #dee2e6;
 							}
 						}
 						.login-user {
@@ -174,7 +174,7 @@ body::-webkit-scrollbar {
 					width: 1300px;
 					height: 1px;
 					display: block;
-					background-color: #181a209e;
+					background-color: #2b3035;
 				}
 				.container-bottom{
 					position: relative;
@@ -238,7 +238,7 @@ body::-webkit-scrollbar {
 						gap: 16px;
 						.icon-badge {
 							position: relative;
-							color: white;
+							color: #dee2e6;;
 							display: flex;
 							align-items: center;
 							.badge {
@@ -246,7 +246,7 @@ body::-webkit-scrollbar {
 								top: -6px;
 								right: -10px;
 								background-color: red;
-								color: white;
+								color: #dee2e6;
 								font-size: 10px;
 								width: 16px;
 								height: 16px;
@@ -582,20 +582,29 @@ body::-webkit-scrollbar {
 	.header-basic {
 		position: relative;
 		width: 100%;
-		height: 557px;
+		height: 257px;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
-		background: black;
+		background: #181a20;
 		&.auth {
-			height: 300px;
+			height: 257px;
 		}
 		.container {
 			margin-top: 175px;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			bottom: 10px;
+			.desc-section {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+			}
 			strong {
-				color: #fff;
+				color: #dee2e6;
 				font-family: $font;
-				font-size: 48px;
+				font-size: 30px;
 				font-style: normal;
 				font-weight: 600;
 				line-height: normal;
@@ -603,9 +612,9 @@ body::-webkit-scrollbar {
 				text-transform: capitalize;
 			}
 			span {
-				color: #fff;
+				color: #dee2e6;
 				font-family: $font;
-				font-size: 24px;
+				font-size: 18px;
 				font-style: normal;
 				font-weight: 400;
 				line-height: 26px;
@@ -1194,6 +1203,7 @@ body::-webkit-scrollbar {
 			font-style: normal;
 			font-weight: 600;
 			line-height: normal;
+			cursor: pointer;
 		}
 	}
 }

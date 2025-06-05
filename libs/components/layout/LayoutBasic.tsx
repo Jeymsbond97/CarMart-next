@@ -10,6 +10,7 @@ import Chat from '../Chat';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { useTranslation } from 'next-i18next';
+import { Home } from '@mui/icons-material';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -29,49 +30,49 @@ const withLayoutBasic = (Component: any) => {
 
 			switch (router.pathname) {
 				case '/property':
-					title = 'Property Search';
-					desc = 'We are glad to see you again!';
+					title = 'Cars Search';
+					desc = 'Home / cars';
 					bgImage = '/img/banner/properties.png';
 					break;
 				case '/agent':
-					title = 'Agents';
-					desc = 'Home / For Rent';
+					title = 'Dealers';
+					desc = 'Home / dealers';
 					bgImage = '/img/banner/agents.webp';
 					break;
 				case '/agent/detail':
-					title = 'Agent Page';
-					desc = 'Home / For Rent';
+					title = 'Dealer Page';
+					desc = 'Home / dealer page';
 					bgImage = '/img/banner/header2.svg';
 					break;
 				case '/mypage':
-					title = 'my page';
-					desc = 'Home / For Rent';
+					title = 'My Page';
+					desc = 'Home / my page';
 					bgImage = '/img/banner/header1.svg';
 					break;
 				case '/community':
-					title = 'Community';
-					desc = 'Home / For Rent';
+					title = 'Blog';
+					desc = 'Home / blog';
 					bgImage = '/img/banner/header2.svg';
 					break;
 				case '/community/detail':
-					title = 'Community Detail';
-					desc = 'Home / For Rent';
+					title = 'Blog Detail';
+					desc = 'Home / blog detail';
 					bgImage = '/img/banner/header2.svg';
 					break;
 				case '/cs':
-					title = 'CS';
-					desc = 'We are glad to see you again!';
+					title = 'FAQ';
+					desc = 'Home / faq';
 					bgImage = '/img/banner/header2.svg';
 					break;
 				case '/account/join':
-					title = 'Login/Signup';
-					desc = 'Authentication Process';
+					title = 'Register';
+					desc = 'Home / Login';
 					bgImage = '/img/banner/header2.svg';
 					setAuthHeader(true);
 					break;
 				case '/member':
 					title = 'Member Page';
-					desc = 'Home / For Rent';
+					desc = 'Home / member';
 					bgImage = '/img/banner/header1.svg';
 					break;
 				case '/price':
@@ -130,15 +131,19 @@ const withLayoutBasic = (Component: any) => {
 
 						<Stack
 							className={`header-basic ${authHeader && 'auth'}`}
-							style={{
-								backgroundImage: `url(${memoizedValues.bgImage})`,
-								backgroundSize: 'cover',
-								boxShadow: 'inset 10px 40px 150px 40px rgb(24 22 36)',
-							}}
 						>
 							<Stack className={'container'}>
 								<strong>{t(memoizedValues.title)}</strong>
-								<span>{t(memoizedValues.desc)}</span>
+								<Stack className="desc-section">
+									<Home
+										sx={{
+											color: '#dee2e6',
+											fontSize: 18,
+											marginRight: '4px'
+										}}
+									/>
+									<span>{t(memoizedValues.desc)}</span>
+								</Stack>
 							</Stack>
 						</Stack>
 

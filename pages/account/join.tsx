@@ -73,10 +73,6 @@ const Join: NextPage = () => {
 					<Stack className={'main'}>
 						<Stack className={'left'}>
 							{/* @ts-ignore */}
-							<Box className={'logo'}>
-								<img src="/img/logo/111.png" alt="" />
-								<span>CarMart</span>
-							</Box>
 							<Box className={'info'}>
 								<span>{loginView ? 'login' : 'signup'}</span>
 								<p>{loginView ? 'Login' : 'Sign'} in with this account across the following sites.</p>
@@ -191,6 +187,9 @@ const Join: NextPage = () => {
 										variant="contained"
 										disabled={input.nick == '' || input.password == '' || input.phone == '' || input.type == ''}
 										onClick={doSignUp}
+										sx={{
+											cursor: 'pointer',
+										}}
 										endIcon={<img src="/img/icons/rightup.svg" alt="" />}
 									>
 										SIGNUP
