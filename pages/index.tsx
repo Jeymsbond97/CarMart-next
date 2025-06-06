@@ -10,7 +10,7 @@ import { Stack } from '@mui/material';
 import Advertisement from '../libs/components/homepage/Advertisement';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import CarOptions from '../libs/components/homepage/CarOptions';
-import CarServices from '../libs/components/homepage/Events';
+import CarServices from '../libs/components/homepage/CarServices';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {

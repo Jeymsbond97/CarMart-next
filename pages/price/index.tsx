@@ -2,15 +2,8 @@ import React, { useEffect } from 'react';
 import { NextPage } from 'next';
 import useDeviceDetect from '../../libs/hooks/useDeviceDetect';
 import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
-import { Stack } from '@mui/material';
-import MemberMenu from '../../libs/components/member/MemberMenu';
-import MemberProperties from '../../libs/components/member/MemberProperties';
-import { useRouter } from 'next/router';
-import MemberFollowers from '../../libs/components/member/MemberFollowers';
-import MemberArticles from '../../libs/components/member/MemberArticles';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import { useReactiveVar } from '@apollo/client';
-import { sweetErrorHandling } from '../../libs/sweetAlert';
-import MemberFollowings from '../../libs/components/member/MemberFollowings';
 import { userVar } from '../../apollo/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -20,78 +13,128 @@ export const getStaticProps = async ({ locale }: any) => ({
     },
 });
 
+const pricingPlans = [
+    {
+        title: 'BASIC',
+        price: '$39',
+        period: '/month',
+        features: [
+            'Standard vehicle listing',
+            '5 high-quality images per listing',
+            'Vehicle details (make, model, year)',
+            'Contact information for new buyers',
+    ],
+    unavailable: [
+        'Featured placement in search results',
+        'Priority customer support',
+        'Social media sharing options',
+        'Enhanced search visibility',
+        'Video tour integration',
+        'Premium vehicle listing with unlimited',
+    ]
+    },
+    {
+        title: 'PROFESSIONAL',
+        price: '$69',
+        period: '/month',
+        mostPopular: true,
+        features: [
+            'Premium vehicle with unlimited images',
+            'Featured and prioritized placement',
+            'Vehicle history report integration',
+            'Premium customer support',
+            'Social media sharing options',
+            'Enhanced search visibility',
+            'Video tour integration',
+    ],
+    unavailable: [
+        'Featured on the homepage carousel',
+        'Exclusive access to promotions',
+        'Ultra search visibility'
+    ]
+    },
+    {
+        title: 'ENTERPRISE',
+        price: '$99',
+        period: '/month',
+        features: [
+            'VIP vehicle listing with images',
+            'Top-tier placement in search results',
+            'Vehicle history report integration',
+            'Video tour integration',
+            'Featured on the homepage carousel',
+            'Exclusive access to promotions',
+            'Advanced lead tracking & analytics',
+            'Premium customer support',
+            'Social media sharing options',
+            'Ultra search visibility'
+    ],
+    unavailable: []
+    }
+];
+
 const PricePage: NextPage = () => {
     const device = useDeviceDetect();
-    const router = useRouter();
-    const category: any = router.query?.category;
     const user = useReactiveVar(userVar);
 
     /** APOLLO REQUESTS **/
 
     /** LIFECYCLES **/
-    useEffect(() => {
-        if (!router.isReady) return;
-        if (!category) {
-            router.replace(
-                {
-                    pathname: router.pathname,
-                    query: { ...router.query, category: 'properties' },
-                },
-                undefined,
-                { shallow: true },
-            );
-        }
-    }, [category, router]);
+    //     if (!router.isReady) return;
+    //     if (!category) {
+    //         router.replace(
+    //             {
+    //                 pathname: router.pathname,
+    //                 query: { ...router.query, category: 'properties' },
+    //             },
+    //             undefined,
+    //             { shallow: true },
+    //         );
+    //     }
+    // }, [category, router]);
 
     /** HANDLERS **/
-    const subscribeHandler = async (id: string, refetch: any, query: any) => {};
-
-    const unsubscribeHandler = async (id: string, refetch: any, query: any) => {};
-
-    const redirectToMemberPageHandler = async (memberId: string) => {
-        try {
-            if (memberId === user?._id) await router.push(`/mypage?memberId=${memberId}`);
-            else await router.push(`/member?memberId=${memberId}`);
-        } catch (error) {
-            await sweetErrorHandling(error);
-        }
-    };
 
     if (device === 'mobile') {
-        return <>MEMBER PAGE MOBILE</>;
+        return <>PRICE MOBILE</>;
     } else {
         return (
-            <div id="member-page" style={{ position: 'relative' }}>
-                <div className="container">
-                    <Stack className={'member-page'}>
-                        <Stack className={'back-frame'}>
-                            <Stack className={'left-config'}>
-                                <MemberMenu subscribeHandler={subscribeHandler} unsubscribeHandler={unsubscribeHandler} />
-                            </Stack>
-                            <Stack className="main-config" mb={'76px'}>
-                                <Stack className={'list-config'}>
-                                    {category === 'properties' && <MemberProperties />}
-                                    {category === 'followers' && (
-                                        <MemberFollowers
-                                            subscribeHandler={subscribeHandler}
-                                            unsubscribeHandler={unsubscribeHandler}
-                                            redirectToMemberPageHandler={redirectToMemberPageHandler}
-                                        />
-                                    )}
-                                    {category === 'followings' && (
-                                        <MemberFollowings
-                                            subscribeHandler={subscribeHandler}
-                                            unsubscribeHandler={unsubscribeHandler}
-                                            redirectToMemberPageHandler={redirectToMemberPageHandler}
-                                        />
-                                    )}
-                                    {category === 'articles' && <MemberArticles />}
-                                </Stack>
-                            </Stack>
-                        </Stack>
-                    </Stack>
-                </div>
-            </div>
+        <Stack id="member-page">
+            <Stack className="container">
+                <Typography variant="h4" textAlign="center" color="white" mb={4}>
+                    Pricing that Empowers Your Choices
+                </Typography>
+                <Typography variant="h5" textAlign="center" color="white" mb={4}>
+                Discover the Perfect Plan Tailored to Your Needs with Clear and Competitive Options!
+                </Typography>
+                <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center">
+                {pricingPlans.map((plan, index) => (
+                    <Box
+                        key={index}
+                        className='pricing-card'
+                    >
+                    <Typography variant="h6" textAlign="center" gutterBottom>
+                        {plan.title} {plan.mostPopular && '(Most Popular)'}
+                    </Typography>
+                    <Typography variant="h3" textAlign="center" color="#FF6B9D">
+                        {plan.price}<Typography variant="h6" component="span" color="#ccc">{plan.period}</Typography>
+                    </Typography>
+                    <Box mt={2} className="pricing-card1">
+                        {plan.features.map((feature, i) => (
+                        <Typography key={i} color="white" variant="body2" mb={1}>✅ {feature}</Typography>
+                        ))}
+                        {plan.unavailable.map((feature, i) => (
+                        <Typography key={i} color="#666" variant="body2" mb={1}>❌ {feature}</Typography>
+                        ))}
+                    </Box>
+                    <Box mt={3} className="pricing-card1" textAlign="center">
+                        <Button variant="contained" color="primary">SIGN UP</Button>
+                    </Box>
+                    </Box>
+                ))}
+                </Stack>
+            </Stack>
+        </Stack>
         );
     }
 };
