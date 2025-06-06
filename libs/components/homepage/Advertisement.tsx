@@ -1,12 +1,13 @@
 import React from 'react';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { Stack, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, ContactShadows, OrbitControls } from '@react-three/drei'
 import { Lamborghini } from '../common/3Dmodels/Lamborghini'
 import { FaTachometerAlt, FaCogs, FaGasPump, FaDollarSign } from 'react-icons/fa';
+import { ArrowForward } from '@mui/icons-material';
 
 const Advertisement = () => {
 	const device = useDeviceDetect();
@@ -58,7 +59,13 @@ const Advertisement = () => {
 							<span className="value">$210,000</span>
 							</div>
 						</div>
-						<button className="learn-more">Learn More</button>
+						{/* <button className="learn-more">Learn More</button> */}
+						<Button
+							className={'get-started-btn buy-btn'}
+							endIcon={<ArrowForward />}
+						>
+							Lear More
+						</Button>
 					</div>
 
 					<div className="canvas-wrapper">

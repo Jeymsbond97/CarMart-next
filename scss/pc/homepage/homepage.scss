@@ -618,22 +618,26 @@
 					}
 					}
 				}
-				.learn-more {
-					padding: 12px 28px;
-					border: 1px solid #454343;
-					background: transparent;
-					color: #090909;
-					font-size: 18px;
-					background: #827b7b;
-					padding: 10px 20px;
-					border-radius: 10px;
-					cursor: pointer;
-					transition: background-color 0.5s ease, color 0.5s ease;
-					&:hover {
-						background-color:  #515050;
-						color: #cccccc;
-					}
-				}
+				.get-started-btn {
+					align-self: flex-start;
+					padding: 12px 25px;
+					border-radius: 25px;
+					font-family: $font;
+					font-size: 16px;
+					font-weight: 500;
+					text-transform: none;
+					transition: all 0.3s ease;
+					border: none;
+					&.buy-btn {
+						background: rgba(255, 255, 255, 0.2);
+						color: white;
+						backdrop-filter: blur(10px);
+
+						&:hover {
+							background: rgba(255, 255, 255, 0.3);
+							transform: translateX(5px);
+						}
+				}	}
 			}
 			.canvas-wrapper {
 				width: 100%;
@@ -899,85 +903,124 @@
 			position: relative;
 			padding: 100px 0px 92px;
 			width: 100%;
-			height: 810px;
+			height: 537px;
 			display: flex;
 			flex-direction: row;
 			background: #181a20;
+			justify-content: center;
+			align-items: center;
 			.container {
 				flex-direction: column;
 				align-items: center;
+				width: 1300px;
+				margin: 0 auto;
 				.card-wrapper {
 					position: relative;
-					margin-top: 48px;
 					width: 100%;
-					height: auto;
+					height: 400px;
 					display: flex;
 					flex-direction: row;
 					justify-content: space-between;
-					.event-card {
+					gap: 40px;
+					@media (max-width: 768px) {
+						flex-direction: column;
+						gap: 30px;
+					}
+					.service-card {
 						position: relative;
-						width: 300px;
-						height: 420px;
-						border-radius: 12px;
-						opacity: 0.9;
+						width: 48%;
+						min-height: 300px;
+						padding: 90px 30px;
+						border-radius: 20px;
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						justify-content: space-between;
 						cursor: pointer;
-						transition: opacity 0.4s;
-						&:hover {
-							opacity: 1;
-							scale: 1.05;
-							transition: 0.3s;
-							.more {
-								opacity: 1;
-							}
+						transition: all 0.3s ease;
+						box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+						@media (max-width: 768px) {
+							width: 100%;
 						}
-						.info {
-							position: absolute;
+						&:hover {
+							transform: translateY(-10px);
+							box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+						}
+						&.buy-card {
+							background: #2b3035;
+							color: white;
+						}
+						&.sell-card {
+							background: #2b3035;
+							color: white;
+						}
+						.card-content {
+							width: 70%;
 							display: flex;
 							flex-direction: column;
-							top: 35px;
-							left: 10px;
-							right: 10px;
-							strong {
-								color: #f64747;
-								font-family: $font;
-								font-size: 25px;
-								font-style: normal;
-								font-weight: 600;
-								line-height: normal;
-								text-transform: capitalize;
-							}
-							span {
-								color: #f66767;
-								font-family: $font;
-								font-size: 20px;
-								font-style: normal;
-								font-weight: 500;
-								line-height: 28px;
-								text-transform: capitalize;
-							}
-						}
-						.more {
-							position: absolute;
-							left: 10px;
-							right: 10px;
-							bottom: 41px;
-							display: flex;
-							flex-direction: row;
 							align-items: center;
-							opacity: 0;
-							span {
-								padding: 0px 5px;
-								border-radius: 5px;
-								background: #fffdfdc4;
-								color: #9c67f6;
+							h2 {
+								font-family: $font;
+								font-size: 28px;
+								font-weight: 600;
+								line-height: 1.3;
+								margin-bottom: 15px;
+								color: #dee2e6;;
+							}
+							p {
 								font-family: $font;
 								font-size: 16px;
-								font-style: normal;
 								font-weight: 400;
-								line-height: 26px;
-								text-align: justify;
-								cursor: pointer;
+								line-height: 1.5;
+								margin-bottom: 25px;
+								opacity: 0.9;
+								color: inherit;
 							}
+						}
+						.get-started-btn {
+							align-self: flex-start;
+							padding: 12px 25px;
+							border-radius: 25px;
+							font-family: $font;
+							font-size: 16px;
+							font-weight: 500;
+							text-transform: none;
+							transition: all 0.3s ease;
+							border: none;
+							&.buy-btn {
+								background: rgba(255, 255, 255, 0.2);
+								color: white;
+								backdrop-filter: blur(10px);
+
+								&:hover {
+									background: rgba(255, 255, 255, 0.3);
+									transform: translateX(5px);
+								}
+							}
+							&.sell-btn {
+								background: rgba(255, 255, 255, 0.2);
+								color: white;
+								backdrop-filter: blur(10px);
+
+								&:hover {
+									background: rgba(255, 255, 255, 0.3);
+									transform: translateX(5px);
+								}
+							}
+						}
+						.card-icon {
+							width: 30%;
+							display: flex;
+							justify-content: center;
+							align-items: flex-end;
+							height: 100%;
+							padding-bottom: 20px;
+							opacity: 0.6;
+							transition: all 0.3s ease;
+						}
+						&:hover .card-icon {
+							opacity: 1;
+							transform: scale(1.1);
 						}
 					}
 				}
