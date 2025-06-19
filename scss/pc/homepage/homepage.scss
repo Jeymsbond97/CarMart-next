@@ -12,7 +12,7 @@
 				display: flex;
 				flex-direction: column;
 				span {
-					color: #dee2e6;
+					color: #181a20;
 					font-family: $font;
 					font-size: 34px;
 					font-style: normal;
@@ -25,7 +25,7 @@
 					}
 				}
 				p {
-					color: #dee2e6;
+					color: #181a20;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -45,27 +45,23 @@
 					flex-direction: row;
 					align-items: center;
 					.swiper-pagination-bullet.swiper-pagination-bullet-active {
-						background: #dee2e6;
+						background: #000000;
 					}
 					.swiper-trend-next {
 						margin-left: 20px;
 						cursor: pointer;
-						color: #dee2e6;
 					}
 					.swiper-trend-prev {
 						margin-right: 20px;
 						cursor: pointer;
-						color: #dee2e6;
 					}
 					.swiper-top-next {
 						margin-left: 20px;
 						cursor: pointer;
-						color: #dee2e6;
 					}
 					.swiper-top-prev {
 						margin-right: 20px;
 						cursor: pointer;
-						color: #dee2e6;
 					}
 				}
 				.more-box {
@@ -74,7 +70,7 @@
 					cursor: pointer;
 					align-items: center;
 					span {
-						color: #dee2e6;
+						color: #181a20;
 						font-family: $font;
 						font-size: 15px;
 						font-style: normal;
@@ -199,7 +195,6 @@
 			height: 697px;
 			display: flex;
 			flex-direction: row;
-			background: #2b3035;
 			.container {
 				flex-direction: column;
 				.card-box {
@@ -213,7 +208,7 @@
 						display: flex;
 						justify-content: center;
 						align-items: center;
-						color: #dee2e6;
+						color: #181a20;
 					}
 					.trend-property-swiper {
 						width: 100%;
@@ -365,7 +360,7 @@
 			height: 816px;
 			display: flex;
 			flex-direction: row;
-			background: #181a20;
+			background: #f6f6f6;
 			.container {
 				flex-direction: column;
 				align-items: center;
@@ -656,7 +651,6 @@
 			height: 697px;
 			display: flex;
 			flex-direction: row;
-			background: #181a20;
 			.container {
 				flex-direction: column;
 				.card-box {
@@ -815,7 +809,7 @@
 			height: 722px;
 			display: flex;
 			flex-direction: row;
-			background: #2b3035;
+			background: #f6f6f6;
 			.container {
 				position: relative;
 				flex-direction: column;
@@ -906,7 +900,8 @@
 			height: 537px;
 			display: flex;
 			flex-direction: row;
-			background: #181a20;
+			background: #2b3035;
+			box-shadow: -3px 0px 20px 14px #34343480;
 			justify-content: center;
 			align-items: center;
 			.container {
@@ -1033,12 +1028,13 @@
 			height: 860px;
 			display: flex;
 			flex-direction: row;
-			background: #2b3035;
 			.container {
 				flex-direction: column;
 				align-items: center;
 				.board-title{
-					color: #dee2e6;
+					color: #181a20;
+					font-family: $font;
+					font-family: 700;
 				}
 				.community-main {
 					width: 100%;

@@ -86,7 +86,7 @@ const Top = () => {
 	);
 
 	const changeNavbarColor = () => {
-		if (window.scrollY >= 50) {
+		if (window.scrollY >= 35) {
 			setColorChange(true);
 		} else {
 			setColorChange(false);
@@ -147,6 +147,9 @@ const Top = () => {
 		window.addEventListener('scroll', changeNavbarColor);
 	}
 
+	const isHome = router.pathname === '/';
+
+
 	if (device == 'mobile') {
 		return (
 			<Stack className={'top'}>
@@ -154,24 +157,24 @@ const Top = () => {
 					<div>{t('Home')}</div>
 				</Link>
 				<Link href={'/property'}>
-					<div>{t('Properties')}</div>
+					<div>{t('Listing')}</div>
 				</Link>
 				<Link href={'/agent'}>
-					<div> {t('Agents')} </div>
+					<div> {t('Dealer')} </div>
 				</Link>
 				<Link href={'/community?articleCategory=FREE'}>
-					<div> {t('Community')} </div>
+					<div> {t('Blog')} </div>
 				</Link>
 				<Link href={'/cs'}>
-					<div> {t('CS')} </div>
+					<div> {t('Faq')} </div>
 				</Link>
 			</Stack>
 		);
 	} else {
 		return (
 			<Stack className={'navbar'}>
-				<Stack className={`navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''}`}>
-					<Stack className={'container'}>
+				<Stack className={`navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''} ${isHome ? 'dark-font' : 'light-font'}`}>
+					<Stack className={`container ${isHome ? (colorChange ? 'light-font' : 'dark-font') : ''}`}>
 						<Box component={'div'} className={'logo-box'}>
 							<Link href={'/'}>
 								<img style={{width:""}} src="/img/logo/111.png" alt="" />
@@ -297,13 +300,13 @@ const Top = () => {
 
 					<div className="horizontal-divider">&nbsp;</div>
 
-					<Stack className={'container-bottom'}>
-						    <Box component={'div'} className={'router-box'}>
+					<Stack className={`container-bottom ${isHome ? (colorChange ? 'light-font' : 'dark-font') : ''}`}>
+						    <Box component={'div'} className={`router-box `}>
 								<Link href={'/'}>
 								<div className={router.pathname === '/' ? 'active' : ''}>{t('Home')}</div>
 								</Link>
 								<Link href={'/property'}>
-								<div className={router.pathname === '/property' ? 'active' : ''}>{t('Cars')}</div>
+								<div className={router.pathname === '/property' ? 'active' : ''}>{t('Listing')}</div>
 								</Link>
 								<Link href={'/agent'}>
 								<div className={router.pathname === '/agent' ? 'active' : ''}>{t('Dealers')}</div>
@@ -322,12 +325,10 @@ const Top = () => {
 							</Box>
 							<Box className={'router-icons'}>
 								<div className="icon-badge">
-									<FavoriteBorderIcon />
-									<span className="badge">3</span>
+									< FavoriteBorderIcon  />
 								</div>
 								<div className="icon-badge">
-									<VisibilityOutlinedIcon />
-									<span className="badge">5</span>
+									<VisibilityOutlinedIcon  />
 								</div>
 								<div className="icon-badge">
 									<NotificationsOutlinedIcon />

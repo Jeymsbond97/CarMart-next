@@ -58,203 +58,420 @@ body::-webkit-scrollbar {
 				z-index: 99;
 				align-items: center;
 				&.transparent {
-					background-color: #181a209e;
+					background-color: rgba(24, 26, 32, 0.7);
+					backdrop-filter: blur(8px);
+					-webkit-backdrop-filter: blur(8px);
 				}
-				.container {
-					flex-direction: row;
-					align-items: center;
-					justify-content: space-between;
-					.logo-box {
-						img {
-							width: 100px;
-							cursor: pointer;
-						}
-					}
-					.local-info {
-						display: flex;
+				&.dark-font{
+                    .container {
 						flex-direction: row;
 						align-items: center;
-						background: transparent;
-						color: #dee2e6;
-						.info-block {
+						justify-content: space-between;
+						.logo-box {
+							img {
+								width: 100px;
+								cursor: pointer;
+							}
+						}
+						.local-info {
 							display: flex;
 							flex-direction: row;
 							align-items: center;
-							gap: 10px;
-						.info-icon {
-							color: rgb(232, 112, 27);
-							font-size: 30px;
-							font-weight: 900;
+							background: transparent;
+							color: #dee2e6;
+							.info-block {
+								display: flex;
+								flex-direction: row;
+								align-items: center;
+								gap: 10px;
+							.info-icon {
+								color: rgba(24, 26, 32, 0.7);
+								font-size: 30px;
+								font-weight: 900;
+							}
+							.info-text {
+								display: flex;
+								flex-direction: column;
+								.info-title {
+									font-family: $font;
+									font-size: 14px;
+									font-weight: 600;
+									line-height: 1.2;
+									color: #181a20;
+								}
+								.info-sub {
+									font-family: $font;
+									font-size: 12px;
+									font-weight: 400;
+									line-height: 1.2;
+									color: #183c96;
+								}
+							}
+							}
+							.divider {
+								width: 1px;
+								height: 35px;
+								background-color: #181a20;
+								margin: 0 20px;
+							}
 						}
-						.info-text {
+						.user-box {
+							width: 270px;
 							display: flex;
-							flex-direction: column;
-							.info-title {
-								font-family: $font;
-								font-size: 14px;
-								font-weight: 600;
-								line-height: 1.2;
-								color: #dee2e6;
+							flex-direction: row;
+							justify-content: flex-end;
+							.join-box {
+								width: 184px;
+								height: 47px;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								border-radius: 60px;
+								border: 1px solid #181a20;
+								cursor: pointer;
+								svg {
+									color: #181a20;
+									margin-right: 10px;
+								}
+								span {
+									font-family: $font;
+									font-size: 14px;
+									font-style: normal;
+									font-weight: 600;
+									line-height: normal;
+									color: #181a20;
+								}
 							}
-							.info-sub {
-								font-family: $font;
-								font-size: 12px;
-								font-weight: 400;
-								line-height: 1.2;
-								color: #f6f3f3;
+							.login-user {
+								img {
+									width: 42px;
+									height: 42px;
+									border-radius: 50%;
+									object-fit: cover;
+								}
 							}
 						}
-						}
-						.divider {
-							width: 1px;
-							height: 35px;
-							background-color: #2b3035;
-							margin: 0 20px;
-						}
-					}
-					.user-box {
-						width: 270px;
-						display: flex;
-						flex-direction: row;
-						justify-content: flex-end;
-						.join-box {
-							width: 184px;
-							height: 47px;
+						.lan-box {
+							margin-left: 28px;
 							display: flex;
 							align-items: center;
-							justify-content: center;
-							border-radius: 60px;
-							border: 1px solid #dee2e6;
-							cursor: pointer;
-							svg {
-								color: #dee2e6;
-								margin-right: 10px;
+							.notification-icon {
+								color: white;
 							}
-							span {
-								font-family: $font;
-								font-size: 14px;
-								font-style: normal;
-								font-weight: 600;
-								line-height: normal;
-								color: #dee2e6;
+							.btn-lang {
+								border-radius: 4px;
+								img {
+									width: 24px;
+									height: 17px;
+									border-radius: 2px;
+								}
 							}
-						}
-						.login-user {
-							img {
-								width: 42px;
-								height: 42px;
-								border-radius: 50%;
-								object-fit: cover;
-							}
-						}
-					}
-					.lan-box {
-						margin-left: 28px;
-						display: flex;
-						align-items: center;
-						.notification-icon {
-							color: white;
-						}
-						.btn-lang {
-							border-radius: 4px;
-							img {
+							.img-flag {
 								width: 24px;
 								height: 17px;
 								border-radius: 2px;
+								margin-right: 8px;
 							}
 						}
-						.img-flag {
-							width: 24px;
-							height: 17px;
-							border-radius: 2px;
-							margin-right: 8px;
-						}
 					}
-				}
-				.horizontal-divider {
-					width: 1300px;
-					height: 1px;
-					display: block;
-					background-color: #2b3035;
-				}
-				.container-bottom{
-					position: relative;
-					width: 1300px;
-					margin: 0 auto;
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					align-items: center;
-					padding: 15px 12px;
-					.router-box {
+					.horizontal-divider {
+						width: 1300px;
+						height: 1px;
+						display: block;
+						background-color: #181a20;
+					}
+					.container-bottom{
 						position: relative;
-						width: 617px;
+						width: 1300px;
+						margin: 0 auto;
 						display: flex;
 						flex-direction: row;
 						justify-content: space-between;
-						div {
+						align-items: center;
+						padding: 15px 12px;
+						.router-box {
 							position: relative;
-							color: #eeeeeeed;
-							font-family: $font;
-							font-size: 16px;
-							font-style: normal;
-							font-weight: 600;
-							line-height: normal;
-							cursor: pointer;
-							transition: background-color 0.7s ease, color 0.7s ease;
-						    &:hover {
-							color:  #3a2f34
-							}
-							&.active {
-								color:  rgba(255, 255, 255, 0.814);
-								border-bottom: 1px solid #f6f4f5;
+							width: 617px;
+							display: flex;
+							flex-direction: row;
+							justify-content: space-between;
+							div {
+								position: relative;
+								color: #181a20;
+								font-family: $font;
+								font-size: 16px;
+								font-style: normal;
 								font-weight: 600;
-							}
-							.community_menu {
-								position: absolute;
-								left: -177%;
-								top: 30px;
-								width: 434px;
-								height: 33px;
-								background: white;
-								transition: all ease 2s;
-								&:before {
-									content: '';
-									display: block;
+								line-height: normal;
+								cursor: pointer;
+								transition: background-color 0.7s ease, color 0.7s ease;
+								&:hover {
+								color:  rgba(99, 61, 61, 0.814);
+								}
+								&.active {
+									color:  rgba(99, 61, 61, 0.814);
+									border-bottom: 1px solid #181a20;
+									font-weight: 600;
+								}
+								.community_menu {
 									position: absolute;
-									top: 0;
-									right: 50%;
-									width: 10px;
-									height: 10px;
+									left: -177%;
+									top: 30px;
+									width: 434px;
+									height: 33px;
 									background: white;
-									transform: translateY(-50%) rotate(45deg);
-									z-index: 0;
+									transition: all ease 2s;
+									&:before {
+										content: '';
+										display: block;
+										position: absolute;
+										top: 0;
+										right: 50%;
+										width: 10px;
+										height: 10px;
+										background: white;
+										transform: translateY(-50%) rotate(45deg);
+										z-index: 0;
+									}
+								}
+							}
+						}
+						.router-icons {
+							display: flex;
+							flex-direction: row;
+							gap: 16px;
+							.icon-badge {
+								position: relative;
+								color: #181a20;
+								display: flex;
+								align-items: center;
+								font-weight: 400;
+								cursor: pointer;
+								svg.MuiSvgIcon-root {
+									color: #181a20;
+									font-size: 24px;
+								}
+								.badge {
+									position: absolute;
+									top: -6px;
+									right: -10px;
+									background-color: rgb(164, 76, 76);
+									color: #dee2e6;
+									font-size: 10px;
+									width: 16px;
+									height: 16px;
+									border-radius: 50%;
+									display: flex;
+									align-items: center;
+									justify-content: center;
 								}
 							}
 						}
 					}
-					.router-icons {
-						display: flex;
+				}
+				&.light-font{
+                    .container {
 						flex-direction: row;
-						gap: 16px;
-						.icon-badge {
-							position: relative;
-							color: #dee2e6;;
+						align-items: center;
+						justify-content: space-between;
+						.logo-box {
+							img {
+								width: 100px;
+								cursor: pointer;
+							}
+						}
+						.local-info {
 							display: flex;
+							flex-direction: row;
 							align-items: center;
-							.badge {
-								position: absolute;
-								top: -6px;
-								right: -10px;
-								background-color: red;
-								color: #dee2e6;
-								font-size: 10px;
-								width: 16px;
-								height: 16px;
-								border-radius: 50%;
+							background: transparent;
+							color: #dee2e6;
+							.info-block {
+								display: flex;
+								flex-direction: row;
+								align-items: center;
+								gap: 10px;
+							.info-icon {
+								color: rgba(178, 72, 72, 0.814);
+								font-size: 30px;
+								font-weight: 900;
+							}
+							.info-text {
+								display: flex;
+								flex-direction: column;
+								.info-title {
+									font-family: $font;
+									font-size: 14px;
+									font-weight: 600;
+									line-height: 1.2;
+									color: #dee2e6;
+								}
+								.info-sub {
+									font-family: $font;
+									font-size: 12px;
+									font-weight: 400;
+									line-height: 1.2;
+									color: #8d9093;
+								}
+							}
+							}
+							.divider {
+								width: 1px;
+								height: 35px;
+								background-color: #8d9093;
+								margin: 0 20px;
+							}
+						}
+						.user-box {
+							width: 270px;
+							display: flex;
+							flex-direction: row;
+							justify-content: flex-end;
+							.join-box {
+								width: 184px;
+								height: 47px;
 								display: flex;
 								align-items: center;
 								justify-content: center;
+								border-radius: 60px;
+								border: 1px solid #8d9093;
+								cursor: pointer;
+								svg {
+									color: #8d9093;
+									margin-right: 10px;
+								}
+								span {
+									font-family: $font;
+									font-size: 14px;
+									font-style: normal;
+									font-weight: 600;
+									line-height: normal;
+									color: #8d9093;
+								}
+							}
+							.login-user {
+								img {
+									width: 42px;
+									height: 42px;
+									border-radius: 50%;
+									object-fit: cover;
+								}
+							}
+						}
+						.lan-box {
+							margin-left: 28px;
+							display: flex;
+							align-items: center;
+							.notification-icon {
+								color: white;
+							}
+							.btn-lang {
+								border-radius: 4px;
+								img {
+									width: 24px;
+									height: 17px;
+									border-radius: 2px;
+								}
+							}
+							.img-flag {
+								width: 24px;
+								height: 17px;
+								border-radius: 2px;
+								margin-right: 8px;
+							}
+						}
+					}
+					.horizontal-divider {
+						width: 1300px;
+						height: 1px;
+						display: block;
+						background-color: #8d9093;
+					}
+					.container-bottom{
+						position: relative;
+						width: 1300px;
+						margin: 0 auto;
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						align-items: center;
+						padding: 15px 12px;
+						.router-box {
+							position: relative;
+							width: 617px;
+							display: flex;
+							flex-direction: row;
+							justify-content: space-between;
+							div {
+								position: relative;
+								color: #dee2e6;
+								font-family: $font;
+								font-size: 16px;
+								font-style: normal;
+								font-weight: 600;
+								line-height: normal;
+								cursor: pointer;
+								transition: background-color 0.7s ease, color 0.7s ease;
+								&:hover {
+								color:  #797474ed;
+								}
+								&.active {
+									color:  rgba(178, 72, 72, 0.814);
+									border-bottom: 1px solid #f6f4f5;
+									font-weight: 700;
+								}
+								.community_menu {
+									position: absolute;
+									left: -177%;
+									top: 30px;
+									width: 434px;
+									height: 33px;
+									background: white;
+									transition: all ease 2s;
+									&:before {
+										content: '';
+										display: block;
+										position: absolute;
+										top: 0;
+										right: 50%;
+										width: 10px;
+										height: 10px;
+										background: white;
+										transform: translateY(-50%) rotate(45deg);
+										z-index: 0;
+									}
+								}
+							}
+						}
+						.router-icons {
+							display: flex;
+							flex-direction: row;
+							gap: 16px;
+							.icon-badge {
+								position: relative;
+								color: #dee2e6;;
+								display: flex;
+								align-items: center;
+								cursor: pointer;
+								font-weight: 400;
+								svg.MuiSvgIcon-root {
+									color: #dee2e6;
+									font-size: 24px;
+								}
+								.badge {
+									position: absolute;
+									top: -6px;
+									right: -10px;
+									background-color: rgb(164, 76, 76);
+									color: #dee2e6;
+									font-size: 10px;
+									width: 16px;
+									height: 16px;
+									border-radius: 50%;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+								}
 							}
 						}
 					}
@@ -267,7 +484,7 @@ body::-webkit-scrollbar {
 		position: relative;
 		width: 100%;
 		height: 800px;
-		background-image: url('/img/bg1.webp');
+		background-image: url('/img/1.png');
 		background-size: cover;
 		background-position: center;
 		.container {
@@ -279,6 +496,7 @@ body::-webkit-scrollbar {
 			.search-title {
 				text-align: left;
 				align-items:start;
+				margin-top: 40px;
 				margin-bottom: 20px;
 				margin-left: -710px;
 				div {
@@ -495,7 +713,7 @@ body::-webkit-scrollbar {
 					max-height: 400px;
 					height: auto;
 					top: 96px;
-					left: 260px; // Location'dan keyin chiqishi uchun
+					left: 260px;
 					display: flex;
 					flex-direction: column;
 					gap: 10px;
@@ -560,7 +778,12 @@ body::-webkit-scrollbar {
 						align-items: center;
 						padding: 6px 10px;
 						border-radius: 10px;
+						font-family: $font;
+						font-size: 14px;
+						font-weight: 500;
+						line-height: 18px;
 						cursor: pointer;
+
 						transition: background 0.2s;
 						&:hover {
 							background-color: rgba(0, 0, 0, 0.1);

@@ -30,8 +30,8 @@ const withLayoutBasic = (Component: any) => {
 
 			switch (router.pathname) {
 				case '/property':
-					title = 'Cars Search';
-					desc = 'Home / cars';
+					title = 'Listing';
+					desc = 'Home / listing';
 					bgImage = '/img/banner/properties.png';
 					break;
 				case '/agent':
@@ -99,7 +99,7 @@ const withLayoutBasic = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
+						<title>CarMart</title>
 						<meta name={'title'} content={`Nestar`} />
 					</Head>
 					<Stack id="mobile-wrap">
