@@ -6,6 +6,9 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { onError } from '@apollo/client/link/error';
 import { getJwtToken } from '../libs/auth';
 import { TokenRefreshLink } from 'apollo-link-token-refresh';
+import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
+import { createClient } from 'graphql-ws';
+
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
 function getHeaders() {
@@ -46,17 +49,23 @@ function createIsomorphicLink() {
 		});
 
 		/* WEBSOCKET SUBSCRIPTION LINK */
-		const wsLink = new WebSocketLink({
-			uri: process.env.REACT_APP_API_WS ?? 'ws://127.0.0.1:3007',
-			options: {
-				reconnect: false,
-				timeout: 30000,
-				connectionParams: () => {
-					return { headers: getHeaders() };
-				},
-			},
-		});
-
+		// const wsLink = new WebSocketLink({
+		// 	uri: process.env.REACT_APP_API_WS ?? 'ws://127.0.0.1:3007',
+		// 	options: {
+		// 		reconnect: false,
+		// 		timeout: 30000,
+		// 		connectionParams: () => {
+		// 			return { headers: getHeaders() };
+		// 		},
+		// 	},
+		// });
+        const wsLink = new GraphQLWsLink(createClient({
+			url: process.env.REACT_APP_API_WS ?? 'ws://127.0.0.1:3007/graphql',
+			connectionParams: () => ({
+				headers: getHeaders(),
+			}),
+			retryAttempts: 3,
+		}));
 		const errorLink = onError(({ graphQLErrors, networkError, response }) => {
 			if (graphQLErrors) {
 				graphQLErrors.map(({ message, locations, path, extensions }) =>
