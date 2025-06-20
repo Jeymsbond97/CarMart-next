@@ -70,20 +70,21 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 				<div className="container">
 					<TabContext value={searchCommunity.search.articleCategory}>
 						<Stack className="main-box">
-							<Stack className="left-config">
+						<Stack className="left-config">
 								<Stack className={'image-info'}>
-									<img src={'/img/logo/logoText.svg'} />
 									<Stack className={'community-name'}>
-										<Typography className={'name'}>Nestar Community</Typography>
+										<Typography className={'name'}>CarMart Community</Typography>
+										<Typography className={'name1'}>Expert insights & discussions</Typography>
 									</Stack>
 								</Stack>
 
 								<TabList
-									orientation="vertical"
+									orientation="horizontal"
 									aria-label="lab API tabs example"
 									TabIndicatorProps={{
 										style: { display: 'none' },
 									}}
+									className="tablist-horizontal"
 									onChange={tabChangeHandler}
 								>
 									<Tab

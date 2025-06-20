@@ -33,8 +33,8 @@ const TuiEditor = () => {
 				'operations',
 				JSON.stringify({
 					query: `mutation ImageUploader($file: Upload!, $target: String!) {
-						imageUploader(file: $file, target: $target) 
-				  }`,
+						imageUploader(file: $file, target: $target)
+				}`,
 					variables: {
 						file: null,
 						target: 'article',

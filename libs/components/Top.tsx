@@ -143,6 +143,17 @@ const Top = () => {
 		},
 	}));
 
+	const [showScrollTop, setShowScrollTop] = useState(false);
+	useEffect(() => {
+		const onScroll = () => {
+		setColorChange(window.scrollY >= 35);
+		setShowScrollTop(window.scrollY >= 150);
+		};
+		window.addEventListener('scroll', onScroll);
+		onScroll(); // sahifa yuklanganda ham tekshir
+		return () => window.removeEventListener('scroll', onScroll);
+	}, []);
+
 	if (typeof window !== 'undefined') {
 		window.addEventListener('scroll', changeNavbarColor);
 	}
@@ -172,7 +183,7 @@ const Top = () => {
 		);
 	} else {
 		return (
-			<Stack className={'navbar'}>
+			<Stack className="navbar">
 				<Stack className={`navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''} ${isHome ? 'dark-font' : 'light-font'}`}>
 					<Stack className={`container ${isHome ? (colorChange ? 'light-font' : 'dark-font') : ''}`}>
 						<Box component={'div'} className={'logo-box'}>
@@ -339,6 +350,26 @@ const Top = () => {
 
 					<div className="horizontal-divider">&nbsp;</div>
 				</Stack>
+				{showScrollTop && (
+				<div
+					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+					style={{
+					position: 'fixed',
+					bottom: '30px',
+					right: '35px',
+					border: '1px solid black',
+					backgroundColor: '#f6f6f6;',
+					color: '#000',
+					padding: '10px 14px',
+					borderRadius: '50%',
+					cursor: 'pointer',
+					fontSize: '20px',
+					zIndex: 9999,
+					}}
+				>
+					↑
+				</div>
+				)}
 			</Stack>
 		);
 	}
