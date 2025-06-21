@@ -1,6 +1,6 @@
 export enum MemberType {
 	USER = 'USER',
-	AGENT = 'AGENT',
+	DEALER = 'DEALER',
 	ADMIN = 'ADMIN',
 }
 
@@ -14,4 +14,5 @@ export enum MemberAuthType {
 	PHONE = 'PHONE',
 	EMAIL = 'EMAIL',
 	TELEGRAM = 'TELEGRAM',
+	GOOGLE = 'GOOGLE',
 }

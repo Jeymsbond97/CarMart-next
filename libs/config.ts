@@ -1,12 +1,12 @@
 export const REACT_APP_API_URL = `${process.env.REACT_APP_API_URL}`;
 
-export const availableOptions = ['propertyBarter', 'propertyRent'];
+export const availableOptions = ['propertySell', 'propertyRent'];
 
 const thisYear = new Date().getFullYear();
 
 export const propertyYears: any = [];
 
-for (let i = 1970; i <= thisYear; i++) {
+for (let i = 1990; i <= thisYear; i++) {
 	propertyYears.push(String(i));
 }
 

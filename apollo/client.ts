@@ -60,7 +60,7 @@ function createIsomorphicLink() {
 		// 	},
 		// });
         const wsLink = new GraphQLWsLink(createClient({
-			url: process.env.REACT_APP_API_WS ?? 'ws://127.0.0.1:3007/graphql',
+			url: process.env.REACT_APP_API_WS ?? 'ws://127.0.0.1:3002/graphql',
 			connectionParams: () => ({
 				headers: getHeaders(),
 			}),
@@ -119,7 +119,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 // No Subscription required for develop process
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3007/graphql",
+  uri: "http://localhost:3002/graphql",
 });
 
 const client = new ApolloClient({

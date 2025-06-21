@@ -13,18 +13,22 @@ export const SIGN_UP = gql`
 			memberAuthType
 			memberPhone
 			memberNick
+			memberEmail
 			memberFullName
 			memberImage
 			memberAddress
 			memberDesc
-			memberWarnings
-			memberBlocks
 			memberProperties
-			memberRank
 			memberArticles
+			memberFollowers
+			memberFollowings
 			memberPoints
 			memberLikes
 			memberViews
+			memberComments
+			memberRank
+			memberWarnings
+			memberBlocks
 			deletedAt
 			createdAt
 			updatedAt
@@ -42,17 +46,22 @@ export const LOGIN = gql`
 			memberAuthType
 			memberPhone
 			memberNick
+			memberEmail
 			memberFullName
 			memberImage
 			memberAddress
 			memberDesc
-			memberWarnings
-			memberBlocks
 			memberProperties
-			memberRank
+			memberArticles
+			memberFollowers
+			memberFollowings
 			memberPoints
 			memberLikes
 			memberViews
+			memberComments
+			memberRank
+			memberWarnings
+			memberBlocks
 			deletedAt
 			createdAt
 			updatedAt
@@ -70,16 +79,20 @@ export const UPDATE_MEMBER = gql`
 			memberAuthType
 			memberPhone
 			memberNick
+			memberEmail
 			memberFullName
 			memberImage
 			memberAddress
 			memberDesc
 			memberProperties
-			memberRank
 			memberArticles
+			memberFollowers
+			memberFollowings
 			memberPoints
 			memberLikes
 			memberViews
+			memberComments
+			memberRank
 			memberWarnings
 			memberBlocks
 			deletedAt

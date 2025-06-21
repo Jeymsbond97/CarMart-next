@@ -147,9 +147,9 @@ const Join: NextPage = () => {
 													control={
 														<Checkbox
 															size="small"
-															name={'AGENT'}
+															name={'DEALER'}
 															onChange={checkUserTypeHandler}
-															checked={input?.type == 'AGENT'}
+															checked={input?.type == 'DEALER'}
 															sx={{
 																'&.Mui-checked': {
 																    color: ' #dee2e6;',
@@ -157,7 +157,7 @@ const Join: NextPage = () => {
 															}}
 														/>
 													}
-													label="Agent"
+													label="Dealer"
 												/>
 											</FormGroup>
 										</div>
