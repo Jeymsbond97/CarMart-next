@@ -16,6 +16,7 @@ const MyMenu = () => {
 	const router = useRouter();
 	const pathname = router.query.category ?? 'myProfile';
 	const category: any = router.query?.category ?? 'myProfile';
+	// const category: string = (router.query?.category as string) ?? 'myProfile';
 	const user = useReactiveVar(userVar);
 
 	/** HANDLERS **/
@@ -55,7 +56,7 @@ const MyMenu = () => {
 					</Stack>
 				</Stack>
 				<Stack className={'sections'}>
-					<Stack className={'section'} style={{ height: user.memberType === 'AGENT' ? '228px' : '153px' }}>
+					<Stack className={'section'} style={{ height: user.memberType === 'DEALER' ? '228px' : '153px' }}>
 						<Typography className="title" variant={'h5'}>
 							MANAGE LISTINGS
 						</Typography>
@@ -249,7 +250,7 @@ const MyMenu = () => {
 							</ListItem>
 						</List>
 					</Stack>
-					<Stack className={'section'} sx={{ marginTop: '70px' }}>
+					<Stack className={'section'} sx={{ marginTop: '10px' }}>
 						<div>
 							<Typography className="title" variant={'h5'}>
 								Community

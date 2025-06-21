@@ -6,11 +6,11 @@ import CloseIcon from '@mui/icons-material/Close';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { propertySquare, propertyYears } from '../../config';
-import { PropertyLocation, PropertyType } from '../../enums/property.enum';
+// import { PropertyLocation, PropertyType } from '../../enums/property.enum';
 import { PropertiesInquiry } from '../../types/property/property.input';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { PropertyBrand, PropertyTransmission } from '../../enums/property.enum';
 
 const style = {
 	position: 'absolute' as 'absolute',
@@ -48,8 +48,8 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	const router = useRouter();
 	const [openLocation, setOpenLocation] = useState(false);
 	const [openType, setOpenType] = useState(false);
-	const [propertyLocation, setPropertyLocation] = useState<PropertyLocation[]>(Object.values(PropertyLocation));
-	const [propertyType, setPropertyType] = useState<PropertyType[]>(Object.values(PropertyType));
+	const [propertyBrand, setPropertyBrand] = useState<PropertyBrand[]>(Object.values(PropertyBrand));
+	const [propertyTransmission, setPropertyTransmission] = useState<PropertyTransmission[]>(Object.values(PropertyTransmission));
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -96,7 +96,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					...searchFilter,
 					search: {
 						...searchFilter.search,
-						locationList: [value],
+						brandList: [value],
 					},
 				});
 				typeStateChangeHandler();
@@ -114,7 +114,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					...searchFilter,
 					search: {
 						...searchFilter.search,
-						typeList: [value],
+						transmissionList: [value],
 					},
 				});
 				setOpenType(false);
@@ -127,12 +127,12 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 
 	const pushSearchHandler = async () => {
 		try {
-			if (searchFilter?.search?.locationList?.length == 0) {
-				delete searchFilter.search.locationList;
+			if (searchFilter?.search?.brandList?.length == 0) {
+				delete searchFilter.search.brandList;
 			}
 
-			if (searchFilter?.search?.typeList?.length == 0) {
-				delete searchFilter.search.typeList;
+			if (searchFilter?.search?.transmissionList?.length == 0) {
+				delete searchFilter.search.transmissionList;
 			}
 
 			await router.push(
@@ -157,12 +157,12 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				<Stack className={'search-box'}>
 					<Stack className={'select-box'}>
 						<Box component={'div'} className={`box ${openLocation ? 'on' : ''}`} onClick={locationStateChangeHandler}>
-							<span>{searchFilter?.search?.locationList ? searchFilter?.search?.locationList[0] : t('Brand type')} </span>
+							<span>{searchFilter?.search?.brandList ? searchFilter?.search?.brandList[0] : t('Brand type')} </span>
 							<ExpandMoreIcon />
 						</Box>
 						<span className="divider" />
 						<Box className={`box ${openType ? 'on' : ''}`} onClick={typeStateChangeHandler}>
-							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Transmission type')} </span>
+							<span> {searchFilter?.search?.transmissionList ? searchFilter?.search?.transmissionList[0] : t('Transmission type')} </span>
 							<ExpandMoreIcon />
 						</Box>
 						<span className="divider" />
@@ -174,7 +174,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					{/*MENU */}
 					<div className={`filter-location ${openLocation ? 'on' : ''}`}
 						ref={locationRef}>
-						{propertyLocation.map((location: string) => {
+						{propertyBrand.map((location: string) => {
 							return (
 								<div onClick={() => propertyLocationSelectHandler(location)} key={location}>
 									<img src={`img/banner/brands/${location}.png`} alt="" />
@@ -184,7 +184,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						})}
 					</div>
 					<div className={`filter-type ${openType ? 'on' : ''}`} ref={typeRef}>
-						{propertyType.map((type: string) => {
+						{propertyTransmission.map((type: string) => {
 							return (
 								<div
 									onClick={() => propertyTypeSelectHandler(type)}

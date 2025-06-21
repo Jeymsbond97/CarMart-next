@@ -1,18 +1,19 @@
-import { PropertyLocation, PropertyStatus, PropertyType } from '../../enums/property.enum';
+import { PropertyBrand, PropertyColor, PropertyFuel, PropertyStatus, PropertyTransmission, } from '../../enums/property.enum';
 import { Direction } from '../../enums/common.enum';
 
 export interface PropertyInput {
-	propertyType: PropertyType;
-	propertyLocation: PropertyLocation;
+	propertyTransmission: PropertyTransmission;
+	propertyBrand: PropertyBrand;
 	propertyAddress: string;
 	propertyTitle: string;
 	propertyPrice: number;
-	propertySquare: number;
-	propertyBeds: number;
-	propertyRooms: number;
+	propertyColor: PropertyColor;
+	propertyFuel: PropertyFuel;
+	propertyOdometer: number;
+	propertyYear: number
 	propertyImages: string[];
 	propertyDesc?: string;
-	propertyBarter?: boolean;
+	propertySell?: boolean;
 	propertyRent?: boolean;
 	memberId?: string;
 	constructedAt?: Date;
@@ -20,14 +21,15 @@ export interface PropertyInput {
 
 interface PISearch {
 	memberId?: string;
-	locationList?: PropertyLocation[];
-	typeList?: PropertyType[];
-	roomsList?: Number[];
+	transmissionList?: PropertyTransmission[];
+	colorList?: PropertyColor[];
+	fuelList?: PropertyFuel[];
+	brandList?: PropertyBrand[]
 	options?: string[];
-	bedsList?: Number[];
+	odometerRange?: Range;
 	pricesRange?: Range;
+	yearsRange?: Range;
 	periodsRange?: PeriodsRange;
-	squaresRange?: Range;
 	text?: string;
 }
 
@@ -53,7 +55,7 @@ export interface AgentPropertiesInquiry {
 
 interface ALPISearch {
 	propertyStatus?: PropertyStatus;
-	propertyLocationList?: PropertyLocation[];
+	propertyBrand?: PropertyBrand[];
 }
 
 export interface AllPropertiesInquiry {
