@@ -28,7 +28,7 @@ const PropertyCard = (props: PropertyCardType) => {
 		: '/img/banner/header1.svg';
 
 	if (device === 'mobile') {
-		return <div>PROPERTY CARD</div>;
+		return <div>CAR CARD</div>;
 	} else {
 		return (
 			<Stack className="card-config">
@@ -65,19 +65,19 @@ const PropertyCard = (props: PropertyCardType) => {
 						</Stack>
 						<Stack className="address">
 							<Typography>
-								{property.propertyAddress}, {property.propertyLocation}
+								{property.propertyAddress}, {property.propertyBrand}
 							</Typography>
 						</Stack>
 					</Stack>
 					<Stack className="options">
 						<Stack className="option">
-							<img src="/img/icons/bed.svg" alt="" /> <Typography>{property.propertyBeds} bed</Typography>
+							<img src="/img/icons/bed.svg" alt="" /> <Typography>{property.propertyFuel} Fuel</Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/room.svg" alt="" /> <Typography>{property.propertyRooms} room</Typography>
+							<img src="/img/icons/room.svg" alt="" /> <Typography>{property.propertyColor} Color</Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/expand.svg" alt="" /> <Typography>{property.propertySquare} m2</Typography>
+							<img src="/img/icons/expand.svg" alt="" /> <Typography>{property.propertyTransmission} Transmission</Typography>
 						</Stack>
 					</Stack>
 					<Stack className="divider"></Stack>
@@ -91,9 +91,9 @@ const PropertyCard = (props: PropertyCardType) => {
 							</Typography>
 							<Typography
 								sx={{ fontWeight: 500, fontSize: '13px' }}
-								className={property.propertyBarter ? '' : 'disabled-type'}
+								className={property.propertySell ? '' : 'disabled-type'}
 							>
-								Barter
+								Sell
 							</Typography>
 						</Stack>
 						{!recentlyVisited && (
