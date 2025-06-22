@@ -188,7 +188,7 @@ const Top = () => {
 					<Stack className={`container ${isHome ? (colorChange ? 'light-font' : 'dark-font') : ''}`}>
 						<Box component={'div'} className={'logo-box'}>
 							<Link href={'/'}>
-								<img style={{width:""}} src="/img/logo/111.png" alt="" />
+								<img src="/img/logo/111.png" alt="" />
 							</Link>
 						</Box>
 						<Box className="local-info">
@@ -358,7 +358,7 @@ const Top = () => {
 					bottom: '30px',
 					right: '35px',
 					border: '1px solid black',
-					backgroundColor: '#f6f6f6;',
+					backgroundColor: '#f6f6f6',
 					color: '#000',
 					padding: '10px 14px',
 					borderRadius: '50%',

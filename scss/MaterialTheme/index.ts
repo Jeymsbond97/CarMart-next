@@ -7,7 +7,7 @@ import typography from './typography';
  */
 export const light = {
 	palette: {
-		type: 'light',
+		mode: 'light',
 		background: {
 			default: '#f4f6f8',
 			paper: common.white,
