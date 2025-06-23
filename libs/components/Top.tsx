@@ -334,7 +334,8 @@ const Top = () => {
 								<div className={router.pathname === '/cs' ? 'active' : ''}>{t('Faq')}</div>
 								</Link>
 							</Box>
-							<Box className={'router-icons'}>
+							{user?._id && (
+								<Box className={'router-icons'}>
 								<div className="icon-badge">
 									< FavoriteBorderIcon  />
 								</div>
@@ -346,6 +347,7 @@ const Top = () => {
 									<span className="badge">2</span>
 								</div>
 							</Box>
+							)}
 					</Stack>
 
 					<div className="horizontal-divider">&nbsp;</div>

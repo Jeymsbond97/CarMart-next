@@ -8,6 +8,9 @@ import { Autoplay, Navigation, Pagination } from 'swiper';
 import TopAgentCard from './TopAgentCard';
 import { Member } from '../../types/member/member';
 import { AgentsInquiry } from '../../types/member/member.input';
+import { T } from '../../types/common';
+import { useQuery } from '@apollo/client';
+import { GET_COMPANY } from '../../../apollo/user/query';
 
 interface TopAgentsProps {
 	initialInput: AgentsInquiry;
@@ -17,9 +20,25 @@ const TopAgents = (props: TopAgentsProps) => {
 	const { initialInput } = props;
 	const device = useDeviceDetect();
 	const router = useRouter();
-	const [topAgents, setTopAgents] = useState<Member[]>([]);
+	const [topDealers, setTopDealers] = useState<Member[]>([]);
 
 	/** APOLLO REQUESTS **/
+	const {
+		loading: getDealerLoading,
+		data: getDealerData,
+		error: getDealerError,
+		refetch: getDealerRefetch,
+	} = useQuery(GET_COMPANY, {
+		fetchPolicy: 'cache-and-network',
+		variables: { input: initialInput },
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data: T) => {
+			setTopDealers(data?.getCompany?.list);
+		}
+	});
+/** HANDLERS **/
+console.log("TopDealer =>", getDealerData,)
+console.log("SENT INPUT =>", initialInput);
 	/** HANDLERS **/
 
 	if (device === 'mobile') {
@@ -37,10 +56,10 @@ const TopAgents = (props: TopAgentsProps) => {
 							spaceBetween={29}
 							modules={[Autoplay]}
 						>
-							{topAgents.map((agent: Member) => {
+							{topDealers.map((dealer: Member) => {
 								return (
-									<SwiperSlide className={'top-agents-slide'} key={agent?._id}>
-										<TopAgentCard agent={agent} key={agent?.memberNick} />
+									<SwiperSlide className={'top-agents-slide'} key={dealer?._id}>
+										<TopAgentCard dealer={dealer} key={dealer?.memberNick} />
 									</SwiperSlide>
 								);
 							})}
@@ -80,10 +99,10 @@ const TopAgents = (props: TopAgentsProps) => {
 									prevEl: '.swiper-agents-prev',
 								}}
 							>
-								{topAgents.map((agent: Member) => {
+								{topDealers.map((dealer: Member) => {
 									return (
-										<SwiperSlide className={'top-agents-slide'} key={agent?._id}>
-											<TopAgentCard agent={agent} key={agent?.memberNick} />
+										<SwiperSlide className={'top-agents-slide'} key={dealer?._id}>
+											<TopAgentCard dealer={dealer} key={dealer?.memberNick} />
 										</SwiperSlide>
 									);
 								})}
