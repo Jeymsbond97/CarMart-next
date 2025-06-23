@@ -804,7 +804,7 @@
 		}
 		.top-agents {
 			position: relative;
-			padding: 153px 0px 135px;
+			padding: 80px 0px 110px;
 			width: 100%;
 			height: 722px;
 			display: flex;
@@ -814,12 +814,14 @@
 				position: relative;
 				flex-direction: column;
 				align-items: center;
+				overflow: visible !important;
 				.wrapper {
 					width: 100%;
-					margin-top: 83px;
+					margin-top: 63px;
 					display: flex;
 					flex-direction: row;
 					align-items: center;
+					overflow: visible !important;
 					justify-content: space-between;
 					.switch-btn {
 						width: 53px;
@@ -840,13 +842,14 @@
 						}
 					}
 					.card-wrapper {
-						width: 1174px;
-						height: 280px;
+						width: 1184px;
+						height: 360px;
 						display: flex;
 						flex-direction: row;
+						overflow: visible !important;
 						.top-agents-swiper {
-							width: 99.7%;
-							height: 280px;
+							width: 99.9%;
+							height: 560px;
 							display: flex;
 							flex-direction: row;
 							.top-agents-slide {
@@ -890,67 +893,143 @@
 							}
 						}
 						.top-agent-card-v2 {
-							width: 205px;
-							height: 280px;
+							position: relative;
+							width: 243px;
+							height: 340px;
 							background: #fff;
 							border-radius: 12px;
-							box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 							display: flex;
 							flex-direction: column;
-							align-items: center;
-							padding: 16px;
-						  
-							.profile-img {
-							  width: 96px;
-							  height: 96px;
-							  border-radius: 50%;
-							  object-fit: cover;
-							  margin-bottom: 12px;
+							padding: 15px;
+							overflow: visible !important;
+							font-family: $font;
+							transition: all 0.3s ease;
+							&:hover {
+								transform: scale(1.02) translateY(+2px);
+								box-shadow: 0px 12px 30px rgba(24, 26, 32, 0.15);
+								z-index: 10;
+								border-radius: 18px;
 							}
-						  
-							.nickname {
-							  font-family: $font;
-							  font-size: 16px;
-							  font-weight: 600;
-							  color: #181a20;
-							  margin-bottom: 10px;
-							}
-						  
-							.stats-box {
-							  text-align: center;
-							  font-size: 13px;
-							  color: #5a5a5a;
-							  line-height: 20px;
-							  font-family: $font;
-							  margin-bottom: 10px;
-							}
-						  
-							.actions-box {
-							  margin-top: auto;
-							  width: 100%;
-							  display: flex;
-							  justify-content: space-around;
-							  align-items: center;
-						  
-							  .view-box, .like-box {
+							.top-box {
 								display: flex;
 								align-items: center;
-								gap: 4px;
-								color: #181a20;
-						  
-								svg {
-								  font-size: 20px;
-								}
-						  
-								p, span, .MuiTypography-root {
-								  font-family: $font;
-								  font-size: 13px;
-								  font-weight: 500;
-								}
-							  }
+								gap: 22px;
+								font-family: $font;
+							    .profile-img {
+								width: 90px;
+								height: 90px;
+								margin: 10px;
+								border-radius: 50%;
+								object-fit: cover;
 							}
-						  }
-						  
+							.info {
+								display: flex;
+								flex-direction: column;
+								gap: 6px;
+								.nickname-box, .phone-box {
+									display: flex;
+									align-items: center;
+									gap: 6px;
+								.nickname {
+									font-size: 16px;
+									font-weight: 700;
+									color: #181a20;
+									font-family: $font;
+								}
+								.phone {
+									font-size: 13px;
+									color: #5a5a5a;
+									font-family: $font;
+									font-weight: 500;
+								}
+								}
+							}
+						    }
+							.divider {
+								height: 1px;
+								width: 100%;
+								background-color: #e0e0e0;
+								margin: 12px 0;
+							}
+							.desc-text {
+								font-size: 13px;
+								color: #555;
+								margin-bottom: 10px;
+								text-align: center;
+								font-family: $font;
+							}
+							.stats-box {
+								display: flex;
+								justify-content: space-between;
+								margin-top: 20px;
+								margin-bottom: 20px;
+								.stat-item {
+								display: flex;
+								flex-direction: column;
+								align-items: center;
+								font-size: 10px;
+								font-family: $font;
+								.stat-title {
+									font-weight: 600;
+									margin-bottom: 5px;
+									font-family: $font;
+									font-size: 14px;
+									color: #979494;
+								}
+								.icon-value {
+									display: flex;
+									align-items: center;
+									gap: 4px;
+									color: #717171;
+									font-weight: 500;
+									font-family: $font !important;
+									svg{
+										font-size: 16px !important; // ikon o'lchami
+										color: #717171 !important;  // ikon rangi
+									}
+								}
+							}
+							}
+							.bottom-box {
+								margin-top: auto;
+								display: flex;
+								justify-content: space-between;
+								align-items: center;
+								padding: 5px ;
+							    .read-more {
+								font-size: 13px;
+								font-weight: 600;
+								color: #181a20;
+								padding: 5px 13px 5px 0;
+								cursor: pointer;
+								&:hover{
+									background-color: #f6f6f6;
+									color: #716d6d;
+									padding: 5px 13px 5px 5px;
+									border-radius: 8px;
+								}
+							}
+							.actions {
+								display: flex;
+								gap: 12px;
+								font-family: $font;
+								font-size: 7px;
+								.icon-text {
+									display: flex;
+									align-items: center;
+									gap: 4px;
+									font-family: $font !important;
+									font-family: 500;
+									font-size: 7px !important;
+									color: #181a20;
+									svg {
+										font-size: 16px !important; // ikon o'lchami
+										color: #717171 !important;  // ikon rangi
+									}
+								}
+							}
+							}
+						}
 					}
 				}
 			}
@@ -962,8 +1041,6 @@
 			height: 537px;
 			display: flex;
 			flex-direction: row;
-			background: #2b3035;
-			box-shadow: -3px 0px 20px 14px #34343480;
 			justify-content: center;
 			align-items: center;
 			.container {
@@ -1089,6 +1166,7 @@
 			width: 100%;
 			height: 860px;
 			display: flex;
+			background: #f6f6f6;
 			flex-direction: row;
 			.container {
 				flex-direction: column;

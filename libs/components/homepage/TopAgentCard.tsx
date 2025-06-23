@@ -4,6 +4,11 @@ import { Box, IconButton, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import PersonIcon from '@mui/icons-material/Person';
+import PhoneIcon from '@mui/icons-material/Phone';
+import DriveEtaIcon from '@mui/icons-material/DriveEta';
+import GroupIcon from '@mui/icons-material/Group';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { Member } from '../../types/member/member';
 
 interface TopAgentProps {
@@ -31,27 +36,70 @@ const TopAgentCard = (props: TopAgentProps) => {
 	} else {
 		return (
 			<Stack className="top-agent-card-v2">
-				<img src={agentImage} alt={dealer.memberNick} className="profile-img" />
+				{/* TOP - Image va Name, Phone */}
+				<Box className="top-box">
+					<img src={agentImage} alt={dealer.memberNick} className="profile-img" />
+					<Box className="info">
+					<Box className="nickname-box">
+						<PersonIcon fontSize="small" />
+						<Typography className="nickname">{dealer.memberNick}</Typography>
+					</Box>
+					<Box className="phone-box">
+						<PhoneIcon fontSize="small" />
+						<Typography className="phone">{dealer.memberPhone}</Typography>
+					</Box>
+					</Box>
+				</Box>
 
-				<Typography className="nickname">{dealer.memberNick}</Typography>
+				{/* Divider */}
+				<Box className="divider" />
 
+				{/* Stats with icons */}
 				<Box className="stats-box">
-					<Typography>{dealer.memberProperties} Listings</Typography>
-					<Typography>{dealer.memberFollowers || 0} Followers</Typography>
-					<Typography>{dealer.memberFollowings || 0} Followings</Typography>
+					<Box className="stat-item">
+					<Typography className="stat-title">Listings</Typography>
+					<Box className="icon-value">
+						<DriveEtaIcon fontSize="small" />
+						<Typography>{dealer.memberProperties}</Typography>
+					</Box>
+					</Box>
+					<Box className="stat-item">
+					<Typography className="stat-title">Followers</Typography>
+					<Box className="icon-value">
+						<GroupIcon fontSize="small" />
+						<Typography>{dealer.memberFollowers || 0}</Typography>
+					</Box>
+					</Box>
+					<Box className="stat-item">
+					<Typography className="stat-title">Followings</Typography>
+					<Box className="icon-value">
+						<PersonAddIcon fontSize="small" />
+						<Typography>{dealer.memberFollowings || 0}</Typography>
+					</Box>
+					</Box>
 				</Box>
 
-				<Box className="actions-box">
-					<Box className="view-box">
-					<IconButton><VisibilityIcon /></IconButton>
-					<Typography>{dealer.memberViews}</Typography>
+				{/* Divider */}
+				<Box className="divider" />
+
+				{/* Description */}
+				<Typography className="desc-text">{dealer.memberDesc || 'No Description'}</Typography>
+
+				{/* Bottom - Views & Likes and Read More */}
+				<Box className="bottom-box">
+					<Box className="read-more">Read More...</Box>
+					<Box className="actions">
+					<Box className="icon-text">
+						<VisibilityIcon fontSize="small" />
+						<Typography>{dealer.memberViews}</Typography>
 					</Box>
-					<Box className="like-box">
-					<IconButton><FavoriteBorderIcon /></IconButton>
-					<Typography>{dealer.memberLikes}</Typography>
+					<Box className="icon-text">
+						<FavoriteBorderIcon fontSize="small" />
+						<Typography>{dealer.memberLikes}</Typography>
+					</Box>
 					</Box>
 				</Box>
-			</Stack>
+            </Stack>
 		);
 	}
 };
