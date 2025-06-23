@@ -29,7 +29,7 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 			<Stack className={'popular-properties'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Popular properties</span>
+						<span>Popular Cars</span>
 					</Stack>
 					<Stack className={'card-box'}>
 						<Swiper

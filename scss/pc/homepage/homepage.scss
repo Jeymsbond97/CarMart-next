@@ -909,6 +909,7 @@
 								box-shadow: 0px 12px 30px rgba(24, 26, 32, 0.15);
 								z-index: 10;
 								border-radius: 18px;
+								border-bottom: 1px solid #717171;
 							}
 							.top-box {
 								display: flex;
@@ -1036,9 +1037,9 @@
 		}
 		.events {
 			position: relative;
-			padding: 100px 0px 92px;
+			padding: 30px 0px 72px;
 			width: 100%;
-			height: 537px;
+			height: 740px;
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
@@ -1048,6 +1049,25 @@
 				align-items: center;
 				width: 1300px;
 				margin: 0 auto;
+				.info-box1{
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					// align-items: center;
+					margin-bottom: 70px;
+					.title{
+						color: #181a20;
+						font-family: $font;
+						font-size: 34px;
+						font-style: normal;
+						font-weight: 500;
+						line-height: 150%;
+						letter-spacing: -0.646px;
+						text-transform: capitalize;
+						margin-bottom: 7px;
+					}
+				}
 				.card-wrapper {
 					position: relative;
 					width: 100%;
@@ -1069,9 +1089,11 @@
 						display: flex;
 						flex-direction: row;
 						align-items: center;
+						color: #181a20;
+						background: #f6f6f6 !important;
 						justify-content: space-between;
 						cursor: pointer;
-						transition: all 0.3s ease;
+						transition: all 0.2s ease;
 						box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 						@media (max-width: 768px) {
 							width: 100%;
@@ -1079,14 +1101,15 @@
 						&:hover {
 							transform: translateY(-10px);
 							box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+							border: 1px solid #717171;
 						}
 						&.buy-card {
 							background: #2b3035;
-							color: white;
+							color: #181a20;
 						}
 						&.sell-card {
 							background: #2b3035;
-							color: white;
+							color: #181a20;
 						}
 						.card-content {
 							width: 70%;
@@ -1097,17 +1120,18 @@
 								font-family: $font;
 								font-size: 28px;
 								font-weight: 600;
-								line-height: 1.3;
+								line-height: 1.5;
 								margin-bottom: 15px;
-								color: #dee2e6;;
+								color: #181a20;
+								text-align: left;
 							}
 							p {
 								font-family: $font;
 								font-size: 16px;
-								font-weight: 400;
+								font-weight: 500;
 								line-height: 1.5;
 								margin-bottom: 25px;
-								opacity: 0.9;
+								opacity: 0.8;
 								color: inherit;
 							}
 						}
@@ -1118,17 +1142,19 @@
 							font-family: $font;
 							font-size: 16px;
 							font-weight: 500;
+							color: #181a20;
 							text-transform: none;
 							transition: all 0.3s ease;
 							border: none;
 							&.buy-btn {
-								background: rgba(255, 255, 255, 0.2);
-								color: white;
+								background: rgba(89, 85, 85, 0.2);
+								color: #181a20;
 								backdrop-filter: blur(10px);
 
 								&:hover {
-									background: rgba(255, 255, 255, 0.3);
+									background: #696a6c;
 									transform: translateX(5px);
+									backdrop-filter: blur(20px);
 								}
 							}
 							&.sell-btn {

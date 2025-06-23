@@ -74,12 +74,12 @@ console.log("SENT INPUT =>", initialInput);
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Top Agents</span>
-							<p>Our Top Agents always ready to serve you</p>
+							<span>Top Dealers</span>
+							<p>Our Top Dealers always ready to serve you</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
 							<div className={'more-box'}>
-								<span>See All Agents</span>
+								<span>See All Dealers</span>
 								<img src="/img/icons/rightup.svg" alt="" />
 							</div>
 						</Box>

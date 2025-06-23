@@ -99,39 +99,41 @@ const PricePage: NextPage = () => {
         return <>PRICE MOBILE</>;
     } else {
         return (
-        <Stack id="member-page">
+            <Stack id="member-page">
             <Stack className="container">
-                <Typography variant="h4" textAlign="center" color="white" mb={4}>
+                <h4 style={{ textAlign: 'center' }}>
                     Pricing that Empowers Your Choices
-                </Typography>
-                <Typography variant="h5" textAlign="center" color="white" mb={4}>
-                Discover the Perfect Plan Tailored to Your Needs with Clear and Competitive Options!
-                </Typography>
-                <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center">
-                {pricingPlans.map((plan, index) => (
-                    <Box
-                        key={index}
-                        className='pricing-card'
-                    >
-                    <Typography variant="h6" textAlign="center" gutterBottom>
-                        {plan.title} {plan.mostPopular && '(Most Popular)'}
-                    </Typography>
-                    <Typography variant="h3" textAlign="center" color="#FF6B9D">
-                        {plan.price}<Typography variant="h6" component="span" color="#ccc">{plan.period}</Typography>
-                    </Typography>
-                    <Box mt={2} className="pricing-card1">
+                </h4>
+                <h5 style={{ textAlign: 'center', marginBottom: '32px' }}>
+                    Discover the Perfect Plan Tailored to Your Needs with Clear and Competitive Options!
+                </h5>
+
+                <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} justifyContent="center" className="card">
+                    {pricingPlans.map((plan, index) => (
+                    <Box key={index} className="pricing-card">
+                        <h6>
+                        {plan.title} {plan.mostPopular && <span className='most-popular'>(Most Popular)</span> }
+                        </h6>
+
+                        <h3>
+                        {plan.price}
+                        <span>{plan.period}</span>
+                        </h3>
+
+                        <Box mt={2} className="pricing-card1">
                         {plan.features.map((feature, i) => (
-                        <Typography key={i} color="white" variant="body2" mb={1}>✅ {feature}</Typography>
+                            <p key={i} className="feature-item">✅ {feature}</p>
                         ))}
                         {plan.unavailable.map((feature, i) => (
-                        <Typography key={i} color="#666" variant="body2" mb={1}>❌ {feature}</Typography>
+                            <p key={i} className="feature-item-unavailable">❌ {feature}</p>
                         ))}
-                    </Box>
-                    <Box mt={3} className="pricing-card1" textAlign="center">
+                        </Box>
+
+                        <Box mt={3} className="pricing-card1" textAlign="center">
                         <Button variant="contained" color="primary">SIGN UP</Button>
+                        </Box>
                     </Box>
-                    </Box>
-                ))}
+                    ))}
                 </Stack>
             </Stack>
         </Stack>
