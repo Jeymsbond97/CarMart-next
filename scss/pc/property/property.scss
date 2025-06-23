@@ -30,6 +30,7 @@
 				flex-direction: row;
 				gap: 25px;
 				padding-top: 96px;
+				font-family: $font;
 				.filter-config {
 					width: 339px;
 					height: auto;
@@ -43,6 +44,31 @@
 							position: relative;
 							width: 100%;
 							gap: 10px;
+							&.transmission-group{
+								display: flex;
+								flex-direction: column;
+								gap: 10px;
+								margin-bottom: 30px;
+								.checkbox-grid {
+									display: flex;
+									flex-wrap: wrap;
+									flex-direction: row;
+									gap: 10px;
+								}
+								.input-box {
+									width: calc(50% - 5px);
+									display: flex;
+									align-items: center;
+									.property-checkbox {
+									    margin-right: 8px;
+									}
+									.property_type {
+									    font-family: $font;
+									    font-weight: 600;
+										font-size: 14px;
+									}
+								}
+							}
 							.property-location {
 								gap: 10px;
 								height: 115px;
@@ -64,13 +90,14 @@
 							}
 							.title {
 								width: auto;
-								height: auto;
+								height: 10px;
 								color: #181a20;
 								font-family: $font;
-								font-size: 14px;
+								font-size: 15px;
 								font-style: normal;
-								font-weight: 600;
+								font-weight: 700;
 								line-height: normal;
+								margin-bottom: 12px;
 							}
 							.input-box {
 								position: relative;
@@ -105,10 +132,14 @@
 								.property-checkbox {
 									width: 16px;
 									height: 15px;
+									font-family: $font;
 									border-radius: 12px;
 									margin-right: 10px;
 									svg {
 										width: 19px;
+									}
+									.property_type{
+										font-family: $font;
 									}
 								}
 							}
@@ -129,6 +160,90 @@
 								font-style: normal;
 								font-weight: 400;
 								line-height: 26px;
+							}
+							.fuel-select {
+								width: 100%;
+								height: 49px;
+								border-radius: 8px;
+								background: #fff;
+								padding-left: 5px;
+								border: 1px solid #717171;
+								outline: none;
+								display: flex;
+								align-items: center;
+								font-family: $font;
+								font-size: 14px;
+								font-style: normal;
+								font-weight: 400;
+								color: #717171;
+								margin-bottom: 30px;
+								box-shadow: rgba(50, 50, 93, 0.1) 0px 3px 8px 0px;
+									.MuiOutlinedInput-notchedOutline {
+										border: none;
+									}
+									.MuiSelect-icon {
+									right: 12px;
+									color: #181a20;
+									}
+									.MuiInputLabel-root {
+									top: 50%;
+									transform: translateY(-50%);
+									color: #181a20 !important;
+									font-family: $font !important;
+									font-size: 14px;
+									text-align: center;
+									&.MuiFormLabel-filled {
+										color: #181a20 !important;
+									}
+									&.MuiInputLabel-shrink {
+										transform: translateY(-50%) scale(0.75);
+										top: 0px;
+									}
+									}
+							}
+							.color-select {
+								width: 100%;
+								height: 49px;
+								border-radius: 8px;
+								background: #fff;
+								padding-left: 5px;
+								border: 1px solid #717171;
+								display: flex;
+								align-items: center;
+								font-family: $font;
+								font-size: 14px;
+								font-style: normal;
+								font-weight: 400;
+								color: #717171;
+								margin-bottom: 30px;
+								box-shadow: rgba(50, 50, 93, 0.1) 0px 3px 8px 0px;
+							
+								.MuiOutlinedInput-notchedOutline {
+									border: none;
+								}
+							
+								.MuiSelect-icon {
+									right: 12px;
+									color: #181a20;
+								}
+							
+								.MuiInputLabel-root {
+									top: 50%;
+									transform: translateY(-50%);
+									color: #181a20 !important;
+									font-family: $font !important;
+									font-size: 14px;
+									text-align: center;
+							
+									&.MuiFormLabel-filled {
+										color: #181a20 !important;
+									}
+							
+									&.MuiInputLabel-shrink {
+										transform: translateY(-50%) scale(0.75);
+										top: 0px;
+									}
+								}
 							}
 							.divider {
 								position: absolute;
@@ -170,12 +285,31 @@
 							}
 							.square-year-input {
 								width: 100%;
-								gap: 10px;
+								gap: 20px;
 								flex-direction: row;
 								align-items: center;
+								margin-bottom: 10px;
 								.central-divider {
-									width: 22px;
+									width: 1px;
 									border: 1px solid black;
+								}
+								.MuiFormControl-root {
+									flex: 1;
+									.MuiInputLabel-root {
+										color: #717171;
+										font-size: 14px;
+										font-family: $font;
+									}
+								}
+								.MuiOutlinedInput-root {
+									height: 49px;
+									border-radius: 8px;
+									background: #fff;
+									outline: none;
+									font-size: 14px;
+									input {
+										padding-left: 15px;
+									}
 								}
 								input {
 									width: 100%;
@@ -192,7 +326,7 @@
 								input::placeholder {
 									color: #717171;
 									font-family: $font;
-									font-size: 14px;
+									font-size: 16px;
 									font-style: normal;
 									font-weight: 400;
 									line-height: 26px;

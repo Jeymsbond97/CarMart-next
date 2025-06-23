@@ -11,22 +11,36 @@ import {
 	MenuItem,
 	Tooltip,
 	IconButton,
+	SelectChangeEvent,
+	ListItemText,
 } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { PropertyBrand, PropertyColor, PropertyFuel, PropertyTransmission } from '../../enums/property.enum';
 import { PropertiesInquiry } from '../../types/property/property.input';
 import { useRouter } from 'next/router';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
-import { propertySquare } from '../../config';
 import RefreshIcon from '@mui/icons-material/Refresh';
 
 const MenuProps = {
 	PaperProps: {
 		style: {
-			maxHeight: '200px',
+			maxHeight: 210, // Scroll chiqadigan maksimal balandlik
+			overflowY: 'auto',
+		},
+	},
+	MenuListProps: {
+		sx: {
+			'&::-webkit-scrollbar': {
+				width: '6px',
+			},
+			'&::-webkit-scrollbar-thumb': {
+				backgroundColor: '#ccc',
+				borderRadius: '3px',
+			},
 		},
 	},
 };
+
 
 interface FilterType {
 	searchFilter: PropertiesInquiry;
@@ -45,6 +59,10 @@ const Filter = (props: FilterType) => {
 	const [propertyFuel, setPropertyFuel] = useState<PropertyFuel[]>(Object.values(PropertyFuel));
 	const [searchText, setSearchText] = useState<string>('');
 	const [showMore, setShowMore] = useState<boolean>(false);
+	const [yearRange, setYearRange] = useState({
+		start: 2000,
+		end: thisYear,
+	});
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -183,68 +201,186 @@ const Filter = (props: FilterType) => {
 		[searchFilter],
 	);
 
-	// const propertyRoomSelectHandler = useCallback(
-	// 	async (number: Number) => {
+	const propertyFuelSelectHandler = useCallback(
+		async (event: SelectChangeEvent<any>) => {
+		const {
+			target: { value },
+		} = event;
+		const newValue = typeof value === 'string' ? value.split(',') : value;
+
+		await router.push(
+			`/property?input=${JSON.stringify({
+			...searchFilter,
+			search: {
+				...searchFilter.search,
+				fuelList: newValue,
+			},
+			})}`,
+			undefined,
+			{ scroll: false },
+		);
+		},
+		[searchFilter],
+	);
+	// const propertyColorSelectHandler = useCallback(
+	// 	async (e: any) => {
 	// 		try {
-	// 			if (number != 0) {
-	// 				if (searchFilter?.search?.roomsList?.includes(number)) {
-	// 					await router.push(
-	// 						`/property?input=${JSON.stringify({
-	// 							...searchFilter,
-	// 							search: {
-	// 								...searchFilter.search,
-	// 								roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
-	// 							},
-	// 						})}`,
-	// 						`/property?input=${JSON.stringify({
-	// 							...searchFilter,
-	// 							search: {
-	// 								...searchFilter.search,
-	// 								roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
-	// 							},
-	// 						})}`,
-	// 						{ scroll: false },
-	// 					);
-	// 				} else {
-	// 					await router.push(
-	// 						`/property?input=${JSON.stringify({
-	// 							...searchFilter,
-	// 							search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
-	// 						})}`,
-	// 						`/property?input=${JSON.stringify({
-	// 							...searchFilter,
-	// 							search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
-	// 						})}`,
-	// 						{ scroll: false },
-	// 					);
-	// 				}
-	// 			} else {
-	// 				delete searchFilter?.search.roomsList;
-	// 				setSearchFilter({ ...searchFilter });
+	// 			const isChecked = e.target.checked;
+	// 			const value = e.target.value;
+
+	// 			if (isChecked) {
+	// 				await router.push(
+	// 					`/property?input=${JSON.stringify({
+	// 						...searchFilter,
+	// 						search: { ...searchFilter.search, colorList: [...(searchFilter?.search?.colorList || []), value] },
+	// 					})}`,
+	// 					`/property?input=${JSON.stringify({
+	// 						...searchFilter,
+	// 						search: { ...searchFilter.search, colorList: [...(searchFilter?.search?.colorList || []), value] },
+	// 					})}`,
+	// 					{ scroll: false },
+	// 				);
+	// 			} else if (searchFilter?.search?.colorList?.includes(value)) {
 	// 				await router.push(
 	// 					`/property?input=${JSON.stringify({
 	// 						...searchFilter,
 	// 						search: {
 	// 							...searchFilter.search,
+	// 							colorList: searchFilter?.search?.colorList?.filter((item: string) => item !== value),
 	// 						},
 	// 					})}`,
 	// 					`/property?input=${JSON.stringify({
 	// 						...searchFilter,
 	// 						search: {
 	// 							...searchFilter.search,
+	// 							colorList: searchFilter?.search?.colorList?.filter((item: string) => item !== value),
 	// 						},
 	// 					})}`,
 	// 					{ scroll: false },
 	// 				);
 	// 			}
 
-	// 			console.log('propertyRoomSelectHandler:', number);
+	// 			console.log('propertyColorSelectHandler:', e.target.value);
 	// 		} catch (err: any) {
-	// 			console.log('ERROR, propertyRoomSelectHandler:', err);
+	// 			console.log('ERROR, propertyColorSelectHandler:', err);
 	// 		}
 	// 	},
-	// 	[searchFilter],
+	// 	[searchFilter, router],
 	// );
+
+
+	const propertyColorSelectHandler = useCallback(
+		async (event: SelectChangeEvent<string[]>) => {
+			try {
+				const {
+					target: { value },
+				} = event;
+	
+				const selectedColors = typeof value === 'string' ? value.split(',') : value;
+	
+				await router.push(
+					`/property?input=${JSON.stringify({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							colorList: selectedColors,
+						},
+					})}`,
+					undefined,
+					{ scroll: false }
+				);
+			} catch (err) {
+				console.log('ERROR, propertyColorSelectHandler:', err);
+			}
+		},
+		[router, searchFilter]
+	);
+	
+	const propertyPriceHandler = useCallback(
+		async (value: number, type: string) => {
+			if (type == 'start') {
+				await router.push(
+					`/property?input=${JSON.stringify({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							pricesRange: { ...searchFilter.search.pricesRange, start: value * 1 },
+						},
+					})}`,
+					`/property?input=${JSON.stringify({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							pricesRange: { ...searchFilter.search.pricesRange, start: value * 1 },
+						},
+					})}`,
+					{ scroll: false },
+				);
+			} else {
+				await router.push(
+					`/property?input=${JSON.stringify({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							pricesRange: { ...searchFilter.search.pricesRange, end: value * 1 },
+						},
+					})}`,
+					`/property?input=${JSON.stringify({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							pricesRange: { ...searchFilter.search.pricesRange, end: value * 1 },
+						},
+					})}`,
+					{ scroll: false },
+				);
+			}
+		},
+		[searchFilter],
+	);
+
+	const propertyYearHandler = useCallback(
+		async (value: number, type: string) => {
+			if (type === 'start') {
+				await router.push(
+					`/property?input=${JSON.stringify({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							yearsRange: { ...searchFilter.search.yearsRange, start: value },
+						},
+					})}`,
+					`/property?input=${JSON.stringify({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							yearsRange: { ...searchFilter.search.yearsRange, start: value },
+						},
+					})}`,
+					{ scroll: false },
+				);
+			} else {
+				await router.push(
+					`/property?input=${JSON.stringify({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							yearsRange: { ...searchFilter.search.yearsRange, end: value },
+						},
+					})}`,
+					`/property?input=${JSON.stringify({
+						...searchFilter,
+						search: {
+							...searchFilter.search,
+							yearsRange: { ...searchFilter.search.yearsRange, end: value },
+						},
+					})}`,
+					{ scroll: false },
+				);
+			}
+		},
+		[searchFilter],
+	);
 
 	const propertyOptionSelectHandler = useCallback(
 		async (e: any) => {
@@ -286,157 +422,6 @@ const Filter = (props: FilterType) => {
 				console.log('propertyOptionSelectHandler:', e.target.value);
 			} catch (err: any) {
 				console.log('ERROR, propertyOptionSelectHandler:', err);
-			}
-		},
-		[searchFilter],
-	);
-
-	// const propertyBedSelectHandler = useCallback(
-	// 	async (number: Number) => {
-	// 		try {
-	// 			if (number != 0) {
-	// 				if (searchFilter?.search?.bedsList?.includes(number)) {
-	// 					await router.push(
-	// 						`/property?input=${JSON.stringify({
-	// 							...searchFilter,
-	// 							search: {
-	// 								...searchFilter.search,
-	// 								bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
-	// 							},
-	// 						})}`,
-	// 						`/property?input=${JSON.stringify({
-	// 							...searchFilter,
-	// 							search: {
-	// 								...searchFilter.search,
-	// 								bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
-	// 							},
-	// 						})}`,
-	// 						{ scroll: false },
-	// 					);
-	// 				} else {
-	// 					await router.push(
-	// 						`/property?input=${JSON.stringify({
-	// 							...searchFilter,
-	// 							search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
-	// 						})}`,
-	// 						`/property?input=${JSON.stringify({
-	// 							...searchFilter,
-	// 							search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
-	// 						})}`,
-	// 						{ scroll: false },
-	// 					);
-	// 				}
-	// 			} else {
-	// 				delete searchFilter?.search.bedsList;
-	// 				setSearchFilter({ ...searchFilter });
-	// 				await router.push(
-	// 					`/property?input=${JSON.stringify({
-	// 						...searchFilter,
-	// 						search: {
-	// 							...searchFilter.search,
-	// 						},
-	// 					})}`,
-	// 					`/property?input=${JSON.stringify({
-	// 						...searchFilter,
-	// 						search: {
-	// 							...searchFilter.search,
-	// 						},
-	// 					})}`,
-	// 					{ scroll: false },
-	// 				);
-	// 			}
-
-	// 			console.log('propertyBedSelectHandler:', number);
-	// 		} catch (err: any) {
-	// 			console.log('ERROR, propertyBedSelectHandler:', err);
-	// 		}
-	// 	},
-	// 	[searchFilter],
-	// );
-
-	// const propertySquareHandler = useCallback(
-	// 	async (e: any, type: string) => {
-	// 		const value = e.target.value;
-
-	// 		if (type == 'start') {
-	// 			await router.push(
-	// 				`/property?input=${JSON.stringify({
-	// 					...searchFilter,
-	// 					search: {
-	// 						...searchFilter.search,
-	// 						squaresRange: { ...searchFilter.search.squaresRange, start: value },
-	// 					},
-	// 				})}`,
-	// 				`/property?input=${JSON.stringify({
-	// 					...searchFilter,
-	// 					search: {
-	// 						...searchFilter.search,
-	// 						squaresRange: { ...searchFilter.search.squaresRange, start: value },
-	// 					},
-	// 				})}`,
-	// 				{ scroll: false },
-	// 			);
-	// 		} else {
-	// 			await router.push(
-	// 				`/property?input=${JSON.stringify({
-	// 					...searchFilter,
-	// 					search: {
-	// 						...searchFilter.search,
-	// 						squaresRange: { ...searchFilter.search.squaresRange, end: value },
-	// 					},
-	// 				})}`,
-	// 				`/property?input=${JSON.stringify({
-	// 					...searchFilter,
-	// 					search: {
-	// 						...searchFilter.search,
-	// 						squaresRange: { ...searchFilter.search.squaresRange, end: value },
-	// 					},
-	// 				})}`,
-	// 				{ scroll: false },
-	// 			);
-	// 		}
-	// 	},
-	// 	[searchFilter],
-	// );
-
-	const propertyPriceHandler = useCallback(
-		async (value: number, type: string) => {
-			if (type == 'start') {
-				await router.push(
-					`/property?input=${JSON.stringify({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-							pricesRange: { ...searchFilter.search.pricesRange, start: value * 1 },
-						},
-					})}`,
-					`/property?input=${JSON.stringify({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-							pricesRange: { ...searchFilter.search.pricesRange, start: value * 1 },
-						},
-					})}`,
-					{ scroll: false },
-				);
-			} else {
-				await router.push(
-					`/property?input=${JSON.stringify({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-							pricesRange: { ...searchFilter.search.pricesRange, end: value * 1 },
-						},
-					})}`,
-					`/property?input=${JSON.stringify({
-						...searchFilter,
-						search: {
-							...searchFilter.search,
-							pricesRange: { ...searchFilter.search.pricesRange, end: value * 1 },
-						},
-					})}`,
-					{ scroll: false },
-				);
 			}
 		},
 		[searchFilter],
@@ -533,156 +518,202 @@ const Filter = (props: FilterType) => {
 						})}
 					</Stack>
 				</Stack>
-				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Transmission</Typography>
-					{propertyTransmission.map((type: string) => (
-						<Stack className={'input-box'} key={type}>
-							<Checkbox
-								id={type}
-								className="property-checkbox"
-								color="default"
-								size="small"
-								value={type}
-								onChange={propertyTypeSelectHandler}
-								checked={(searchFilter?.search?.transmissionList || []).includes(type as PropertyTransmission)}
-							/>
-							<label style={{ cursor: 'pointer' }}>
-								<Typography className="property_type">{type}</Typography>
-							</label>
-						</Stack>
-					))}
+				<Stack className={'find-your-home transmission-group'} mb={'30px'}>
+					<Typography className={'title'} style={{ textShadow: '0px 3px 4px #b9b9b9' }}>Transmission</Typography>
+					<Stack className="checkbox-grid">
+						{propertyTransmission.map((type: string) => (
+							<Stack className="input-box" key={type}>
+								<Checkbox
+									id={type}
+									className="property-checkbox"
+									color="default"
+									size="small"
+									value={type}
+									onChange={propertyTypeSelectHandler}
+									checked={(searchFilter?.search?.transmissionList || []).includes(type as PropertyTransmission)}
+								/>
+								<label style={{ cursor: 'pointer', fontFamily: '$font' }}>
+									<Typography className="property_type">{type}</Typography>
+								</label>
+							</Stack>
+						))}
+					</Stack>
 				</Stack>
-				{/* <Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Rooms</Typography>
-					<Stack className="button-group">
-						<Button
+
+				<Stack className={'find-your-home'}>
+					<FormControl fullWidth>
+						<InputLabel id="fuel-label" sx={{
+							color: '#181a20 !important',
+							fontSize: '15px',
+							fontWeight:'500',
+							fontFamily: '$font',
+							'&.Mui-focused': {
+							color: '#181a20 !important',
+							},
+							'&.MuiFormLabel-filled': {
+							color: '#181a20 !important',
+							}
+						}}>Select Fuel Type</InputLabel>
+						<Select
+							labelId="fuel-label"
+							id="fuel"
+							multiple
+							className="fuel-select"
+							value={searchFilter.search.fuelList || []}
+							onChange={propertyFuelSelectHandler}
+							input={<OutlinedInput label="Select Fuel Type" />}
+							renderValue={(selected: string[]) => selected.join(', ')}
+							MenuProps={{
+								...MenuProps,
+								PaperProps: {
+									sx: {
+										'& .MuiMenuItem-root': {
+										fontSize: '14px !important',
+										fontFamily: '$font !important',
+										padding: '4px 1px !important',
+										'&:hover': {
+											backgroundColor: '#f5f5f5 !important',
+										},
+										'&.Mui-selected': {
+											backgroundColor: '#f5f5f5; !important',
+											color: '#181a20 !important',
+											'&:hover': {
+												backgroundColor: '#f5f5f5 !important',
+												color: '#181a20 !important',
+											},
+											'& .MuiCheckbox-root': {
+											color: '#181a20 !important',
+											},
+											'& .MuiListItemText-primary': {
+											color: '##181a20 !important',
+											}
+										}
+										}
+									}
+									}
+								}}
 							sx={{
-								borderRadius: '12px 0 0 12px',
-								border: !searchFilter?.search?.roomsList ? '2px solid #181A20' : '1px solid #b9b9b9',
+								borderColor: '#ddd',
+								'& fieldset': {
+									borderColor: '#ddd !important', // oddiy holat
+								},
+								'&:hover fieldset': {
+									borderColor: '#aaa !important', // hover holat
+								},
+								'&.Mui-focused fieldset': {
+									borderColor: '#ddd !important', // tanlanganda (focused)
+								},
 							}}
-							onClick={() => propertyRoomSelectHandler(0)}
 						>
-							Any
-						</Button>
-						<Button
+							{propertyFuel.map((fuel) => (
+							<MenuItem key={fuel} value={fuel}>
+									<Checkbox checked={(searchFilter.search.fuelList || []).includes(fuel)}
+										sx={{
+										padding: '0 8px 0 0',
+										color: 'inherit',
+										}}/>
+									<ListItemText primary={fuel}
+										sx={{
+											'& .MuiListItemText-primary': {
+											fontSize: '14px',
+											fontFamily: '$font',
+											}
+										}}/>
+							</MenuItem>
+							))}
+						</Select>
+						</FormControl>
+				</Stack>
+                <Stack className={'find-your-home'}>
+					<FormControl fullWidth>
+						<InputLabel id="color-label" sx={{
+							color: '#181a20 !important',
+							fontSize: '15px',
+							fontWeight:'500',
+							fontFamily: '$font',
+							'&.Mui-focused': {
+								color: '#181a20 !important',
+							},
+							'&.MuiFormLabel-filled': {
+								color: '#181a20 !important',
+							}
+						}}>
+							Select Color
+						</InputLabel>
+						<Select
+							labelId="color-label"
+							id="color"
+							multiple
+							className="color-select"
+							value={searchFilter.search.colorList || []}
+							onChange={propertyColorSelectHandler}
+							input={<OutlinedInput label="Select Color" />}
+							renderValue={(selected: string[]) => selected.join(', ')}
+							MenuProps={{
+								...MenuProps,
+								PaperProps: {
+									sx: {
+										'& .MuiMenuItem-root': {
+											fontSize: '14px !important',
+											fontFamily: '$font !important',
+											padding: '4px 1px !important',
+											'&:hover': {
+												backgroundColor: '#f5f5f5 !important',
+											},
+											'&.Mui-selected': {
+												backgroundColor: '#f5f5f5 !important',
+												color: '#181a20 !important',
+												'&:hover': {
+													backgroundColor: '#f5f5f5 !important',
+													color: '#181a20 !important',
+												},
+												'& .MuiCheckbox-root': {
+													color: '#181a20 !important',
+												},
+												'& .MuiListItemText-primary': {
+													color: '#181a20 !important',
+												}
+											}
+										}
+									}
+								}
+							}}
 							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(1) ? undefined : 'none',
+								borderColor: '#ddd',
+								'& fieldset': {
+									borderColor: '#ddd !important',
+								},
+								'&:hover fieldset': {
+									borderColor: '#aaa !important',
+								},
+								'&.Mui-focused fieldset': {
+									borderColor: '#ddd !important',
+								},
 							}}
-							onClick={() => propertyRoomSelectHandler(1)}
 						>
-							1
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(2) ? undefined : 'none',
-							}}
-							onClick={() => propertyRoomSelectHandler(2)}
-						>
-							2
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(3) ? undefined : 'none',
-							}}
-							onClick={() => propertyRoomSelectHandler(3)}
-						>
-							3
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
-								borderRight: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
-							}}
-							onClick={() => propertyRoomSelectHandler(4)}
-						>
-							4
-						</Button>
-						<Button
-							sx={{
-								borderRadius: '0 12px 12px 0',
-								border: searchFilter?.search?.roomsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
-							}}
-							onClick={() => propertyRoomSelectHandler(5)}
-						>
-							5+
-						</Button>
-					</Stack>
-				</Stack> */}
-				{/* <Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Bedrooms</Typography>
-					<Stack className="button-group">
-						<Button
-							sx={{
-								borderRadius: '12px 0 0 12px',
-								border: !searchFilter?.search?.bedsList ? '2px solid #181A20' : '1px solid #b9b9b9',
-							}}
-							onClick={() => propertyBedSelectHandler(0)}
-						>
-							Any
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(1) ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(1)}
-						>
-							1
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(2) ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(2)}
-						>
-							2
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(3) ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(3)}
-						>
-							3
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(4) ? undefined : 'none',
-								// borderRight: false ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(4)}
-						>
-							4
-						</Button>
-						<Button
-							sx={{
-								borderRadius: '0 12px 12px 0',
-								border: searchFilter?.search?.bedsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(5) ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(5)}
-						>
-							5+
-						</Button>
-					</Stack>
-				</Stack> */}
+							{propertyColor.map((color) => (
+								<MenuItem key={color} value={color}>
+									<Checkbox checked={(searchFilter.search.colorList || []).includes(color)}
+										sx={{
+											padding: '0 8px 0 0',
+											color: 'inherit',
+										}} />
+									<ListItemText primary={color}
+										sx={{
+											'& .MuiListItemText-primary': {
+												fontSize: '14px',
+												fontFamily: '$font',
+											}
+										}} />
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+				</Stack>
+
+
 				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Options</Typography>
+					<Typography className={'title'} style={{ textShadow: '0px 3px 4px #b9b9b9' }}>Options</Typography>
 					<Stack className={'input-box'}>
 						<Checkbox
 							id={'Barter'}
@@ -712,56 +743,81 @@ const Filter = (props: FilterType) => {
 						</label>
 					</Stack>
 				</Stack>
-				{/* <Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Square meter</Typography>
-					<Stack className="square-year-input">
-						<FormControl>
-							<InputLabel id="demo-simple-select-label">Min</InputLabel>
+				<Stack className={'find-your-home'}>
+					<Typography className={'title'} style={{ textShadow: '0px 3px 4px #b9b9b9' }}>Year Range</Typography>
+					<Stack className="square-year-input" style={{marginBottom:'20px'}}>
+						<FormControl fullWidth>
+							<InputLabel id="year-start-label">Min</InputLabel>
 							<Select
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								value={searchFilter?.search?.squaresRange?.start ?? 0}
+								labelId="year-start-label"
+								id="year-start"
+								value={searchFilter?.search?.yearsRange?.start ?? 2000}
 								label="Min"
-								onChange={(e: any) => propertySquareHandler(e, 'start')}
+								onChange={(e: any) => propertyYearHandler(e.target.value, 'start')}
 								MenuProps={MenuProps}
+								sx={{
+									borderColor: '#ddd',
+									'& fieldset': {
+										borderColor: '#ddd !important', // oddiy holat
+									},
+									'&:hover fieldset': {
+										borderColor: '#aaa !important', // hover holat
+									},
+									'&.Mui-focused fieldset': {
+										borderColor: '#ddd !important', // tanlanganda (focused)
+									},
+								}}
 							>
-								{propertySquare.map((square: number) => (
+								{Array.from({ length: thisYear - 2000 + 1 }, (_, i) => 2000 + i).map((year) => (
 									<MenuItem
-										value={square}
-										disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
-										key={square}
+										value={year}
+										disabled={(searchFilter?.search?.yearsRange?.end || thisYear) < year}
+										key={year}
 									>
-										{square}
+										{year}
 									</MenuItem>
 								))}
 							</Select>
 						</FormControl>
 						<div className="central-divider"></div>
-						<FormControl>
-							<InputLabel id="demo-simple-select-label">Max</InputLabel>
+						<FormControl fullWidth>
+							<InputLabel id="year-end-label">Max</InputLabel>
 							<Select
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								value={searchFilter?.search?.squaresRange?.end ?? 500}
+								labelId="year-end-label"
+								id="year-end"
+								value={searchFilter?.search?.yearsRange?.end ?? thisYear}
 								label="Max"
-								onChange={(e: any) => propertySquareHandler(e, 'end')}
+								onChange={(e: any) => propertyYearHandler(e.target.value, 'end')}
 								MenuProps={MenuProps}
+								sx={{
+									borderColor: '#ddd',
+									'& fieldset': {
+										borderColor: '#ddd !important', // oddiy holat
+									},
+									'&:hover fieldset': {
+										borderColor: '#aaa !important', // hover holat
+									},
+									'&.Mui-focused fieldset': {
+										borderColor: '#ddd !important', // tanlanganda (focused)
+									},
+								}}
 							>
-								{propertySquare.map((square: number) => (
+								{Array.from({ length: thisYear - 2000 + 1 }, (_, i) => 2000 + i).map((year) => (
 									<MenuItem
-										value={square}
-										disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
-										key={square}
+										value={year}
+										disabled={(searchFilter?.search?.yearsRange?.start || 2000) > year}
+										key={year}
 									>
-										{square}
+										{year}
 									</MenuItem>
 								))}
 							</Select>
 						</FormControl>
 					</Stack>
-				</Stack> */}
+				</Stack>
+
 				<Stack className={'find-your-home'}>
-					<Typography className={'title'}>Price Range</Typography>
+					<Typography className={'title'} style={{ textShadow: '0px 3px 4px #b9b9b9' }}>Price Range</Typography>
 					<Stack className="square-year-input">
 						<input
 							type="number"
