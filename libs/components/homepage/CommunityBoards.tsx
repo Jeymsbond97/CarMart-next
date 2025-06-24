@@ -21,7 +21,6 @@ const CommunityBoards = () => {
 		direction: 'DESC',
 	});
 	const [newsArticles, setNewsArticles] = useState<BoardArticle[]>([]);
-	const [freeArticles, setFreeArticles] = useState<BoardArticle[]>([]);
 
 	/** APOLLO REQUESTS **/
 	const {
@@ -42,41 +41,6 @@ const CommunityBoards = () => {
 		return <div>AVTOMATIVE BLOG (MOBILE)</div>;
 	} else {
 		return (
-			// <Stack className={'community-board'}>
-			// 	<Stack className={'container'}>
-			// 		<Stack>
-			// 			<Typography className={'board-title'} variant={'h1'}>AVTOMATIVE BLOG HIGHLIGHTS</Typography>
-			// 		</Stack>
-			// 		<Stack className="community-main">
-			// 			<Stack className={'community-left'}>
-			// 				<Stack className={'content-top'}>
-			// 					<Link href={'/community?articleCategory=NEWS'}>
-			// 						<span>News</span>
-			// 					</Link>
-			// 					<img src="/img/icons/arrowBig.svg" alt="" />
-			// 				</Stack>
-			// 				<Stack className={'card-wrap'}>
-			// 					{newsArticles.map((article, index) => {
-			// 						return <CommunityCard vertical={true} article={article} index={index} key={article?._id} />;
-			// 					})}
-			// 				</Stack>
-			// 			</Stack>
-			// 			<Stack className={'community-right'}>
-			// 				<Stack className={'content-top'}>
-			// 					<Link href={'/community?articleCategory=FREE'}>
-			// 						<span>Free</span>
-			// 					</Link>
-			// 					<img src="/img/icons/arrowBig.svg" alt="" />
-			// 				</Stack>
-			// 				<Stack className={'card-wrap vertical'}>
-			// 					{freeArticles.map((article, index) => {
-			// 						return <CommunityCard vertical={false} article={article} index={index} key={article?._id} />;
-			// 					})}
-			// 				</Stack>
-			// 			</Stack>
-			// 		</Stack>
-			// 	</Stack>
-			// </Stack>
 			<Stack className={'automotive-blog-section'}>
 				<Stack className={'container'}>
 					<Typography className={'section-title'} variant={'h2'}>
