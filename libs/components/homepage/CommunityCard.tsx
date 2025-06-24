@@ -19,7 +19,7 @@ const CommunityCard = (props: CommunityCardProps) => {
 		: '/img/event.svg';
 
 	if (device === 'mobile') {
-		return <div>COMMUNITY CARD (MOBILE)</div>;
+		return <div>BLOG CARD (MOBILE)</div>;
 	} else {
 		if (vertical) {
 			return (
