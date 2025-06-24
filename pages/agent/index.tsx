@@ -9,6 +9,12 @@ import AgentCard from '../../libs/components/common/AgentCard';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Member } from '../../libs/types/member/member';
+import { useMutation, useQuery } from '@apollo/client';
+import { GET_COMPANY } from '../../apollo/user/query';
+import { LIKE_TARGET_MEMBER } from '../../apollo/user/mutation';
+import { T } from '../../libs/types/common';
+import { Messages } from '../../libs/config';
+import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -32,6 +38,21 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 	const [searchText, setSearchText] = useState<string>('');
 
 	/** APOLLO REQUESTS **/
+	const [likeTargetMember] = useMutation(LIKE_TARGET_MEMBER);
+	const {
+		loading: getAgentsLoading,
+		data: getAgentsData,
+		error: getAgentsError,
+		refetch: getAgentsRefetch,
+	} = useQuery(GET_COMPANY, {
+		fetchPolicy: 'network-only',
+		variables: { input: searchFilter },
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data: T) => {
+			setAgents(data?.getCompany?.list);
+			setTotal(data?.getCompany?.metaCounter[0]?.total);
+		},
+	});
 	/** LIFECYCLES **/
 	useEffect(() => {
 		if (router.query.input) {
@@ -85,8 +106,26 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 		setCurrentPage(value);
 	};
 
+	const likeMemberHandler = async (user: any, id: string) => {
+		try{
+			if (!id) return;
+			if(!user._id) throw new Error(Messages.error2);
+				await likeTargetMember({
+			variables: {input: id},
+			});
+
+			await getAgentsRefetch({ input: searchFilter });
+			// await getAgentsRefetch({ input: initialInput });
+
+			await sweetTopSmallSuccessAlert('success', 800);
+		} catch (err: any) {
+			console.log('ERROR, likeMemberHandler:', err.message);
+			sweetMixinErrorAlert(err.message).then();
+		}
+	};
+
 	if (device === 'mobile') {
-		return <h1>AGENTS PAGE MOBILE</h1>;
+		return <h1>DEALER PAGE MOBILE</h1>;
 	} else {
 		return (
 			<Stack className={'agent-list-page'}>
@@ -95,7 +134,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 						<Box component={'div'} className={'left'}>
 							<input
 								type="text"
-								placeholder={'Search for an agent'}
+								placeholder={'Search for an dealer'}
 								value={searchText}
 								onChange={(e: any) => setSearchText(e.target.value)}
 								onKeyDown={(event: any) => {
@@ -135,11 +174,11 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 						{agents?.length === 0 ? (
 							<div className={'no-data'}>
 								<img src="/img/icons/icoAlert.svg" alt="" />
-								<p>No Agents found!</p>
+								<p>No dealer found!</p>
 							</div>
 						) : (
-							agents.map((agent: Member) => {
-								return <AgentCard agent={agent} key={agent._id} />;
+							agents.map((dealer: Member) => {
+								return <AgentCard dealer={dealer} key={dealer._id} likeMemberHandler={likeMemberHandler} />;
 							})
 						)}
 					</Stack>
@@ -173,7 +212,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 AgentList.defaultProps = {
 	initialInput: {
 		page: 1,
-		limit: 10,
+		limit: 8,
 		sort: 'createdAt',
 		direction: 'DESC',
 		search: {},

@@ -56,6 +56,7 @@ query GetMember($input: String!) {
         memberAuthType
         memberPhone
         memberNick
+		memberEmail
         memberFullName
         memberImage
         memberAddress
@@ -66,7 +67,7 @@ query GetMember($input: String!) {
         memberLikes
         memberViews
         memberFollowings
-				memberFollowers
+		memberFollowers
         memberRank
         memberWarnings
         memberBlocks
@@ -147,21 +148,23 @@ export const GET_PROPERTIES = gql`
 		getProperties(input: $input) {
 			list {
 				_id
-				propertyType
+				propertyTransmission
 				propertyStatus
-				propertyLocation
+				propertyBrand
+				propertyColor
+				propertyFuel
+				propertyOdometer
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
+				propertyYear
 				propertyViews
 				propertyLikes
+				propertyComments
 				propertyRank
 				propertyImages
 				propertyDesc
-				propertyBarter
+				propertySell
 				propertyRent
 				memberId
 				soldAt
@@ -169,6 +172,11 @@ export const GET_PROPERTIES = gql`
 				constructedAt
 				createdAt
 				updatedAt
+				meLiked {
+					memberId
+					likeRefId
+					myFavorite
+				}
 				memberData {
 					_id
 					memberType
@@ -176,6 +184,7 @@ export const GET_PROPERTIES = gql`
 					memberAuthType
 					memberPhone
 					memberNick
+					memberEmail
 					memberFullName
 					memberImage
 					memberAddress

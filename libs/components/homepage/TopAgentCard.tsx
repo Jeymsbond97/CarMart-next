@@ -45,7 +45,7 @@ const TopAgentCard = (props: TopAgentProps) => {
 						<Typography className="nickname">{dealer.memberNick}</Typography>
 					</Box>
 					<Box className="phone-box">
-						<PhoneIcon fontSize="small" />
+						<PhoneIcon className='phoneIcon' fontSize="small" />
 						<Typography className="phone">{dealer.memberPhone}</Typography>
 					</Box>
 					</Box>

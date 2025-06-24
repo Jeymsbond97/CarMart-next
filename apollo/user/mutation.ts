@@ -112,6 +112,7 @@ export const LIKE_TARGET_MEMBER = gql`
 			memberAuthType
 			memberPhone
 			memberNick
+			memberEmail
 			memberFullName
 			memberImage
 			memberAddress
@@ -197,20 +198,23 @@ export const LIKE_TARGET_PROPERTY = gql`
 	mutation LikeTargetProperty($input: String!) {
 		likeTargetProperty(propertyId: $input) {
 			_id
-			propertyType
+			propertyTransmission
 			propertyStatus
-			propertyLocation
+			propertyBrand
+			propertyColor
+			propertyFuel
+			propertyOdometer
 			propertyAddress
 			propertyTitle
 			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
+			propertyYear
 			propertyViews
 			propertyLikes
+			propertyComments
+			propertyRank
 			propertyImages
 			propertyDesc
-			propertyBarter
+			propertySell
 			propertyRent
 			memberId
 			soldAt
