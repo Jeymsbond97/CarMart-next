@@ -6,6 +6,7 @@ import PropertyBigCard from '../../libs/components/common/PropertyBigCard';
 import ReviewCard from '../../libs/components/agent/ReviewCard';
 import { Box, Button, Pagination, Stack, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import PhoneIcon from '@mui/icons-material/Phone';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { Property } from '../../libs/types/property/property';
@@ -198,8 +199,10 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 						<Box component={'div'} className={'info'} onClick={() => redirectToMemberPageHandler(agent?._id as string)}>
 							<strong>{agent?.memberFullName ?? agent?.memberNick}</strong>
 							<div>
-								<img src="/img/icons/call.svg" alt="" />
-								<span>{agent?.memberPhone}</span>
+								<Box className="phone-box">
+								<PhoneIcon className='phoneIcon' fontSize="small" />
+								<Typography className="phone">{agent?.memberPhone || 'No phone'}</Typography>
+								</Box>
 							</div>
 						</Box>
 					</Stack>
@@ -307,14 +310,14 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 AgentDetail.defaultProps = {
 	initialInput: {
 		page: 1,
-		limit: 9,
+		limit: 3,
 		search: {
 			memberId: '',
 		},
 	},
 	initialComment: {
 		page: 1,
-		limit: 5,
+		limit: 3,
 		sort: 'createdAt',
 		direction: 'ASC',
 		search: {

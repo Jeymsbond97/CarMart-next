@@ -1,7 +1,7 @@
 #pc-wrap {
 	.agent-detail-page {
 		position: relative;
-		padding: 133px 0 75px;
+		padding: 110px 0 75px;
 		width: 100%;
 		height: auto;
 		display: flex;
@@ -12,18 +12,22 @@
 			flex-direction: column;
 			align-items: center;
 			.agent-info {
-				margin-left: 58px;
 				width: 100%;
 				display: flex;
 				flex-direction: row;
 				align-items: center;
+				border-radius: 12px;
+				background: #f6f6f6;
+				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 				img {
 					margin-right: 32px;
 					width: 135px;
 					height: 135px;
 					border-radius: 50%;
+					margin-left: 10px;
 					cursor: pointer;
 					object-fit: cover;
+					padding: 10px ;
 				}
 				.info {
 					display: flex;
@@ -39,14 +43,21 @@
 						cursor: pointer;
 					}
 					div {
-						margin-top: 13px;
+						margin-top: 1px;
 						display: flex;
 						flex-direction: row;
 						align-items: center;
-						img {
-							margin-right: 10px;
-							width: 16px;
-							height: 16px;
+						.phone-box{
+							display: flex;
+							gap: 5px;
+							.phoneIcon{
+								font-size: 16px;
+								color: #5a5a5a;
+							}
+						}
+						.phone{
+							font-family: $font;
+							font-size: 14px;
 						}
 						span {
 							color: #181a20;
@@ -67,7 +78,7 @@
 				display: flex;
 				flex-direction: column;
 				border-radius: 12px;
-				background: #fff;
+				background: #f6f6f6;
 				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 				.card-wrap {
 					position: relative;
@@ -154,7 +165,7 @@
 				position: relative;
 				margin-top: 75px;
 				padding: 58px 19px;
-				width: 95%;
+				width: 100%;
 				height: auto;
 				border-radius: 24px;
 				background: #f6f6f6;

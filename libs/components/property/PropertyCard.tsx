@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Typography, Box } from '@mui/material';
+import { Stack, Typography, Box, Divider } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -10,6 +10,9 @@ import { REACT_APP_API_URL } from '../../config';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import IconButton from '@mui/material/IconButton';
+import PaletteIcon from '@mui/icons-material/Palette';
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import SettingsIcon from '@mui/icons-material/Settings';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 interface PropertyCardType {
@@ -64,23 +67,31 @@ const PropertyCard = (props: PropertyCardType) => {
 							</Link>
 						</Stack>
 						<Stack className="address">
+						    <Typography className={'brand'}>
+								{property.propertyBrand}
+							</Typography>
 							<Typography>
-								{property.propertyAddress}, {property.propertyBrand}
+								{property.propertyAddress}
 							</Typography>
 						</Stack>
 					</Stack>
+					<Divider sx={{ mt: '1px', mb: '12px' }} />
 					<Stack className="options">
 						<Stack className="option">
-							<img src="/img/icons/bed.svg" alt="" /> <Typography>{property.propertyFuel} Fuel</Typography>
+						    <PaletteIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<Typography className={'opt'}>{property.propertyColor}</Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/room.svg" alt="" /> <Typography>{property.propertyColor} Color</Typography>
+						    <LocalGasStationIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<Typography className={'opt'}>{property.propertyFuel}</Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/expand.svg" alt="" /> <Typography>{property.propertyTransmission} Transmission</Typography>
+					    	<SettingsIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<Typography className={'opt'}>{property.propertyTransmission} </Typography>
 						</Stack>
 					</Stack>
 					<Stack className="divider"></Stack>
+					<Divider sx={{ mt: '2px', mb: '2px' }} />
 					<Stack className="type-buttons">
 						<Stack className="type">
 							<Typography

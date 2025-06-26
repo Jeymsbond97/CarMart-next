@@ -53,11 +53,11 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyColor} Color</span>
+							<span>{property?.propertyColor} </span>
 						</div>
 						<div>
 							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyTransmission} Trans</span>
+							<span>{property?.propertyTransmission} </span>
 						</div>
 						<div>
 							<img src="/img/icons/expand.svg" alt="" />
