@@ -92,52 +92,62 @@ export const GET_PROPERTY = gql`
 	query GetProperty($input: String!) {
 		getProperty(propertyId: $input) {
 			_id
-			propertyType
-			propertyStatus
-			propertyLocation
-			propertyAddress
-			propertyTitle
-			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
-			propertyViews
-			propertyLikes
-			propertyImages
-			propertyDesc
-			propertyBarter
-			propertyRent
-			memberId
-			soldAt
-			deletedAt
-			constructedAt
-			createdAt
-			updatedAt
-			memberData {
-				_id
-				memberType
-				memberStatus
-				memberAuthType
-				memberPhone
-				memberNick
-				memberFullName
-				memberImage
-				memberAddress
-				memberDesc
-				memberWarnings
-				memberBlocks
-				memberPoints
-				memberLikes
-				memberViews
-				deletedAt
-				createdAt
-				updatedAt
-				accessToken
-			}
-			meLiked {
-				memberId
-				likeRefId
-				myFavorite
+        propertyTransmission
+        propertyStatus
+        propertyBrand
+        propertyColor
+        propertyFuel
+        propertyOdometer
+        propertyAddress
+        propertyTitle
+        propertyPrice
+        propertyYear
+        propertyViews
+        propertyLikes
+        propertyComments
+        propertyRank
+        propertyImages
+        propertyDesc
+        propertySell
+        propertyRent
+        memberId
+        soldAt
+        deletedAt
+        constructedAt
+        createdAt
+        updatedAt
+        meLiked {
+            memberId
+            likeRefId
+            myFavorite
+        }
+        memberData {
+            _id
+            memberType
+            memberStatus
+            memberAuthType
+            memberPhone
+            memberNick
+            memberEmail
+            memberFullName
+            memberImage
+            memberAddress
+            memberDesc
+            memberProperties
+            memberArticles
+            memberFollowers
+            memberFollowings
+            memberPoints
+            memberLikes
+            memberViews
+            memberComments
+            memberRank
+            memberWarnings
+            memberBlocks
+            deletedAt
+            createdAt
+            updatedAt
+            accessToken
 			}
 		}
 	}

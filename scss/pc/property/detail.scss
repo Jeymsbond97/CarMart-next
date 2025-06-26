@@ -2,7 +2,7 @@
 	#property-detail-page {
 		position: relative;
 		background: #fff;
-		padding-top: 87px;
+		padding-top: 127px;
 		padding-bottom: 200px;
 		.property-detail-config {
 			width: 100%;
@@ -39,7 +39,7 @@
 							gap: 10px;
 							margin-bottom: 17px;
 							.city {
-								color: #717171;
+								color: #476f9b;
 								font-family: $font;
 								font-size: 13px;
 								font-style: normal;
@@ -157,32 +157,92 @@
 				}
 				.images {
 					width: 100%;
-					height: auto;
-					gap: 10px;
+					height: 550px;
+					gap: 20px;
+					flex-direction:row;
 					.main-image {
-						width: 100%;
-						height: 600px;
+						width: 2400px;
+						height: 100%;
+						position: relative;
+						border-radius: 16px;
+						overflow: hidden;
 						img {
 							width: 100%;
 							height: 100%;
 							object-fit: cover;
-							border-radius: 12px;
+							transition: transform 0.3s ease;
+						}
+						&:hover img {
+							transform: scale(1.05);
+						}
+						.image-overlay{
+							position: absolute;
+							bottom: 16px;
+							left: 16px;
+							right: 16px;
+							flex-direction: row;
+							justify-content: space-between;
+							align-items: flex-end;
+							.video-button, .view-360-button{
+								flex-direction: row;
+								align-items: center;
+								gap: 8px;
+								background: rgba(0, 0, 0, 0.6);
+								padding: 8px 12px;
+								border-radius: 8px;
+								cursor: pointer;
+								backdrop-filter: blur(4px);
+								p {
+									color: white;
+									font-family: $font;
+									font-size: 14px;
+									font-weight: 500;
+								}
+								svg {
+									width: 16px;
+									height: 16px;
+								}
+							}
 						}
 					}
 					.sub-images {
 						width: 100%;
-						height: auto;
-						flex-direction: row;
+						height: 100%;
+						flex-direction: column;
 						gap: 10px;
 						.sub-img-box {
-							width: 120px;
-							height: 120px;
+							width: 250px;
+							height: 250px;
 							cursor: pointer;
 							img {
 								width: 100%;
 								height: 100%;
 								object-fit: cover;
 								border-radius: 12px;
+								transition: transform 0.3s ease;
+							}
+							&:hover img {
+								transform: scale(1.01);
+							}
+							&.more-images {
+								.more-overlay {
+									position: absolute;
+									top: 0;
+									left: 0;
+									right: 0;
+									bottom: 0;
+									background: rgba(0, 0, 0, 0.7);
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									
+									p {
+										color: white;
+										font-family: $font;
+										font-size: 18px;
+										font-weight: 600;
+									}
+								}
 							}
 						}
 					}
@@ -197,50 +257,6 @@
 					width: 960px;
 					height: auto;
 					gap: 40px;
-					.options-config {
-						width: 100%;
-						height: auto;
-						flex-direction: row;
-						gap: 47.5px;
-						.option {
-							width: auto;
-							height: auto;
-							flex-direction: row;
-							gap: 17px;
-							.svg-box {
-								width: 56px;
-								height: 50px;
-								align-items: center;
-								justify-content: center;
-								border-radius: 12px;
-								border: 1px solid #ddd;
-								img {
-									width: 35px;
-									height: auto;
-								}
-							}
-							.option-includes {
-								width: auto;
-								height: auto;
-								.title {
-									color: #181a20;
-									font-family: $font;
-									font-size: 15px;
-									font-style: normal;
-									font-weight: 600;
-									line-height: normal;
-								}
-								.option-data {
-									color: #181a20;
-									font-family: $font;
-									font-size: 15px;
-									font-style: normal;
-									font-weight: 400;
-									line-height: normal;
-								}
-							}
-						}
-					}
 					.prop-desc-config {
 						width: 100%;
 						height: auto;
@@ -255,17 +271,17 @@
 							.title {
 								color: #181a20;
 								font-family: $font;
-								font-size: 17px;
+								font-size: 18px;
 								font-style: normal;
-								font-weight: 600;
+								font-weight: 900;
 								line-height: normal;
 							}
 							.desc {
-								color: #181a20;
+								color: #616367;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
-								font-weight: 400;
+								font-weight: 500;
 								line-height: 26px;
 								max-height: 104px;
 							}
@@ -273,45 +289,51 @@
 						.bottom {
 							width: 100%;
 							height: auto;
-							gap: 30px;
+							gap: 20px;
 							.title {
 								color: #181a20;
 								font-family: $font;
-								font-size: 17px;
+								font-size: 18px;
 								font-style: normal;
-								font-weight: 600;
+								font-weight: 900;
 								line-height: normal;
 							}
 							.info-box {
 								width: 100%;
 								height: auto;
 								flex-direction: row;
-								gap: 230px;
+								justify-content: space-between;
 								.left,
 								.right {
+									gap: 55px;
+									border-radius: 5px;
 									.info {
 										width: auto;
-										height: auto;
+										height: 30px;
 										display: flex;
-										flex-direction: row;
-										gap: 38px;
+										flex-direction: column;
+										background-color: #f6f6f6;
+										align-items: center;
 										.title {
 											width: 121px;
 											color: #181a20;
 											font-family: $font;
-											font-size: 14px;
+											font-size: 16px;
 											font-style: normal;
-											font-weight: 600;
+											font-weight: 700 !important;
 											line-height: 35px;
+											text-align: center;
 										}
 										.data {
 											width: 88px;
-											color: #181a20;
+											color: #476f9b;
 											font-family: $font;
 											font-size: 14px;
 											font-style: normal;
 											font-weight: 400;
-											line-height: 35px;
+											// line-height: 35px;
+											text-transform: lowercase;
+											text-align: center;
 										}
 									}
 								}
@@ -321,6 +343,8 @@
 					.floor-plans-config {
 						width: 100%;
 						height: auto;
+						display: flex;
+                        flex-direction: column;
 						gap: 30px;
 						padding: 30px 38px;
 						border-radius: 12px;
@@ -328,20 +352,69 @@
 						.title {
 							color: #181a20;
 							font-family: $font;
-							font-size: 17px;
+							font-size: 18px;
 							font-style: normal;
-							font-weight: 600;
+							font-weight: 900;
 							line-height: normal;
 						}
 						.image-box {
-							width: 100%;
-							height: 510px;
+							height: auto;
+							min-height: 200px;
 							border: 1px solid #c4c4c4;
-							img {
-								width: 100%;
-								height: 100%;
-								object-fit: cover;
-							}
+							padding: 30px;
+							background-color: #fafafa;
+						}
+						.car-features-grid {
+							display: grid;
+							grid-template-columns: repeat(8, 1fr);
+							gap: 30px 15px;
+							width: 100%;
+						}
+						.feature-item {
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+							gap: 10px;
+							transition: all 0.3s ease;
+						}
+						.feature-item.available {
+							opacity: 1;
+						}
+						.feature-item.unavailable {
+							opacity: 0.4;
+						}
+						.feature-icon {
+							width: 40px;
+							height: 40px;
+							border-radius: 10px;
+							background-color: #f6f6f6;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							transition: all 0.3s ease;
+						}
+
+						.feature-item.available .feature-icon {
+							background-color: #e8f4fd;
+							color: #1976d2;
+						}
+						.feature-item.unavailable .feature-icon {
+							background-color: #f6f6f6;
+							color: #9e9e9e;
+						}
+						.feature-name {
+							font-family: inherit;
+							font-size: 11px;
+							font-weight: 500;
+							text-align: center;
+							line-height: 1.2;
+							max-width: 70px;
+						}
+						.feature-item.available .feature-name {
+							color: #181a20;
+						}
+						.feature-item.unavailable .feature-name {
+							color: #9e9e9e;
 						}
 					}
 					.address-config {
@@ -354,9 +427,9 @@
 						.title {
 							color: #181a20;
 							font-family: $font;
-							font-size: 17px;
+							font-size: 18px;
 							font-style: normal;
-							font-weight: 600;
+							font-weight: 900;
 							line-height: normal;
 						}
 						.map-box {
@@ -447,14 +520,14 @@
 											justify-content: center;
 											border-radius: 50%;
 											background: #f6f6f6;
-											border: 1px solid #b9b9b9;
+											border: 1px solid #476f9b;
 											object-fit: cover;
 										}
 										.name {
 											width: 100%;
 											color: #181a20;
 											font-family: $font;
-											font-size: 15px;
+											font-size: 16px;
 											font-style: normal;
 											font-weight: 600;
 											line-height: normal;
@@ -462,9 +535,9 @@
 										}
 										.date {
 											width: 100%;
-											color: #181a20;
+											color: #476f9b;
 											font-family: $font;
-											font-size: 13px;
+											font-size: 12px;
 											font-style: normal;
 											font-weight: 400;
 											line-height: normal;
@@ -472,6 +545,7 @@
 									}
 									.review-stars {
 										padding-top: 10px;
+										background-color: red;
 									}
 								}
 								.desc-box {
@@ -479,7 +553,7 @@
 									height: auto;
 									margin-top: 15px;
 									.description {
-										color: #181a20;
+										color: #46474a;
 										font-family: $font;
 										font-size: 14px;
 										font-style: normal;
@@ -506,14 +580,14 @@
 						.main-title {
 							color: #181a20;
 							font-family: $font;
-							font-size: 17px;
+							font-size: 18px;
 							font-style: normal;
-							font-weight: 600;
+							font-weight: 700;
 							line-height: normal;
 						}
 						.review-title {
 							margin-top: 20px;
-							color: #181a20;
+							color: #476f9b;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -539,7 +613,8 @@
 							display: flex;
 							justify-content: flex-end;
 							button:disabled {
-								background: #dfdfdf;
+								// background: #dfdfdf;
+								background: #f9f9f9;
 							}
 							.submit-review {
 								display: flex;
@@ -549,6 +624,7 @@
 								justify-content: center;
 								align-items: center;
 								gap: 10px;
+								background: #a09d9d;
 								border-radius: 12px;
 								border: 1px solid #c4c4c4;
 								cursor: pointer;
@@ -571,7 +647,7 @@
 					gap: 20px;
 					border-radius: 12px;
 					border: 1px solid rgba(196, 196, 196, 0.79);
-					background: #fff;
+					background: #f6f6f6;
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					.info-box {
 						position: relative;
@@ -580,7 +656,7 @@
 						.main-title {
 							color: #181a20;
 							font-family: $font;
-							font-size: 17px;
+							font-size: 18px;
 							font-style: normal;
 							font-weight: 600;
 							line-height: normal;
@@ -595,6 +671,7 @@
 								height: 95px;
 								border-radius: 50%;
 								object-fit: cover;
+								border: 1px solid #476f9b;
 							}
 							.name-phone-listings {
 								gap: 5px;
@@ -610,24 +687,28 @@
 									width: 100%;
 									flex-direction: row;
 									align-items: center;
-									gap: 10px;
+									gap: 8px;
 									.number {
 										color: #181a20;
 										font-family: $font;
-										font-size: 15px;
+										font-size: 12px;
 										font-style: normal;
 										font-weight: 400;
 										line-height: 28px;
 									}
 								}
 								.listings {
-									color: #181a20;
+									color: #476f9b;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
 									font-weight: 600;
 									line-height: normal;
+									cursor: pointer;
 									text-decoration-line: underline;
+									:hover{
+										color: red;
+									}
 								}
 							}
 						}
@@ -656,7 +737,7 @@
 								line-height: 26px;
 							}
 							&:focus {
-								border: 1px solid black;
+								border: 1px solid #476f9b;
 							}
 						}
 						textarea {
@@ -679,7 +760,7 @@
 								line-height: 26px;
 							}
 							&:focus {
-								border: 1px solid black;
+								border: 1px solid #476f9b;
 							}
 						}
 						.send-message {
@@ -690,9 +771,9 @@
 							align-items: center;
 							gap: 10px;
 							border-radius: 12px;
-							background: #eb6753;
+							background: #a09d9d;
 							.title {
-								color: #fff;
+								color: #252222;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
