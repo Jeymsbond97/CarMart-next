@@ -181,7 +181,7 @@ const AgentCard = (props: AgentCardProps) => {
 						<Box className="icon-text">
 							<IconButton color={'default'} size="small" onClick={() => likeMemberHandler(user, dealer?._id) }>
 								{dealer?.meLiked && dealer?.meLiked[0]?.myFavorite ? (
-									<FavoriteIcon color={'primary'} fontSize="small" />
+									<FavoriteIcon style={{ color: 'red' }}  />
 								) : (
 									<FavoriteBorderIcon fontSize="small" />
 								)}

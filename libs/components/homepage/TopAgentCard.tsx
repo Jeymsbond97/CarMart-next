@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Box, IconButton, Stack, Typography } from '@mui/material';
+import { Box, IconButton, Link, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -9,15 +9,21 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import DriveEtaIcon from '@mui/icons-material/DriveEta';
 import GroupIcon from '@mui/icons-material/Group';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Member } from '../../types/member/member';
+import { useReactiveVar } from '@apollo/client';
+import { userVar } from '../../../apollo/store';
 
 interface TopAgentProps {
 	dealer: Member;
+	likeMemberHandler: any
 }
+
 const TopAgentCard = (props: TopAgentProps) => {
-	const { dealer } = props;
+	const { dealer, likeMemberHandler } = props;
 	const device = useDeviceDetect();
 	const router = useRouter();
+	const user = useReactiveVar(userVar);
 	const agentImage = dealer?.memberImage
 		? `${process.env.REACT_APP_API_URL}/${dealer?.memberImage}`
 		: '/img/profile/defaultUser.svg';
@@ -87,14 +93,24 @@ const TopAgentCard = (props: TopAgentProps) => {
 
 				{/* Bottom - Views & Likes and Read More */}
 				<Box className="bottom-box">
-					<Box className="read-more">Read More...</Box>
+				    <Link
+						href={'/agent'}
+					>
+						<Box className="read-more">Read More...</Box>
+					</Link>
 					<Box className="actions">
 					<Box className="icon-text">
 						<VisibilityIcon fontSize="small" />
 						<Typography>{dealer.memberViews}</Typography>
 					</Box>
 					<Box className="icon-text">
-						<FavoriteBorderIcon fontSize="small" />
+					<IconButton color={'default'} size="small" onClick={() => likeMemberHandler(user, dealer?._id) }>
+								{dealer?.meLiked && dealer?.meLiked[0]?.myFavorite ? (
+									<FavoriteIcon style={{ color: 'red' }}  />
+								) : (
+									<FavoriteBorderIcon fontSize="small" />
+								)}
+							</IconButton>
 						<Typography>{dealer.memberLikes}</Typography>
 					</Box>
 					</Box>

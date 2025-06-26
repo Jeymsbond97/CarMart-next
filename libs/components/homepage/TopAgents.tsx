@@ -9,12 +9,16 @@ import TopAgentCard from './TopAgentCard';
 import { Member } from '../../types/member/member';
 import { AgentsInquiry } from '../../types/member/member.input';
 import { T } from '../../types/common';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_COMPANY } from '../../../apollo/user/query';
+import { LIKE_TARGET_MEMBER } from '../../../apollo/user/mutation';
+import { Messages } from '../../config';
+import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
 
 interface TopAgentsProps {
 	initialInput: AgentsInquiry;
 }
+
 
 const TopAgents = (props: TopAgentsProps) => {
 	const { initialInput } = props;
@@ -23,6 +27,7 @@ const TopAgents = (props: TopAgentsProps) => {
 	const [topDealers, setTopDealers] = useState<Member[]>([]);
 
 	/** APOLLO REQUESTS **/
+	const [likeTargetMember] = useMutation(LIKE_TARGET_MEMBER);
 	const {
 		loading: getDealerLoading,
 		data: getDealerData,
@@ -36,10 +41,27 @@ const TopAgents = (props: TopAgentsProps) => {
 			setTopDealers(data?.getCompany?.list);
 		}
 	});
-/** HANDLERS **/
+	/** HANDLERS **/
+	const likeMemberHandler = async (user: any, id: string) => {
+		try{
+			if (!id) return;
+			if(!user._id) throw new Error(Messages.error2);
+				await likeTargetMember({
+			variables: {input: id},
+			});
+
+			// await getDealerRefetch({ input: searchFilter });
+			await getDealerRefetch({ input: initialInput });
+
+			await sweetTopSmallSuccessAlert('success', 800);
+		} catch (err: any) {
+			console.log('ERROR, likeMemberHandler:', err.message);
+			sweetMixinErrorAlert(err.message).then();
+		}
+	};
 console.log("TopDealer =>", getDealerData,)
 console.log("SENT INPUT =>", initialInput);
-	/** HANDLERS **/
+/** HANDLERS **/
 
 	if (device === 'mobile') {
 		return (
@@ -59,7 +81,7 @@ console.log("SENT INPUT =>", initialInput);
 							{topDealers.map((dealer: Member) => {
 								return (
 									<SwiperSlide className={'top-agents-slide'} key={dealer?._id}>
-										<TopAgentCard dealer={dealer} key={dealer?.memberNick} />
+										<TopAgentCard  likeMemberHandler={likeMemberHandler} dealer={dealer} key={dealer?.memberNick} />
 									</SwiperSlide>
 								);
 							})}
@@ -102,7 +124,7 @@ console.log("SENT INPUT =>", initialInput);
 								{topDealers.map((dealer: Member) => {
 									return (
 										<SwiperSlide className={'top-agents-slide'} key={dealer?._id}>
-											<TopAgentCard dealer={dealer} key={dealer?.memberNick} />
+											<TopAgentCard dealer={dealer} key={dealer?.memberNick} likeMemberHandler={likeMemberHandler} />
 										</SwiperSlide>
 									);
 								})}
