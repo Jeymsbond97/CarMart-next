@@ -74,7 +74,7 @@ const Advertisement = () => {
 						dpr={[1, 1.5]}
 						camera={{ position: [0, 0, 13], fov: 27 }}
 						>
-						<color attach="background" args={['#2b3035']} />
+						<color attach="background" args={['#ffffff']} />
 						<ambientLight intensity={0.5} />
 						<directionalLight
 							position={[10, 10, 5]}
@@ -90,17 +90,17 @@ const Advertisement = () => {
 							frames={1}
 							position={[0, -1.16, 0]}
 							scale={15}
-							blur={0.5}
-							opacity={1}
+							blur={1.5}
+							opacity={0.6}
 							far={20}
 						/>
 						<mesh scale={4} position={[3, -1.161, -1.5]} rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}>
 							<ringGeometry args={[0.9, 1, 4, 1]} />
-							<meshStandardMaterial color="white" roughness={0.75} />
+							<meshStandardMaterial color="black" roughness={0.75} />
 						</mesh>
 						<mesh scale={4} position={[-3, -1.161, -1]} rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}>
 							<ringGeometry args={[0.9, 1, 3, 1]} />
-							<meshStandardMaterial color="white" roughness={0.75} />
+							<meshStandardMaterial color="black" roughness={0.75} />
 						</mesh>
 						<Environment resolution={312}>
 							<Lightformer intensity={2} rotation-x={Math.PI / 2} position={[0, 4, -9]} scale={[10, 1, 1]} />

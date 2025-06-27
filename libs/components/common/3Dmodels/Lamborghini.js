@@ -19,6 +19,13 @@ export function Lamborghini(props) {
     Object.values(nodes).forEach((node) => {
       if (node.isMesh && node.name.startsWith('glass')) {
         node.geometry.computeVertexNormals();
+        materials.TailLights && Object.assign(materials.TailLights, {
+          color: '#ff0000',
+          emissive: '#ff0000',
+          emissiveIntensity: 2,
+          metalness: 0.1,
+          roughness: 0.3,
+        });
       }
     });
 
@@ -67,7 +74,7 @@ export function Lamborghini(props) {
       nodes.yellow_WhiteCar_0.material = new THREE.MeshPhysicalMaterial({
         roughness: 0.2,
         metalness: 0.05,
-        color: 'black',
+        color: '#f6f6f6;',
         envMapIntensity: 1,
         clearcoatRoughness: 0.5,
         clearcoat: 1,
