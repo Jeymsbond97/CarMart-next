@@ -8,6 +8,12 @@ import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Property } from '../../types/property/property';
 import { PropertiesInquiry } from '../../types/property/property.input';
 import TrendPropertyCard from './TrendPropertyCard';
+import { LIKE_TARGET_PROPERTY } from '../../../apollo/user/mutation';
+import { useMutation, useQuery } from '@apollo/client';
+import { GET_PROPERTIES } from '../../../apollo/user/query';
+import { T } from '../../types/common';
+import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
+import { Message } from '../../enums/common.enum';
 
 interface TrendPropertiesProps {
 	initialInput: PropertiesInquiry;
@@ -19,7 +25,39 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 	const [trendProperties, setTrendProperties] = useState<Property[]>([]);
 
 	/** APOLLO REQUESTS **/
+	const [LikeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY)
+	const {
+		loading: getPropertiesLoading,
+		data: getPropertiesData,
+		error: getPropertiesError,
+		refetch: getPropertiesRefetch,
+	} = useQuery(GET_PROPERTIES, {
+		fetchPolicy: 'cache-and-network',
+		variables: { input: initialInput },
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data: T) => {
+			setTrendProperties(data?.getProperties?.list);
+		}
+	});
 	/** HANDLERS **/
+	const likePropertyHandler = async (user: T, id: string) => {
+		try {
+			if (!id) return;
+			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
+
+			await LikeTargetProperty({
+				variables: {input: id}
+			})
+			await getPropertiesRefetch({ input: initialInput });
+
+			sweetTopSmallSuccessAlert("Liked!", 800);
+			console.log("getListingRefetch =>", getPropertiesRefetch)
+		}
+		catch (err: any) {
+			console.log("ERROR, likeListingHandler: ", err.message);
+			sweetMixinErrorAlert(err.message).then();
+		}
+	}
 
 	if (trendProperties) console.log('trendProperties:', trendProperties);
 	if (!trendProperties) return null;
@@ -29,7 +67,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 			<Stack className={'trend-properties'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Trend Properties</span>
+						<span>Trend Cars</span>
 					</Stack>
 					<Stack className={'card-box'}>
 						{trendProperties.length === 0 ? (
@@ -47,7 +85,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 								{trendProperties.map((property: Property) => {
 									return (
 										<SwiperSlide key={property._id} className={'trend-property-slide'}>
-											<TrendPropertyCard property={property} />
+											<TrendPropertyCard likePropertyHandler={likePropertyHandler} property={property} />
 										</SwiperSlide>
 									);
 								})}
@@ -63,7 +101,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Trend Properties</span>
+							<span>Trend Cars</span>
 							<p>Trend is based on likes</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
@@ -96,7 +134,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 								{trendProperties.map((property: Property) => {
 									return (
 										<SwiperSlide key={property._id} className={'trend-property-slide'}>
-											<TrendPropertyCard property={property} />
+											<TrendPropertyCard likePropertyHandler={likePropertyHandler} property={property} />
 										</SwiperSlide>
 									);
 								})}
