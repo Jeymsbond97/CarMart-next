@@ -6,6 +6,10 @@ import { Property } from '../../types/property/property';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { REACT_APP_API_URL } from '../../config';
 import { useRouter } from 'next/router';
+import PaletteIcon from '@mui/icons-material/Palette';
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import FlagIcon from '@mui/icons-material/Flag';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 
@@ -20,6 +24,9 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 	const user = useReactiveVar(userVar);
 
 	/** HANDLERS **/
+	const pushDetailHandler = async (propertyId: string) => {
+		await router.push({ pathname: 'property/detail', query: { id: propertyId } });
+	}
 
 	if (device === 'mobile') {
 		return (
@@ -28,8 +35,9 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 					component={'div'}
 					className={'card-img'}
 					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
+					onClick={() => pushDetailHandler(property._id)}
 				>
-					{property?.propertyRank && property?.propertyRank >= 50 ? (
+					{property && property?.propertyRank >= 40 ? (
 						<div className={'status'}>
 							<img src="/img/icons/electricity.svg" alt="" />
 							<span>top</span>
@@ -41,20 +49,20 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 					<div className={'price'}>${property.propertyPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
-					<strong className={'title'}>{property.propertyTitle}</strong>
+					<strong className={'title'} onClick={() => pushDetailHandler(property._id)}>{property.propertyTitle}</strong>
 					<p className={'desc'}>{property.propertyAddress}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyBeds} bed</span>
+						    <PaletteIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<span>{property?.propertyColor}</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyRooms} rooms</span>
+						<LocalGasStationIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<span>{property?.propertyFuel}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertySquare} m2</span>
+						<SettingsIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<span>{property?.propertyTransmission}</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
@@ -77,8 +85,9 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 					component={'div'}
 					className={'card-img'}
 					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
+					onClick={() => pushDetailHandler(property._id)}
 				>
-					{property?.propertyRank && property?.propertyRank >= 50 ? (
+					{property && property?.propertyRank >= 50 ? (
 						<div className={'status'}>
 							<img src="/img/icons/electricity.svg" alt="" />
 							<span>top</span>
@@ -90,20 +99,33 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 					<div className={'price'}>${property.propertyPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
-					<strong className={'title'}>{property.propertyTitle}</strong>
-					<p className={'desc'}>{property.propertyAddress}</p>
+					<strong className={'title'} onClick={() => pushDetailHandler(property._id)}>{property.propertyTitle}</strong>
+					{/* <p className={'desc'}>{property.propertyAddress}</p> */}
+					<Stack className="address">
+					    <Typography className={'brand'}>
+						    {property.propertyBrand}
+						</Typography>
+						<Typography className={'desc'}>
+							{property.propertyAddress}
+						</Typography>
+					</Stack>
+					<Divider sx={{ mt: '15px', mb: '2px' }} />
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property?.propertyBeds} bed</span>
+						<PaletteIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<span>{property?.propertyColor}</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{property?.propertyRooms} rooms</span>
+						<LocalGasStationIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<span>{property?.propertyFuel}</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertySquare} m2</span>
+						<SettingsIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<span>{property?.propertyTransmission}</span>
+						</div>
+						<div>
+						<FlagIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<span>{property?.propertyOdometer}km</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />

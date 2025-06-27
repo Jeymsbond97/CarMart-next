@@ -48,7 +48,7 @@ const CommunityBoards = () => {
 					</Typography>
 					<span className='section-desc'>Stay updated with the latest automotive trends, reviews, and industry insights</span>
 					<Stack className={'blog-cards-grid'}>
-						{newsArticles.map((article, index) => {
+						{newsArticles.slice(0, 3).map((article, index) => {
 							const articleImage = article?.articleImage
 								? `${process.env.REACT_APP_API_URL}/${article?.articleImage}`
 								: '/img/event.svg';

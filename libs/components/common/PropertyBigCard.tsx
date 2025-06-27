@@ -10,6 +10,10 @@ import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { useRouter } from 'next/router';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import PaletteIcon from '@mui/icons-material/Palette';
+import FlagIcon from '@mui/icons-material/Flag';
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { T } from '../../types/common';
 
 interface PropertyBigCardProps {
@@ -50,18 +54,23 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 				<Box component={'div'} className={'info'}>
 					<strong className={'title'}>{property?.propertyTitle}</strong>
 					<p className={'desc'}>{property?.propertyAddress}</p>
+					<Divider sx={{ mt: '15px', mb: '5px' }} />
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
+							<PaletteIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
 							<span>{property?.propertyColor} </span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
+						    <LocalGasStationIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
 							<span>{property?.propertyTransmission} </span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property?.propertyOdometer} Km</span>
+						<SettingsIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<span>{property?.propertyTransmission}</span>
+						</div>
+						<div>
+						    <FlagIcon sx={{ fontSize: '18px', color: '#476f9b' }} />
+							<span>{property?.propertyOdometer}km</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />

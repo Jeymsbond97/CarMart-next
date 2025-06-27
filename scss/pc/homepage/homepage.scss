@@ -121,7 +121,7 @@
 			height: 416px;
 			display: flex;
 			flex-direction: row;
-			background: #181a20;
+			background: #f6f6f6;
 			.container {
 				flex-direction: column;
 				align-items: center;
@@ -356,7 +356,7 @@
 			}
 		}
 		.popular-properties {
-			padding: 132px 0px 94px;
+			padding: 102px 0px 94px;
 			width: 100%;
 			height: 816px;
 			display: flex;
@@ -374,7 +374,7 @@
 					justify-content: space-between;
 					.popular-property-swiper {
 						width: 100%;
-						height: 425px;
+						height: 435px;
 						display: flex;
 						flex-direction: row;
 						.popular-property-slide {
@@ -387,7 +387,7 @@
 					.popular-card-box {
 						position: relative;
 						width: 400px;
-						height: 425px;
+						height: 435px;
 						display: flex;
 						flex-direction: column;
 						transition: transform 0.3s, opacity 0.3s;
@@ -464,6 +464,23 @@
 								text-transform: capitalize;
 								cursor: pointer;
 							}
+							.address{
+								flex-direction: row;
+								justify-content: space-between;
+								align-items: center;
+								.brand {
+									margin-top: 5px;
+									overflow: hidden;
+									color: #717171;
+									font-family: $font;
+									font-size: 13px;
+									font-style: normal;
+									font-weight: 400;
+									line-height: normal;
+									text-overflow: ellipsis;
+									white-space: nowrap;
+								}
+							}
 							.desc {
 								margin-top: 5px;
 								overflow: hidden;
@@ -483,7 +500,9 @@
 								justify-content: space-between;
 								div {
 									display: flex;
-									flex-direction: row;
+									flex-direction: column;
+									grid:5px;
+									align-items: center;
 									img {
 										margin-right: 5px;
 										width: 17px;

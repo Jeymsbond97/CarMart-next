@@ -52,12 +52,12 @@ const CarOptions = () => {
                 <Stack className={'container'}>
                     <Stack className={'info-box'}>
                         <Box component={'div'} className={'left'}>
-                            <span style={{ color: '#dee2e6' }}>Explore Our Premium Brands</span>
+                            <span >Explore Our Premium Brands</span>
                         </Box>
                         <Box component={'div'} className={'right'}>
                             <div className={'more-box'}>
                                 <Link href={'/property'}>
-                                    <span style={{ color: '#dee2e6' }}>See All Brands</span>
+                                    <span>See All Brands</span>
                                 </Link>
                                 <NorthEastIcon className={'arrow-icon'} />
                             </div>
