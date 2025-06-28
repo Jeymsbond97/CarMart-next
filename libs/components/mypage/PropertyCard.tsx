@@ -51,7 +51,7 @@ export const PropertyCard = (props: PropertyCardProps) => {
 	};
 
 	if (device === 'mobile') {
-		return <div>MOBILE PROPERTY CARD</div>;
+		return <div>MOBILE LISTING CARD</div>;
 	} else
 		return (
 			<Stack className="property-card-box">
@@ -62,7 +62,7 @@ export const PropertyCard = (props: PropertyCardProps) => {
 					<Typography className="name">{property.propertyTitle}</Typography>
 					<Typography className="address">{property.propertyAddress}</Typography>
 					<Typography className="price">
-						<strong>${formatterStr(property?.propertyPrice)}</strong>/ mo
+						<strong>${formatterStr(property?.propertyPrice)}</strong>
 					</Typography>
 				</Stack>
 				<Stack className="date-box">

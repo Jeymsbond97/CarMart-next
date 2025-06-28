@@ -224,24 +224,27 @@ export const GET_PROPERTIES = gql`
 `;
 
 export const GET_AGENT_PROPERTIES = gql`
-	query GetAgentProperties($input: AgentPropertiesInquiry!) {
-		getAgentProperties(input: $input) {
+	query GetCompanyProperties($input: AgentPropertiesInquiry!) {
+		getCompanyProperties(input: $input) {
 			list {
 				_id
-				propertyType
+				propertyTransmission
 				propertyStatus
-				propertyLocation
+				propertyBrand
+				propertyColor
+				propertyFuel
+				propertyOdometer
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
+				propertyYear
 				propertyViews
 				propertyLikes
+				propertyComments
+				propertyRank
 				propertyImages
 				propertyDesc
-				propertyBarter
+				propertySell
 				propertyRent
 				memberId
 				soldAt

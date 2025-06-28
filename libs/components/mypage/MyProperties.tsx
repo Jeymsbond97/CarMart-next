@@ -3,13 +3,16 @@ import { NextPage } from 'next';
 import { Pagination, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { PropertyCard } from './PropertyCard';
-import { useReactiveVar } from '@apollo/client';
+import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { Property } from '../../types/property/property';
 import { AgentPropertiesInquiry } from '../../types/property/property.input';
 import { T } from '../../types/common';
 import { PropertyStatus } from '../../enums/property.enum';
 import { userVar } from '../../../apollo/store';
 import { useRouter } from 'next/router';
+import { UPDATE_PROPERTY } from '../../../apollo/user/mutation';
+import { GET_AGENT_PROPERTIES } from '../../../apollo/user/query';
+import { sweetConfirmAlert, sweetErrorHandling } from '../../sweetAlert';
 
 const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
@@ -20,6 +23,21 @@ const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 	const router = useRouter();
 
 	/** APOLLO REQUESTS **/
+	const [updateProperty] = useMutation(UPDATE_PROPERTY);
+	const {
+		loading: getCompanyPropertiesLoading,
+		data: getCompanyPropertiesData,
+		error: getCompanyPropertiesError,
+		refetch: getCompanyPropertiesRefetch,
+	} = useQuery(GET_AGENT_PROPERTIES, {
+		fetchPolicy: "network-only",
+		variables: { input: searchFilter },
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data: T) => {
+			setAgentProperties(data?.getCompanyProperties?.list);
+			setTotal(data?.getCompanyProperties?.metaCounter[0]?.total);
+		},
+	});
 
 	/** HANDLERS **/
 	const paginationHandler = (e: T, value: number) => {
@@ -30,16 +48,49 @@ const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 		setSearchFilter({ ...searchFilter, search: { propertyStatus: value } });
 	};
 
-	const deletePropertyHandler = async (id: string) => {};
+	const deletePropertyHandler = async (id: string) => {
+		try {
+			if (await sweetConfirmAlert("Are you sure to delete this property?")) {
+				await updateProperty({
+					variables: {
+						input: {
+							_id: id,
+							propertyStatus: "DELETE",
+						}
+					}
+				});
+				await getCompanyPropertiesRefetch({ input: searchFilter });
+			}
+		} catch (err: any) {
+			await sweetErrorHandling(err);
+		}
+	};
 
-	const updatePropertyHandler = async (status: string, id: string) => {};
 
-	if (user?.memberType !== 'AGENT') {
+	const updatePropertyHandler = async (status: string, id: string) => {
+		try {
+			if (await sweetConfirmAlert(`Are you sure to change to ${status} status?`)) {
+				await updateProperty({
+					variables: {
+						input: {
+							_id: id,
+							propertyStatus: status,
+						}
+					}
+				});
+				await getCompanyPropertiesRefetch({ input: searchFilter });
+			}
+		} catch (err: any) {
+			await sweetErrorHandling(err);
+		}
+	};
+
+	if (user?.memberType !== 'DEALER') {
 		router.back();
 	}
 
 	if (device === 'mobile') {
-		return <div>NESTAR PROPERTIES MOBILE</div>;
+		return <div>CARMART LISTINGS MOBILE</div>;
 	} else {
 		return (
 			<div id="my-property-page">
