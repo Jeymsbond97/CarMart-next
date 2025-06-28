@@ -468,6 +468,7 @@ export const GET_BOARD_ARTICLES = gql`
 					memberAuthType
 					memberPhone
 					memberNick
+					memberEmail
 					memberFullName
 					memberImage
 					memberAddress
@@ -567,6 +568,7 @@ export const GET_MEMBER_FOLLOWERS = gql`
 					memberAuthType
 					memberPhone
 					memberNick
+					memberEmail
 					memberFullName
 					memberImage
 					memberAddress
@@ -611,6 +613,7 @@ export const GET_MEMBER_FOLLOWINGS = gql`
 					memberPhone
 					memberNick
 					memberFullName
+					memberEmail
 					memberImage
 					memberAddress
 					memberDesc

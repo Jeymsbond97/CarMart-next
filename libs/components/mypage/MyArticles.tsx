@@ -35,7 +35,7 @@ const MyArticles: NextPage = ({ initialInput, ...props }: T) => {
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
 			setBoardArticles(data?.getBoardArticles?.list);
-			setTotalCount(data?.getFavorites?.metaCounter[0]?.total);
+			setTotalCount(data?.getBoardArticles?.metaCounter[0]?.total);
 		},
 });
 

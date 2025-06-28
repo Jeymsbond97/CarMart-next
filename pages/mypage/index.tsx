@@ -10,14 +10,16 @@ import RecentlyVisited from '../../libs/components/mypage/RecentlyVisited';
 import AddProperty from '../../libs/components/mypage/AddNewProperty';
 import MyProfile from '../../libs/components/mypage/MyProfile';
 import MyArticles from '../../libs/components/mypage/MyArticles';
-import { useReactiveVar } from '@apollo/client';
+import { useMutation, useReactiveVar } from '@apollo/client';
 import { userVar } from '../../apollo/store';
 import MyMenu from '../../libs/components/mypage/MyMenu';
 import WriteArticle from '../../libs/components/mypage/WriteArticle';
 import MemberFollowers from '../../libs/components/member/MemberFollowers';
-import { sweetErrorHandling } from '../../libs/sweetAlert';
+import { sweetErrorHandling, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
 import MemberFollowings from '../../libs/components/member/MemberFollowings';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { Messages } from '../../libs/config';
+import { LIKE_TARGET_MEMBER, SUBSCRIBE, UNSUBSCRIBE } from '../../apollo/user/mutation';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -32,6 +34,9 @@ const MyPage: NextPage = () => {
 	const category: any = router.query?.category ?? 'myProfile';
 
 	/** APOLLO REQUESTS **/
+	const [subscribe] = useMutation(SUBSCRIBE);
+    const [unsubscribe] = useMutation(UNSUBSCRIBE);
+	const [likeTargetMember] = useMutation(LIKE_TARGET_MEMBER);
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -41,6 +46,13 @@ const MyPage: NextPage = () => {
 	/** HANDLERS **/
 	const subscribeHandler = async (id: string, refetch: any, query: any) => {
 		try {
+				if (!id) throw new Error(Messages.error1)
+				if (!user._id) throw new Error(Messages.error2);
+				await subscribe({
+					variables: { input: id },
+				});
+				await sweetTopSmallSuccessAlert('Subscribed', 800);
+				await refetch({input: query});
 		} catch (err: any) {
 			sweetErrorHandling(err).then();
 		}
@@ -48,6 +60,13 @@ const MyPage: NextPage = () => {
 
 	const unsubscribeHandler = async (id: string, refetch: any, query: any) => {
 		try {
+			if (!id) throw new Error(Messages.error1)
+			if (!user._id) throw new Error(Messages.error2);
+			await unsubscribe({
+				variables: { input: id },
+			});
+			await sweetTopSmallSuccessAlert('Unsubscribed', 800);
+			await refetch({input: query})
 		} catch (err: any) {
 			sweetErrorHandling(err).then();
 		}
@@ -59,6 +78,21 @@ const MyPage: NextPage = () => {
 			else await router.push(`/member?memberId=${memberId}`);
 		} catch (error) {
 			await sweetErrorHandling(error);
+		}
+	};
+
+	const likeMemberHandler = async (id: string, refetch: any, query: any) => {
+		try {
+				if (!id) throw new Error(Messages.error1)
+				if (!user._id) throw new Error(Messages.error2);
+				await likeTargetMember({
+					variables: { input: id },
+				});
+				await sweetTopSmallSuccessAlert('Success!', 800);
+				await refetch({input: query})
+		} catch (err: any) {
+			console.log("ERROR, LikeMemberHandler", err.message)
+			sweetErrorHandling(err).then();
 		}
 	};
 
@@ -84,6 +118,7 @@ const MyPage: NextPage = () => {
 									{category === 'myProfile' && <MyProfile />}
 									{category === 'followers' && (
 										<MemberFollowers
+										    likeMemberHandler ={likeMemberHandler}
 											subscribeHandler={subscribeHandler}
 											unsubscribeHandler={unsubscribeHandler}
 											redirectToMemberPageHandler={redirectToMemberPageHandler}
@@ -91,6 +126,7 @@ const MyPage: NextPage = () => {
 									)}
 									{category === 'followings' && (
 										<MemberFollowings
+									    	likeMemberHandler ={likeMemberHandler}
 											subscribeHandler={subscribeHandler}
 											unsubscribeHandler={unsubscribeHandler}
 											redirectToMemberPageHandler={redirectToMemberPageHandler}
@@ -107,3 +143,7 @@ const MyPage: NextPage = () => {
 };
 
 export default withLayoutBasic(MyPage);
+function likeTargetMember(arg0: { variables: { input: string; }; }) {
+	throw new Error('Function not implemented.');
+}
+

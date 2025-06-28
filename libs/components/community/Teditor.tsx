@@ -8,14 +8,22 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { T } from '../../types/common';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import { CREATE_BOARD_ARTICLE } from '../../../apollo/user/mutation';
+import { useMutation } from '@apollo/client';
+import { sweetErrorHandling, sweetTopSuccessAlert } from '../../sweetAlert';
+import { Message } from '../../enums/common.enum';
 
 const TuiEditor = () => {
 	const editorRef = useRef<Editor>(null),
 		token = getJwtToken(),
 		router = useRouter();
+		// const [articleTitle, setArticleTitle] = useState('');
+		// const [articleContent, setArticleContent] = useState('');
+		// const [articleImage, setArticleImage] = useState('');
 	const [articleCategory, setArticleCategory] = useState<BoardArticleCategory>(BoardArticleCategory.FREE);
 
 	/** APOLLO REQUESTS **/
+	const [createBoardArticle] = useMutation(CREATE_BOARD_ARTICLE);
 
 	const memoizedValues = useMemo(() => {
 		const articleTitle = '',
@@ -60,6 +68,8 @@ const TuiEditor = () => {
 			const responseImage = response.data.data.imageUploader;
 			console.log('=responseImage: ', responseImage);
 			memoizedValues.articleImage = responseImage;
+			// setArticleImage(responseImage);
+			console.log('responseImage:', responseImage)
 
 			return `${REACT_APP_API_URL}/${responseImage}`;
 		} catch (err) {
@@ -74,9 +84,44 @@ const TuiEditor = () => {
 	const articleTitleHandler = (e: T) => {
 		console.log(e.target.value);
 		memoizedValues.articleTitle = e.target.value;
+		// setArticleTitle(e.target.value);
 	};
 
-	const handleRegisterButton = async () => {};
+	const handleRegisterButton = async () => {
+		try {
+			const editor = editorRef.current;
+			const articleContent = editor?.getInstance().getHTML() as string;
+			memoizedValues.articleContent = articleContent;
+			// setArticleContent(articleContent1);
+
+			if (memoizedValues.articleContent === "" && memoizedValues.articleTitle === "") {
+				throw new Error(Message.INSERT_ALL_INPUTS)
+			}
+			await createBoardArticle({
+				variables: {
+					input: {
+						...memoizedValues,
+						articleCategory
+						// articleTitle,
+						// articleContent: articleContent1,
+						// articleImage: articleImage,
+						// articleCategory
+					},
+				}
+			});
+
+			await sweetTopSuccessAlert('Article is created successfully.');
+						await router.push({
+							pathname: '/mypage',
+							query: {
+								category: 'myArticles',
+							}
+						});
+		} catch (err: any) {
+			console.log(err)
+			sweetErrorHandling(new Error(Message.INSERT_ALL_INPUTS)).then();
+		}
+	};
 
 	const doDisabledCheck = () => {
 		if (memoizedValues.articleContent === '' || memoizedValues.articleTitle === '') {
@@ -114,6 +159,7 @@ const TuiEditor = () => {
 					<TextField
 						onChange={articleTitleHandler}
 						id="filled-basic"
+						// value={articleTitle}
 						label="Type Title"
 						style={{ width: '300px', background: 'white' }}
 					/>
@@ -151,8 +197,9 @@ const TuiEditor = () => {
 					color="primary"
 					style={{ margin: '30px', width: '250px', height: '45px' }}
 					onClick={handleRegisterButton}
+					// disabled={doDisabledCheck()}
 				>
-					Register
+					Submit
 				</Button>
 			</Stack>
 		</Stack>
