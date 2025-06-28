@@ -143,7 +143,5 @@ const MyPage: NextPage = () => {
 };
 
 export default withLayoutBasic(MyPage);
-function likeTargetMember(arg0: { variables: { input: string; }; }) {
-	throw new Error('Function not implemented.');
-}
+
 

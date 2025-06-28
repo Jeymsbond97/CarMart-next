@@ -61,8 +61,8 @@ const CommunityBoards = () => {
 										<div className={'author-info'}>
 											<img
 												src={article?.memberData?.memberImage ?
-													`${process.env.REACT_APP_API_URL}/${article?.memberData?.memberImage}` : 
-													'/img/default-avatar.png'
+													`${process.env.REACT_APP_API_URL}/${article?.memberData?.memberImage}` :
+													'/img/defaultUser.svg'
 												}
 												alt={article?.memberData?.memberNick || 'Author'}
 												className={'author-avatar'}

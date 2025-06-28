@@ -39,7 +39,17 @@ const Top = () => {
 	const [bgColor, setBgColor] = useState<boolean>(false);
 	const [logoutAnchor, setLogoutAnchor] = React.useState<null | HTMLElement>(null);
 	const logoutOpen = Boolean(logoutAnchor);
+    const [notificationAnchor, setNotificationAnchor] = useState<null | HTMLElement>(null);
+    const notificationOpen = Boolean(notificationAnchor);
 
+	// NotificationHandler
+	const handleNotificationClick = (event: React.MouseEvent<HTMLElement>) => {
+		setNotificationAnchor(event.currentTarget);
+	};
+
+	const handleNotificationClose = () => {
+		setNotificationAnchor(null);
+	};
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -342,12 +352,55 @@ const Top = () => {
 								<div className="icon-badge">
 									<VisibilityOutlinedIcon  />
 								</div>
-								<div className="icon-badge">
+								<div className="icon-badge" onClick={handleNotificationClick} style={{ cursor: 'pointer' }}>
 									<NotificationsOutlinedIcon />
-									<span className="badge">2</span>
+									<span className="badge"></span>
 								</div>
+								<Menu
+								anchorEl={notificationAnchor}
+								open={notificationOpen}
+								onClose={handleNotificationClose}
+								anchorOrigin={{
+									vertical: 'bottom',
+									horizontal: 'right',
+								}}
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								PaperProps={{
+									sx: {
+										minWidth: 200,
+										maxWidth: 340,
+										borderRadius: 2,
+										boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.12)',
+										border: '1px solid #e0e0e0'
+									}
+								}}
+								>
+									<Box sx={{ p: 1, borderBottom: '1px solid #f0f0f0' }}>
+										<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+											<span style={{ fontWeight: 600, fontSize: '16px' }}>Notifications</span>
+											<span style={{ color: '#666', fontSize: '12px' }}>0 New</span>
+										</Box>
+									</Box>
+								<Box sx={{ maxHeight: 200, overflowY: 'auto' }}>
+									<Box sx={{
+										p: 3,
+										textAlign: 'center',
+										color: '#999',
+										display: 'flex',
+										flexDirection: 'column',
+										alignItems: 'center',
+										gap: 1
+									}}>
+										<span style={{ fontSize: '14px' }}>No notifications yet</span>
+										<span style={{ fontSize: '12px', color: '#bbb' }}>We'll notify you when something arrives!</span>
+									</Box>
+								</Box>
+							</Menu>
 							</Box>
-							)}
+						)}
 					</Stack>
 
 					<div className="horizontal-divider">&nbsp;</div>
@@ -362,10 +415,10 @@ const Top = () => {
 					border: '1px solid black',
 					backgroundColor: '#f6f6f6',
 					color: '#000',
-					padding: '10px 14px',
+					padding: '10px 16px',
 					borderRadius: '50%',
 					cursor: 'pointer',
-					fontSize: '20px',
+					fontSize: '25px',
 					zIndex: 9999,
 					}}
 				>
