@@ -63,6 +63,7 @@ const Chat = () => {
 	const socket = useReactiveVar(socketVarOrginal);
 
 	/** LIFECYCLES **/
+
 	useEffect(() => {
 		socket.onmessage = (msg) => {
 			const data = JSON.parse(msg.data);
@@ -83,7 +84,7 @@ const Chat = () => {
 					setMessagesList([...messagesList]);
 			}
 		}
-	}, [socket, messagesList]);
+	}, [socket, messagesList])
 
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
@@ -95,18 +96,6 @@ const Chat = () => {
 	useEffect(() => {
 		setOpenButton(false);
 	}, [router.pathname]);
-
-	// useEffect(() => {
-	// 	function handleClickOutside(event: MouseEvent) {
-	// 		if (chatRef.current && !chatRef.current.contains(event.target as Node)) {
-	// 			setOpen(false);
-	// 		}
-	// 	}
-	// 	document.addEventListener('mousedown', handleClickOutside);
-	// 	return () => {
-	// 		document.removeEventListener('mousedown', handleClickOutside);
-	// 	};
-	// }, []);
 
 	/** HANDLERS **/
 	const handleOpenChat = () => {
@@ -143,27 +132,29 @@ const Chat = () => {
 		<Stack className="chatting">
 			{openButton ? (
 				<button className="chat-button" onClick={handleOpenChat}>
-					{open ? <MdClose size={22} /> : <MdChatBubbleOutline size={22} />}
+					{open ? <CloseFullscreenIcon /> : <MarkChatUnreadIcon />}
 				</button>
 			) : null}
 			<Stack className={`chat-frame ${open ? 'open' : ''}`}>
 				<Box className={'chat-top'} component={'div'}>
-					<div style={{ fontFamily: 'Nunito' }}>Online Chat</div>
+					<div >Online Chat</div>
 					<RippleBadge style={{ margin: "-14px 0 0 12px "}} badgeContent={onlineUsers} />
 				</Box>
 				<Box className={'chat-content'} id="chat-content" ref={chatContentRef} component={'div'}>
 					<ScrollableFeed>
 						<Stack className={'chat-main'}>
 							<Box flexDirection={'row'} style={{ display: 'flex' }} sx={{ m: '10px 0px' }} component={'div'}>
-								<div className={'msg-left'}>Welcome to Live chat!</div>
+								<div className={'welcome'}>Welcome to Live chat!</div>
 							</Box>
 							{messagesList.map((ele: MessagePayload) => {
 								const { text, memberData } = ele;
 								const memberImage = memberData?.memberImage
 								    ? `${REACT_APP_API_URL}/${memberData.memberImage}`
 									: '/img/profile/defaultUser.svg';
+								console.log("MemberInfo => :", memberData);
+
 								return memberData?._id === user?._id ? (
-                                    <Box
+									<Box
 									component={'div'}
 									flexDirection={'row'}
 									style={{ display: 'flex' }}
@@ -178,8 +169,7 @@ const Chat = () => {
 										<Avatar alt={'jonik'} src={memberImage} />
 										<div className={'msg-left'}>{ text}</div>
 								    </Box>
-								)
-							})}
+								)})}
 						</Stack>
 					</ScrollableFeed>
 				</Box>
@@ -194,7 +184,7 @@ const Chat = () => {
 						onKeyDown={getKeyHandler}
 					/>
 					<button className={'send-msg-btn'} onClick={onClickHandler}>
-					<MdSend size={22} color="#fff" />
+						<SendIcon style={{ color: '#fff' }} />
 					</button>
 				</Box>
 			</Stack>

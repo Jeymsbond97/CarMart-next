@@ -410,15 +410,12 @@ const Top = () => {
 					onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
 					style={{
 					position: 'fixed',
-					bottom: '30px',
-					right: '35px',
-					border: '1px solid black',
-					backgroundColor: '#f6f6f6',
+					bottom: '5px',
+					right: '48px',
 					color: '#000',
-					padding: '10px 16px',
-					borderRadius: '50%',
 					cursor: 'pointer',
-					fontSize: '25px',
+					fontSize: '35px',
+					fontWeight: "900",
 					zIndex: 9999,
 					}}
 				>
