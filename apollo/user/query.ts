@@ -262,22 +262,23 @@ export const GET_FAVORITES = gql`
 		getFavorites(input: $input) {
 			list {
 				_id
-				propertyType
+				propertyTransmission
 				propertyStatus
-				propertyLocation
+				propertyBrand
+				propertyColor
+				propertyFuel
+				propertyOdometer
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
+				propertyYear
 				propertyViews
 				propertyLikes
 				propertyComments
 				propertyRank
 				propertyImages
 				propertyDesc
-				propertyBarter
+				propertySell
 				propertyRent
 				memberId
 				soldAt
@@ -292,18 +293,19 @@ export const GET_FAVORITES = gql`
 					memberAuthType
 					memberPhone
 					memberNick
+					memberEmail
 					memberFullName
 					memberImage
 					memberAddress
 					memberDesc
 					memberProperties
 					memberArticles
+					memberFollowers
+					memberFollowings
 					memberPoints
 					memberLikes
 					memberViews
 					memberComments
-					memberFollowings
-					memberFollowers
 					memberRank
 					memberWarnings
 					memberBlocks
@@ -325,22 +327,23 @@ export const GET_VISITED = gql`
 		getVisited(input: $input) {
 			list {
 				_id
-				propertyType
+				propertyTransmission
 				propertyStatus
-				propertyLocation
+				propertyBrand
+				propertyColor
+				propertyFuel
+				propertyOdometer
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
+				propertyYear
 				propertyViews
 				propertyLikes
 				propertyComments
 				propertyRank
 				propertyImages
 				propertyDesc
-				propertyBarter
+				propertySell
 				propertyRent
 				memberId
 				soldAt
@@ -356,6 +359,7 @@ export const GET_VISITED = gql`
 					memberPhone
 					memberNick
 					memberFullName
+					memberEmail
 					memberImage
 					memberAddress
 					memberDesc

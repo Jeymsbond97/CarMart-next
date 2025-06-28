@@ -5,6 +5,11 @@ import { Pagination, Stack, Typography } from '@mui/material';
 import PropertyCard from '../property/PropertyCard';
 import { Property } from '../../types/property/property';
 import { T } from '../../types/common';
+import { LIKE_TARGET_PROPERTY } from '../../../apollo/user/mutation';
+import { useMutation, useQuery } from '@apollo/client';
+import { GET_FAVORITES } from '../../../apollo/user/query';
+import { sweetMixinErrorAlert } from '../../sweetAlert';
+import { Messages } from '../../config';
 
 const MyFavorites: NextPage = () => {
 	const device = useDeviceDetect();
@@ -13,14 +18,43 @@ const MyFavorites: NextPage = () => {
 	const [searchFavorites, setSearchFavorites] = useState<T>({ page: 1, limit: 6 });
 
 	/** APOLLO REQUESTS **/
+	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);
+	const {
+		loading: getFavoritesLoading,
+		data: getFavoritesData,
+		error: getFavoritesError,
+		refetch: getFavoritesRefetch,
+	} = useQuery(GET_FAVORITES, {
+		fetchPolicy: "network-only",
+		variables: { input: searchFavorites },
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data: T) => {
+			setMyFavorites(data?.getFavorites?.list);
+			setTotal(data?.getFavorites?.metaCounter?.[0]?.total || 0);
+		},
+	});
 
 	/** HANDLERS **/
 	const paginationHandler = (e: T, value: number) => {
 		setSearchFavorites({ ...searchFavorites, page: value });
 	};
 
+	const likePropertyHandler = async (user: any, id: string) => {
+		try{
+			if (!id) return;
+			if(!user._id) throw new Error(Messages.error2);
+			await likeTargetProperty({
+			variables: {input: id},
+		});
+			await getFavoritesRefetch({ input: searchFavorites });
+    } catch (err: any) {
+			console.log('ERROR, likeListingHandler:', err.message);
+			sweetMixinErrorAlert(err.message).then();
+	}
+};
+
 	if (device === 'mobile') {
-		return <div>NESTAR MY FAVORITES MOBILE</div>;
+		return <div>CARMART MY FAVORITES MOBILE</div>;
 	} else {
 		return (
 			<div id="my-favorites-page">
@@ -33,7 +67,7 @@ const MyFavorites: NextPage = () => {
 				<Stack className="favorites-list-box">
 					{myFavorites?.length ? (
 						myFavorites?.map((property: Property) => {
-							return <PropertyCard property={property} myFavorites={true} />;
+							return <PropertyCard likePropertyHandler={likePropertyHandler} property={property} myFavorites={true} />;
 						})
 					) : (
 						<div className={'no-data'}>
