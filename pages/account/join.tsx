@@ -26,6 +26,17 @@ const Join: NextPage = () => {
 		setLoginView(state);
 	};
 
+	const handleGoogleAuth = useCallback(async () => {
+		try {
+			// SweetAlert2 bilan xabar ko'rsatish
+			await sweetMixinErrorAlert(
+				"Authantication by Google is temporarily unavailable. Please use nickname or phone!"
+			);
+		} catch (err) {
+			console.error('Google auth error:', err);
+		}
+	}, []);
+
 	const checkUserTypeHandler = (e: any) => {
 		const checked = e.target.checked;
 		if (checked) {
@@ -134,7 +145,7 @@ const Join: NextPage = () => {
 															checked={input?.type == 'USER'}
 															sx={{
 																'&.Mui-checked': {
-																    color: ' #dee2e6;',
+																    color: ' #2b3035',
 																},
 															}}
 														/>
@@ -152,7 +163,7 @@ const Join: NextPage = () => {
 															checked={input?.type == 'DEALER'}
 															sx={{
 																'&.Mui-checked': {
-																    color: ' #dee2e6;',
+																    color: ' #2b3035',
 																},
 															}}
 														/>
@@ -179,6 +190,9 @@ const Join: NextPage = () => {
 										endIcon={<img src="/img/icons/rightup.svg" alt="" />}
 										disabled={input.nick == '' || input.password == ''}
 										onClick={doLogin}
+										sx={{
+											cursor: 'pointer',
+										}}
 									>
 										LOGIN
 									</Button>
@@ -201,7 +215,7 @@ const Join: NextPage = () => {
 										<span>OR</span>
 									</div>
 									<div className={'social-buttons'}>
-										<div className={'social-btn google'}>
+										<div className={'social-btn google'} onClick={handleGoogleAuth} style={{ cursor: 'pointer' }}>
 										<Google sx={{ fontSize: 20 }} />
 										<span>Login with Google</span>
 										</div>
@@ -218,14 +232,10 @@ const Join: NextPage = () => {
 
 										{/* Social login buttons */}
 										<div className={'social-buttons'}>
-										<div className={'social-btn google'}>
-											<Google sx={{ fontSize: 20 }} />
-											<span>Sign up with Google</span>
-										</div>
-										<div className={'social-btn github'}>
-											<GitHub sx={{ fontSize: 20 }} />
-											<span>Sign up with GitHub</span>
-										</div>
+											<div className={'social-btn google'} onClick={handleGoogleAuth} style={{ cursor: 'pointer' }}>
+												<Google sx={{ fontSize: 20 }} />
+												<span>Sign up with Google</span>
+											</div>
 										</div>
 									</>
 									)}
