@@ -32,14 +32,14 @@ const CS: NextPage = () => {
 	const tab = router.query.tab ?? 'notice';
 
 	if (device === 'mobile') {
-		return <h1>CS PAGE MOBILE</h1>;
+		return <h1>FAQ PAGE MOBILE</h1>;
 	} else {
 		return (
 			<Stack className={'cs-page'}>
 				<Stack className={'container'}>
 					<Box component={'div'} className={'cs-main-info'}>
 						<Box component={'div'} className={'info'}>
-							<span>Cs center</span>
+							<span>FAQ CENTER</span>
 							<p>I will answer your questions</p>
 						</Box>
 						<Box component={'div'} className={'btns'}>
