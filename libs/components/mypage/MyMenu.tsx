@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Stack, Typography, Box, List, ListItem } from '@mui/material';
+import { Stack, Typography, Box, List, ListItem, Divider } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import Link from 'next/link';
 import { useReactiveVar } from '@apollo/client';
@@ -55,6 +55,7 @@ const MyMenu = () => {
 						)}
 					</Stack>
 				</Stack>
+				<Divider sx={{ mt: '19px', mb: '1px' }} />
 				<Stack className={'sections'}>
 					<Stack className={'section'} style={{ height: user.memberType === 'DEALER' ? '228px' : '153px' }}>
 						<Typography className="title" variant={'h5'}>
@@ -81,7 +82,7 @@ const MyMenu = () => {
 													Add Property
 												</Typography>
 												<IconButton aria-label="delete" sx={{ ml: '40px' }}>
-													<PortraitIcon style={{ color: 'red' }} />
+													<PortraitIcon style={{ color: '#181a20' }} />
 												</IconButton>
 											</div>
 										</Link>
@@ -104,7 +105,7 @@ const MyMenu = () => {
 													My Properties
 												</Typography>
 												<IconButton aria-label="delete" sx={{ ml: '36px' }}>
-													<PortraitIcon style={{ color: 'red' }} />
+													<PortraitIcon style={{ color: '#181a20' }} />
 												</IconButton>
 											</div>
 										</Link>
@@ -250,7 +251,7 @@ const MyMenu = () => {
 							</ListItem>
 						</List>
 					</Stack>
-					<Stack className={'section'} sx={{ marginTop: '10px' }}>
+					<Stack className={'section'} >
 						<div>
 							<Typography className="title" variant={'h5'}>
 								Community

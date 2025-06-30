@@ -47,13 +47,14 @@
 				}
 			}
 			.follows-card-box {
-				padding-right: 30px;
+				padding-right: 5px;
 				padding-bottom: 5px;
 				width: 100%;
 				height: auto;
 				flex-direction: row;
 				align-items: center;
-				gap: 10px;
+				justify-content: space-between;
+				gap: 15px;
 				border-bottom: 1px solid #ddd;
 				.info {
 					width: 300px;
@@ -62,8 +63,8 @@
 					align-items: center;
 					cursor: pointer;
 					.image-box {
-						width: 110px;
-						height: 110px;
+						width: 100px;
+						height: 100px;
 						overflow: hidden;
 						margin-right: 25px;
 						img {
@@ -71,6 +72,7 @@
 							height: 100%;
 							object-fit: cover;
 							border-radius: 50%;
+							border: 1px solid #ddd;
 						}
 					}
 					.information-box {

@@ -7,7 +7,6 @@
 				width: 100%;
 				flex-direction: row;
 				gap: 25px;
-				padding-top: 96px;
 				.back-frame {
 					width: 1260px;
 					height: auto;
@@ -59,29 +58,33 @@
 									display: flex;
 									flex-direction: row;
 									img {
-										margin-top: 7px;
+										margin-top: 3px;
 										margin-right: 4px;
-										width: 16px;
-										height: 16px;
+										width: 12px;
+										height: 12px;
+									}
+									.p-number{
+										font-size: 13px;
+										font-family: $font;
 									}
 								}
 								.view-list {
 									font-weight: bold;
-									color: red;
+									color: rgb(210, 90, 90);
 								}
 							}
 						}
 						.sections {
 							height: auto;
 							gap: 45px;
-							margin-top: 30px;
+							margin-top: 17px;
 							.section {
 								height: auto;
 								.title {
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
-									font-weight: 400;
+									font-weight: 500;
 									line-height: 28px;
 								}
 								.sub-section {
@@ -130,7 +133,7 @@
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
-									font-weight: 600;
+									font-weight: 800;
 									line-height: 55px;
 								}
 							}

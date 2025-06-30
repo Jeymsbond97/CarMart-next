@@ -99,7 +99,7 @@ const PricePage: NextPage = () => {
         return <>PRICE MOBILE</>;
     } else {
         return (
-            <Stack id="member-page">
+            <Stack className="member-page1">
             <Stack className="container">
                 <h4 style={{ textAlign: 'center' }}>
                     Pricing that Empowers Your Choices

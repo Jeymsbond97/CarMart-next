@@ -100,7 +100,7 @@ const MyArticles: NextPage = ({ initialInput, ...props }: T) => {
 							/>
 						</Stack>
 						<Stack className="total">
-							<Typography>Total {totalCount ?? 0} article(s) available</Typography>
+							<Typography>Total {totalCount ?? 0}  article(s)  available</Typography>
 						</Stack>
 					</Stack>
 				)}
@@ -111,7 +111,7 @@ const MyArticles: NextPage = ({ initialInput, ...props }: T) => {
 MyArticles.defaultProps = {
 	initialInput: {
 		page: 1,
-		limit: 6,
+		limit: 4,
 		sort: 'createdAt',
 		direction: 'DESC',
 		search: {},

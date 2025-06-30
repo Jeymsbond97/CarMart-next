@@ -42,7 +42,7 @@ const MemberMenu = (props: MemberMenuProps) => {
 		return <div>MEMBER MENU MOBILE</div>;
 	} else {
 		return (
-			<Stack width={'100%'} padding={'30px 24px'}>
+			<Stack width={'100%'} padding={'20px 14px'}>
 				<Stack className={'profile'}>
 					<Box component={'div'} className={'profile-img'}>
 						<img
