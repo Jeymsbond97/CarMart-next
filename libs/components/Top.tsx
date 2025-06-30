@@ -216,7 +216,7 @@ const Top = () => {
 								<img src="/img/logo/111.png" alt="" />
 							</Link>
 						</Box>
-						<Box className="local-info">
+						<Box className={`local-info ${isHome && colorChange ? 'scrolled-home' : ''}`}>
 							<div className="info-block">
 								<LocationOnIcon className="info-icon" />
 								<div className="info-text">
@@ -337,7 +337,7 @@ const Top = () => {
 					<div className="horizontal-divider">&nbsp;</div>
 
 					<Stack className={`container-bottom ${isHome ? (colorChange ? 'light-font' : 'dark-font') : ''}`}>
-						    <Box component={'div'} className={`router-box `}>
+						    <Box component={'div'} className={`router-box ${isHome && colorChange ? 'scrolled-home' : ''}`}>
 								<Link href={'/'}>
 								<div className={router.pathname === '/' ? 'active' : ''}>{t('Home')}</div>
 								</Link>
@@ -360,7 +360,7 @@ const Top = () => {
 								</Link>
 							</Box>
 							{user?._id && (
-								<Box className={'router-icons'}>
+								<Box className={`router-icons ${isHome && colorChange ? 'scrolled-home' : ''}`}>
 								<div className="icon-badge" onClick={handleFavoritesClick}>
 									< FavoriteBorderIcon  />
 								</div>

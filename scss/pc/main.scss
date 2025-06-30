@@ -79,6 +79,21 @@ body::-webkit-scrollbar {
 							align-items: center;
 							background: transparent;
 							color: #dee2e6;
+							&.scrolled-home{
+								.info-block{
+									.info-icon{
+										color: #183c96;
+									}
+									.info-text{
+										.info-title{
+											color: white;
+										}
+										.info-sub{
+											color: #958181;
+										}
+									}
+								}
+							}
 							.info-block {
 								display: flex;
 								flex-direction: row;
@@ -191,17 +206,31 @@ body::-webkit-scrollbar {
 						padding: 15px 12px;
 						.router-box {
 							position: relative;
-							width: 617px;
+							width: 637px;
 							display: flex;
 							flex-direction: row;
 							justify-content: space-between;
+							&.scrolled-home{
+								div{
+									color: #f6f6f6 !important; // Qizil rang
+									background-color: transparent !important; // Background transparent
+									&:hover {
+										color: #ff6666 !important; // Hover rangini ochroq qizil
+									}
+									&.active {
+										color: #ff0000 !important; // Active holatda quyuqroq qizil
+										border-bottom: 1px solid #ff4444 !important;
+									}
+								}
+							}
 							div {
 								position: relative;
 								color: #181a20;
+								text-align: center;
 								font-family: $font;
 								font-size: 16px;
 								font-style: normal;
-								font-weight: 600;
+								font-weight: 700;
 								line-height: normal;
 								cursor: pointer;
 								transition: background-color 0.7s ease, color 0.7s ease;
@@ -211,7 +240,7 @@ body::-webkit-scrollbar {
 								&.active {
 									color:  rgba(99, 61, 61, 0.814);
 									border-bottom: 1px solid #181a20;
-									font-weight: 600;
+									font-weight: 700;
 								}
 								.community_menu {
 									position: absolute;
@@ -240,6 +269,16 @@ body::-webkit-scrollbar {
 							display: flex;
 							flex-direction: row;
 							gap: 16px;
+							&.scrolled-home{
+								.icon-badge{
+									color: white;
+									svg.MuiSvgIcon-root {
+										color: white !important;
+										font-size: 23px;
+									}
+								}
+
+							}
 							.icon-badge {
 								position: relative;
 								color: #181a20;
