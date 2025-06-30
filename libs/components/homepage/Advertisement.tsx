@@ -46,27 +46,43 @@ const Advertisement = () => {
 					</div>
 
 					<div className="car-specs">
-							<div className="spec-item">
+						<div className="spec-item">
+							<div className='spec-gr'>
 								<FaTachometerAlt className="icon" />
 								<span className="label">0-100 km/h:</span>
-								<span className="value">3.2s</span>
 							</div>
-								<div className="spec-item">
-								<FaCogs className="icon" />
-								<span className="label">Transmission:</span>
-								<span className="value">Automatic</span>
-							</div>
-							<div className="spec-item">
-								<FaGasPump className="icon" />
-								<span className="label">Fuel Type:</span>
-								<span className="value">Petrol</span>
-							</div>
-							<div className="spec-item">
-								<FaDollarSign className="icon" />
-								<span className="label">Expected Price:</span>
-								<span className="value">$210,000</span>
+							<div className='spec-gr'>
+							    <span className="value">3.2s</span>
 							</div>
 						</div>
+						<div className="spec-item">
+							<div className='spec-gr'>
+								<FaCogs className="icon" />
+								<span className="label">Transmission:</span>
+							</div>
+							<div className='spec-gr'>
+							    <span className="value">Automatic</span>
+							</div>
+						</div>
+						<div className="spec-item">
+							<div className='spec-gr'>
+								<FaGasPump className="icon" />
+								<span className="label">Fuel Type:</span>
+							</div>
+							<div className='spec-gr'>
+							    <span className="value">Petrol</span>
+							</div>
+						</div>
+						<div className="spec-item">
+							<div className='spec-gr'>
+								<FaDollarSign className="icon" />
+								<span className="label">Expected Price:</span>
+							</div>
+							<div className='spec-gr'>
+							    <span className="value">$210,000</span>
+							</div>
+						</div>
+					</div>
 
 					<div className="canvas-wrapper">
 						<Canvas

@@ -168,6 +168,21 @@ const Top = () => {
 		window.addEventListener('scroll', changeNavbarColor);
 	}
 
+	// Icon Handlers
+	const handleFavoritesClick = () => {
+		router.push({
+			pathname: '/mypage',
+			query: { category: 'myFavorites' }
+		});
+	};
+
+	const handleRecentlyVisitedClick = () => {
+		router.push({
+			pathname: '/mypage',
+			query: { category: 'recentlyVisited' }
+		});
+	};
+
 	const isHome = router.pathname === '/';
 
 
@@ -346,11 +361,11 @@ const Top = () => {
 							</Box>
 							{user?._id && (
 								<Box className={'router-icons'}>
-								<div className="icon-badge">
+								<div className="icon-badge" onClick={handleFavoritesClick}>
 									< FavoriteBorderIcon  />
 								</div>
 								<div className="icon-badge">
-									<VisibilityOutlinedIcon  />
+									<VisibilityOutlinedIcon onClick={handleRecentlyVisitedClick} />
 								</div>
 								<div className="icon-badge" onClick={handleNotificationClick} style={{ cursor: 'pointer' }}>
 									<NotificationsOutlinedIcon />
