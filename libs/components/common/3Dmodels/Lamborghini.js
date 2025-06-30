@@ -74,7 +74,7 @@ export function Lamborghini(props) {
       nodes.yellow_WhiteCar_0.material = new THREE.MeshPhysicalMaterial({
         roughness: 0.2,
         metalness: 0.05,
-        color: '#f6f6f6',
+        color: '#181a20',
         envMapIntensity: 1,
         clearcoatRoughness: 0.5,
         clearcoat: 1,

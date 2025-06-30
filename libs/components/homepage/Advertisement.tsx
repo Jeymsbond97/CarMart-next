@@ -37,29 +37,6 @@ const Advertisement = () => {
 						<p>
 						Be the first to witness the design revolution. Our client is launching this next-generation Lamborghini in 2026 — built with innovation, power, and luxury at its core. Sleek lines, futuristic curves, and unmatched performance await.
 						</p>
-						<div className="car-specs">
-							<div className="spec-item">
-							<FaTachometerAlt className="icon" />
-							<span className="label">0-100 km/h:</span>
-							<span className="value">3.2s</span>
-							</div>
-							<div className="spec-item">
-							<FaCogs className="icon" />
-							<span className="label">Transmission:</span>
-							<span className="value">Automatic</span>
-							</div>
-							<div className="spec-item">
-							<FaGasPump className="icon" />
-							<span className="label">Fuel Type:</span>
-							<span className="value">Petrol</span>
-							</div>
-							<div className="spec-item">
-							<FaDollarSign className="icon" />
-							<span className="label">Expected Price:</span>
-							<span className="value">$210,000</span>
-							</div>
-						</div>
-						{/* <button className="learn-more">Learn More</button> */}
 						<Button
 							className={'get-started-btn buy-btn'}
 							endIcon={<ArrowForward />}
@@ -68,13 +45,36 @@ const Advertisement = () => {
 						</Button>
 					</div>
 
+					<div className="car-specs">
+							<div className="spec-item">
+								<FaTachometerAlt className="icon" />
+								<span className="label">0-100 km/h:</span>
+								<span className="value">3.2s</span>
+							</div>
+								<div className="spec-item">
+								<FaCogs className="icon" />
+								<span className="label">Transmission:</span>
+								<span className="value">Automatic</span>
+							</div>
+							<div className="spec-item">
+								<FaGasPump className="icon" />
+								<span className="label">Fuel Type:</span>
+								<span className="value">Petrol</span>
+							</div>
+							<div className="spec-item">
+								<FaDollarSign className="icon" />
+								<span className="label">Expected Price:</span>
+								<span className="value">$210,000</span>
+							</div>
+						</div>
+
 					<div className="canvas-wrapper">
 						<Canvas
 						gl={{ logarithmicDepthBuffer: true, antialias: false }}
 						dpr={[1, 1.5]}
 						camera={{ position: [0, 0, 13], fov: 27 }}
 						>
-						<color attach="background" args={['#ffffff']} />
+						<color attach="background" args={['#181a20']} />
 						<ambientLight intensity={0.5} />
 						<directionalLight
 							position={[10, 10, 5]}
@@ -96,11 +96,11 @@ const Advertisement = () => {
 						/>
 						<mesh scale={4} position={[3, -1.161, -1.5]} rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}>
 							<ringGeometry args={[0.9, 1, 4, 1]} />
-							<meshStandardMaterial color="black" roughness={0.75} />
+							<meshStandardMaterial color="#f6f6f6" roughness={0.75} />
 						</mesh>
 						<mesh scale={4} position={[-3, -1.161, -1]} rotation={[-Math.PI / 2, 0, Math.PI / 2.5]}>
 							<ringGeometry args={[0.9, 1, 3, 1]} />
-							<meshStandardMaterial color="black" roughness={0.75} />
+							<meshStandardMaterial color="#f6f6f6" roughness={0.75} />
 						</mesh>
 						<Environment resolution={312}>
 							<Lightformer intensity={2} rotation-x={Math.PI / 2} position={[0, 4, -9]} scale={[10, 1, 1]} />
