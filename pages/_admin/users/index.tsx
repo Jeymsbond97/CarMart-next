@@ -16,6 +16,10 @@ import { Member } from '../../../libs/types/member/member';
 import { MemberStatus, MemberType } from '../../../libs/enums/member.enum';
 import { sweetErrorHandling } from '../../../libs/sweetAlert';
 import { MemberUpdate } from '../../../libs/types/member/member.update';
+import { UPDATE_MEMBER_BY_ADMIN } from '../../../apollo/admin/mutation';
+import { GET_ALL_MEMBERS_BY_ADMIN } from '../../../apollo/admin/query';
+import { T } from '../../../libs/types/common';
+import { useMutation, useQuery } from '@apollo/client';
 
 const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [anchorEl, setAnchorEl] = useState<[] | HTMLElement[]>([]);
@@ -29,6 +33,22 @@ const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [searchType, setSearchType] = useState('ALL');
 
 	/** APOLLO REQUESTS **/
+	const [updateMemberByAdmin] = useMutation(UPDATE_MEMBER_BY_ADMIN);
+
+	const {
+			loading: getAllMembersByAdminLoading,
+			data: getAllMembersByAdminData,
+			error: getAllMembersByAdminError,
+			refetch: getAllMembersByAdminRefetch,
+		} = useQuery(GET_ALL_MEMBERS_BY_ADMIN, {
+			fetchPolicy: 'network-only',
+			variables: { input: membersInquiry },
+			notifyOnNetworkStatusChange: true,
+			onCompleted: (data: T) => {
+				setMembers(data?.getAllMembersByAdmin?.list);
+				setMembersTotal(data?.getAllMembersByAdmin?.metaCounter?.[0]?.total ?? 0);
+			},
+		});
 
 	/** LIFECYCLES **/
 	useEffect(() => {}, [membersInquiry]);

@@ -16,6 +16,7 @@ export const GET_ALL_MEMBERS_BY_ADMIN = gql`
 				memberNick
 				memberFullName
 				memberImage
+				memberEmail
 				memberAddress
 				memberDesc
 				memberWarnings
@@ -47,20 +48,23 @@ export const GET_ALL_PROPERTIES_BY_ADMIN = gql`
 		getAllPropertiesByAdmin(input: $input) {
 			list {
 				_id
-				propertyType
+				propertyTransmission
 				propertyStatus
-				propertyLocation
+				propertyBrand
+				propertyColor
+				propertyFuel
+				propertyOdometer
 				propertyAddress
 				propertyTitle
 				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
+				propertyYear
 				propertyViews
 				propertyLikes
+				propertyComments
+				propertyRank
 				propertyImages
 				propertyDesc
-				propertyBarter
+				propertySell
 				propertyRent
 				memberId
 				soldAt
@@ -78,6 +82,7 @@ export const GET_ALL_PROPERTIES_BY_ADMIN = gql`
 					memberFullName
 					memberImage
 					memberAddress
+					memberEmail
 					memberDesc
 					memberWarnings
 					memberBlocks
@@ -128,6 +133,7 @@ export const GET_ALL_BOARD_ARTICLES_BY_ADMIN = gql`
 					memberFullName
 					memberImage
 					memberAddress
+					memberEmail
 					memberDesc
 					memberWarnings
 					memberBlocks
@@ -174,6 +180,7 @@ export const GET_COMMENTS = gql`
 					memberNick
 					memberFullName
 					memberImage
+					memberEmail
 					memberAddress
 					memberDesc
 					memberWarnings
