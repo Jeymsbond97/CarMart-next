@@ -142,7 +142,13 @@ const AdminProperties: NextPage = ({ initialInquiry, ...props }: any) => {
 	const updatePropertyHandler = async (updateData: PropertyUpdate) => {
 		try {
 			console.log('+updateData: ', updateData);
+			await updatePropertByAdmin({
+				variables: {
+					input: updateData,
+				}
+			});
 			menuIconCloseHandler();
+			await getAllPropertiesByAdminRefetch({ input: propertiesInquiry });
 		} catch (err: any) {
 			menuIconCloseHandler();
 			sweetErrorHandling(err).then();
@@ -194,9 +200,9 @@ const AdminProperties: NextPage = ({ initialInquiry, ...props }: any) => {
 									<MenuItem value={'ALL'} onClick={() => searchTypeHandler('ALL')}>
 										ALL
 									</MenuItem>
-									{Object.values(PropertyBrand).map((location: string) => (
-										<MenuItem value={location} onClick={() => searchTypeHandler(location)} key={location}>
-											{location}
+									{Object.values(PropertyBrand).map((brand: string) => (
+										<MenuItem value={brand} onClick={() => searchTypeHandler(brand)} key={brand}>
+											{brand}
 										</MenuItem>
 									))}
 								</Select>

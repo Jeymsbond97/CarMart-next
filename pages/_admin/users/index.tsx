@@ -33,7 +33,7 @@ const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [searchType, setSearchType] = useState('ALL');
 
 	/** APOLLO REQUESTS **/
-	const [updateMemberByAdmin] = useMutation(UPDATE_MEMBER_BY_ADMIN);
+	const [updateAllMembersByAdmin] = useMutation(UPDATE_MEMBER_BY_ADMIN);
 
 	const {
 			loading: getAllMembersByAdminLoading,
@@ -51,17 +51,21 @@ const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 		});
 
 	/** LIFECYCLES **/
-	useEffect(() => {}, [membersInquiry]);
+	useEffect(() => {
+		getAllMembersByAdminRefetch({ input: membersInquiry }).then();
+	}, [membersInquiry]);
 
 	/** HANDLERS **/
 	const changePageHandler = async (event: unknown, newPage: number) => {
 		membersInquiry.page = newPage + 1;
+		await getAllMembersByAdminRefetch({ input: membersInquiry });
 		setMembersInquiry({ ...membersInquiry });
 	};
 
 	const changeRowsPerPageHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		membersInquiry.limit = parseInt(event.target.value, 10);
 		membersInquiry.page = 1;
+		await getAllMembersByAdminRefetch({ input: membersInquiry });
 		setMembersInquiry({ ...membersInquiry });
 	};
 
@@ -100,7 +104,14 @@ const AdminUsers: NextPage = ({ initialInquiry, ...props }: any) => {
 
 	const updateMemberHandler = async (updateData: MemberUpdate) => {
 		try {
+			await updateAllMembersByAdmin({
+				variables: {
+					input: updateData,
+				}
+			});
+
 			menuIconCloseHandler();
+			await getAllMembersByAdminRefetch({ input: membersInquiry });
 		} catch (err: any) {
 			sweetErrorHandling(err).then();
 		}
