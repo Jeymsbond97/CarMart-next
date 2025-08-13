@@ -55,8 +55,9 @@
 						}
 						img {
 							width: 100%;
-							height: 100%;
+							height:240px;
 							object-fit: cover;
+							background-position: center;
 							border-radius: 12px 12px 0 0;
 						}
 						.top-badge {
@@ -104,11 +105,11 @@
 					}
 					.bottom {
 						width: 100%;
-						height: 193px;
-						padding: 20px 16px 10px 16px;
+						height: 250px;
+						padding: 14px 16px 10px 16px;
 						.name-address {
 							width: 100%;
-							height: 48px;
+							height: 38px;
 							gap: 5px;
 							margin-bottom: 10px;
 							.name {
@@ -182,6 +183,7 @@
 								flex-direction: row;
 								align-items: center;
 								gap: 7px;
+								margin-top: 7px;
 								p {
 									color: #181a20;
 									font-family: $font;
@@ -198,12 +200,14 @@
 							.buttons {
 								flex-direction: row;
 								width: auto;
-								gap: 12px;
+								gap: 1px;
 								justify-content: center;
 								align-items: center;
 								padding-right: 10px;
+								font-size: 18px;
 								svg {
 									cursor: pointer;
+									font-size: 18px;
 								}
 							}
 						}

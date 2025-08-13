@@ -87,7 +87,7 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
 					onClick={() => pushDetailHandler(property._id)}
 				>
-					{property && property?.propertyRank >= 50 ? (
+					{property && property?.propertyRank >= 70 ? (
 						<div className={'status'}>
 							<img src="/img/icons/electricity.svg" alt="" />
 							<span>top</span>
