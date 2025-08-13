@@ -16,6 +16,7 @@ import {
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { Stack } from '@mui/material';
+import { T } from '../../../types/common';
 
 interface Data {
 	category: string;
@@ -164,7 +165,7 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 									</TableCell>
 									<TableCell align="left">member.mb_phone</TableCell>
 									<TableCell align="center">
-										<Button onClick={(e: any) => handleMenuIconClick(e, index)} className={'badge success'}>
+										<Button onClick={(e: React.MouseEvent<HTMLLIElement>) => handleMenuIconClick(e, index)} className={'badge success'}>
 											member.mb_type
 										</Button>
 
@@ -179,12 +180,12 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 											TransitionComponent={Fade}
 											sx={{ p: 1 }}
 										>
-											<MenuItem onClick={(e) => generateMentorTypeHandle('member._id', 'mentor', 'originate')}>
+											<MenuItem onClick={(e: React.MouseEvent<HTMLLIElement>) => generateMentorTypeHandle('member._id', 'mentor', 'originate')}>
 												<Typography variant={'subtitle1'} component={'span'}>
 													MENTOR
 												</Typography>
 											</MenuItem>
-											<MenuItem onClick={(e) => generateMentorTypeHandle('member._id', 'user', 'remove')}>
+											<MenuItem onClick={(e: React.MouseEvent<HTMLLIElement>) => generateMentorTypeHandle('member._id', 'user', 'remove')}>
 												<Typography variant={'subtitle1'} component={'span'}>
 													USER
 												</Typography>

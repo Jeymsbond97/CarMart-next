@@ -168,8 +168,8 @@ export const PropertyPanelList = (props: PropertyPanelListType) => {
 										</TableCell>
 										<TableCell align="center">{property.propertyPrice}</TableCell>
 										<TableCell align="center">{property.memberData?.memberNick}</TableCell>
-										<TableCell align="center">{property.propertyLocation}</TableCell>
-										<TableCell align="center">{property.propertyType}</TableCell>
+										<TableCell align="center">{property.propertyBrand}</TableCell>
+										<TableCell align="center">{property.propertyTransmission}</TableCell>
 										<TableCell align="center">
 											{property.propertyStatus === PropertyStatus.DELETE && (
 												<Button
@@ -187,7 +187,7 @@ export const PropertyPanelList = (props: PropertyPanelListType) => {
 
 											{property.propertyStatus === PropertyStatus.ACTIVE && (
 												<>
-													<Button onClick={(e: any) => menuIconClickHandler(e, index)} className={'badge success'}>
+													<Button onClick={(e: React.MouseEvent<HTMLLIElement>) => menuIconClickHandler(e, index)} className={'badge success'}>
 														{property.propertyStatus}
 													</Button>
 
