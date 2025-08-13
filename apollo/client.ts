@@ -121,12 +121,45 @@ function createIsomorphicLink() {
 	}
 }
 
+// function createApolloClient() {
+// 	return new ApolloClient({
+// 		ssrMode: typeof window === 'undefined',
+// 		link: createIsomorphicLink(),
+// 		cache: new InMemoryCache(),
+// 		resolvers: {},
+// 	});
+// }
+
+
+/*    BU YERNI O"ZGARTIRDIM     */
+
 function createApolloClient() {
 	return new ApolloClient({
 		ssrMode: typeof window === 'undefined',
 		link: createIsomorphicLink(),
-		cache: new InMemoryCache(),
+		cache: new InMemoryCache({
+			// Bu qo'shildi - cache policy
+			typePolicies: {
+				Query: {
+					fields: {
+						// Barcha fieldlar uchun merge policy
+						__typename: {
+							merge: false
+						}
+					}
+				}
+			}
+		}),
 		resolvers: {},
+		// Bu ham qo'shildi - default options
+		defaultOptions: {
+			watchQuery: {
+				errorPolicy: 'all'
+			},
+			query: {
+				errorPolicy: 'all'
+			}
+		}
 	});
 }
 

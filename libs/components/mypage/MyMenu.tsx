@@ -20,11 +20,25 @@ const MyMenu = () => {
 	const user = useReactiveVar(userVar);
 
 	/** HANDLERS **/
+	// const logoutHandler = async () => {
+	// 	try {
+	// 		if (await sweetConfirmAlert('Do you want to logout?')) logOut();
+	// 	} catch (err: any) {
+	// 		console.log('ERROR, logoutHandler:', err.message);
+	// 	}
+	// };
+
+	/*  YANGI LOGOUT FUNCTION  */
+
 	const logoutHandler = async () => {
 		try {
-			if (await sweetConfirmAlert('Do you want to logout?')) logOut();
+			if (await sweetConfirmAlert('Do you want to logout?')) {
+				await logOut(); // await qo'shdik
+			}
 		} catch (err: any) {
 			console.log('ERROR, logoutHandler:', err.message);
+			// Agar error bo'lsa ham logout qilish
+			window.location.href = '/';
 		}
 	};
 

@@ -154,15 +154,59 @@ export const updateUserInfo = (jwtToken: any) => {
 	});
 };
 
-export const logOut = () => {
-	deleteStorage();
-	deleteUserInfo();
+// export const logOut = () => {
+// 	deleteStorage();
+// 	deleteUserInfo();
+// };
+
+/*  asosiy o'zgarishlar shu yerda bo'lgan Logoutni hamda deleteStorege o'zgartirilgan commentga olganlarimni o'zini avvalgi holati */
+
+// ASOSIY MUAMMO SHU YERDA - LOGOUT FUNKSIYASINI YANGILASH
+export const logOut = async () => {
+	try {
+		// 1. Apollo client ni olish
+		const apolloClient = await initializeApollo();
+		
+		// 3. Apollo cache ni tozalash
+		await apolloClient.clearStore();
+		
+		// 4. Storage va user info ni tozalash
+		deleteStorage();
+		deleteUserInfo();
+		
+		// 5. Sahifani refresh qilish (bu error ni oldini oladi)
+		if (typeof window !== 'undefined') {
+			window.location.href = '/';
+		}
+		
+	} catch (error) {
+		console.error('Logout error:', error);
+		
+		// Agar yuqoridagi ishlamasa, majburiy refresh
+		deleteStorage();
+		deleteUserInfo();
+		
+		if (typeof window !== 'undefined') {
+			window.location.reload();
+		}
+	}
 };
 
+
 const deleteStorage = () => {
-	localStorage.removeItem('accessToken');
-	window.localStorage.setItem('logout', Date.now().toString());
+	try {
+		localStorage.removeItem('accessToken');
+		localStorage.removeItem('login'); // Bu ham qo'shildi
+		window.localStorage.setItem('logout', Date.now().toString());
+	} catch (error) {
+		console.error('Error clearing storage:', error);
+	}
 };
+
+// const deleteStorage = () => {
+// 	localStorage.removeItem('accessToken');
+// 	window.localStorage.setItem('logout', Date.now().toString());
+// };
 
 const deleteUserInfo = () => {
 	userVar({
