@@ -12,9 +12,9 @@ export default function Document() {
 				<meta
 					name={'description'}
 					content={
-						'Buy and sell properties anywhere anytime in South Korea. Best Properties at Best prices on nestar.uz | ' +
-						'Покупайте и продавайте недвижимость в любой точке Южной Кореи в любое время. Лучшая недвижимость по лучшим ценам на nestar.uz | ' +
-						'대한민국 언제 어디서나 부동산을 사고팔 수 있습니다. Nestar.uz에서 최적의 가격으로 최고의 부동산을 만나보세요'
+						'Buy and sell cars anywhere, anytime in South Korea. Best cars at the best prices on carmart.uz | ' +
+						'Покупайте и продавайте автомобили в любое время и в любом месте Южной Кореи. Лучшие автомобили по лучшим ценам на carmart.uz | ' +
+						'대한민국에서 언제 어디서나 자동차를 사고팔 수 있습니다. 최고의 가격으로 최고의 자동차를 carmart.uz에서 만나보세요'
 					}
 				/>
 			</Head>
