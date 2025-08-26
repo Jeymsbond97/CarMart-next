@@ -48,7 +48,7 @@ const Advertisement = () => {
 					<div className="car-specs">
 						<div className="spec-item">
 							<div className='spec-gr'>
-								<FaTachometerAlt className="icon" />
+								{<FaTachometerAlt className="icon" /> as any}
 								<span className="label">0-100 km/h:</span>
 							</div>
 							<div className='spec-gr'>
@@ -57,7 +57,7 @@ const Advertisement = () => {
 						</div>
 						<div className="spec-item">
 							<div className='spec-gr'>
-								<FaCogs className="icon" />
+								{<FaCogs className="icon" /> as any}
 								<span className="label">Transmission:</span>
 							</div>
 							<div className='spec-gr'>
@@ -66,7 +66,7 @@ const Advertisement = () => {
 						</div>
 						<div className="spec-item">
 							<div className='spec-gr'>
-								<FaGasPump className="icon" />
+								{<FaGasPump className="icon" /> as any}
 								<span className="label">Fuel Type:</span>
 							</div>
 							<div className='spec-gr'>
@@ -75,7 +75,7 @@ const Advertisement = () => {
 						</div>
 						<div className="spec-item">
 							<div className='spec-gr'>
-								<FaDollarSign className="icon" />
+								{<FaDollarSign className="icon" /> as any}
 								<span className="label">Expected Price:</span>
 							</div>
 							<div className='spec-gr'>
