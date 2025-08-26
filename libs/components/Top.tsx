@@ -185,6 +185,8 @@ const Top = () => {
 
 	const isHome = router.pathname === '/';
 
+	const localInfoClass = `local-info ${isHome && colorChange ? 'scrolled-home' : ''}` as string;
+
 
 	if (device == 'mobile') {
 		return (
@@ -216,7 +218,7 @@ const Top = () => {
 								<img src="/img/logo/111.png" alt="" />
 							</Link>
 						</Box>
-						<Box className={`local-info ${isHome && colorChange ? 'scrolled-home' : ''}`}>
+						<Box className={localInfoClass}>
 							<div className="info-block">
 								<LocationOnIcon className="info-icon" />
 								<div className="info-text">
