@@ -155,7 +155,7 @@ export const InquiryList = (props: InquiryPanelListType) => {
 									</TableCell>
 									<TableCell align="left">member.mb_phone</TableCell>
 									<TableCell align="center">
-										<Button onClick={(e: React.MouseEvent<HTMLLIElement>) => handleMenuIconClick(e, index)} className={'badge success'}>
+										<Button onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleMenuIconClick(e, index)} className={'badge success'}>
 											member.mb_type
 										</Button>
 
