@@ -187,7 +187,7 @@ export const PropertyPanelList = (props: PropertyPanelListType) => {
 
 											{property.propertyStatus === PropertyStatus.ACTIVE && (
 												<>
-													<Button onClick={(e: React.MouseEvent<HTMLLIElement>) => menuIconClickHandler(e, index)} className={'badge success'}>
+													<Button onClick={(e: React.MouseEvent<HTMLButtonElement>) => menuIconClickHandler(e, index)} className={'badge success'}>
 														{property.propertyStatus}
 													</Button>
 

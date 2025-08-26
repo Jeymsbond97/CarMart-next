@@ -181,7 +181,7 @@ export const MemberPanelList = (props: MemberPanelListType) => {
 										<TableCell align="left">{member.memberPhone}</TableCell>
 
 										<TableCell align="center">
-											<Button onClick={(e: React.MouseEvent<HTMLLIElement>) => menuIconClickHandler(e, index)} className={'badge success'}>
+											<Button onClick={(e: React.MouseEvent<HTMLButtonElement>) => menuIconClickHandler(e, index)} className={'badge success'}>
 												{member.memberType}
 											</Button>
 
@@ -214,7 +214,7 @@ export const MemberPanelList = (props: MemberPanelListType) => {
 										<TableCell align="center">{member.memberWarnings}</TableCell>
 										<TableCell align="center">{member.memberBlocks}</TableCell>
 										<TableCell align="center">
-											<Button onClick={(e: React.MouseEvent<HTMLLIElement>) => menuIconClickHandler(e, member._id)} className={'badge success'}>
+											<Button onClick={(e: React.MouseEvent<HTMLButtonElement>) => menuIconClickHandler(e, member._id)} className={'badge success'}>
 												{member.memberStatus}
 											</Button>
 
