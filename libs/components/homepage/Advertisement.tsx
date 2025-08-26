@@ -48,6 +48,7 @@ const Advertisement = () => {
 					<div className="car-specs">
 						<div className="spec-item">
 							<div className='spec-gr'>
+								{/* @ts-ignore */}
 								<FaBolt className="icon" />
 								<span className="label">0-100 km/h:</span>
 							</div>
