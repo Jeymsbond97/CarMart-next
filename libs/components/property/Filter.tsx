@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { CSSProperties } from "react";
 import {
 	Stack,
 	Typography,
@@ -25,7 +26,7 @@ const MenuProps = {
 	PaperProps: {
 		style: {
 			maxHeight: 210, // Scroll chiqadigan maksimal balandlik
-			overflowY: 'auto',
+			overflowY: 'auto' as CSSProperties["overflowY"],
 		},
 	},
 	MenuListProps: {
@@ -222,52 +223,6 @@ const Filter = (props: FilterType) => {
 		},
 		[searchFilter],
 	);
-	// const propertyColorSelectHandler = useCallback(
-	// 	async (e: any) => {
-	// 		try {
-	// 			const isChecked = e.target.checked;
-	// 			const value = e.target.value;
-
-	// 			if (isChecked) {
-	// 				await router.push(
-	// 					`/property?input=${JSON.stringify({
-	// 						...searchFilter,
-	// 						search: { ...searchFilter.search, colorList: [...(searchFilter?.search?.colorList || []), value] },
-	// 					})}`,
-	// 					`/property?input=${JSON.stringify({
-	// 						...searchFilter,
-	// 						search: { ...searchFilter.search, colorList: [...(searchFilter?.search?.colorList || []), value] },
-	// 					})}`,
-	// 					{ scroll: false },
-	// 				);
-	// 			} else if (searchFilter?.search?.colorList?.includes(value)) {
-	// 				await router.push(
-	// 					`/property?input=${JSON.stringify({
-	// 						...searchFilter,
-	// 						search: {
-	// 							...searchFilter.search,
-	// 							colorList: searchFilter?.search?.colorList?.filter((item: string) => item !== value),
-	// 						},
-	// 					})}`,
-	// 					`/property?input=${JSON.stringify({
-	// 						...searchFilter,
-	// 						search: {
-	// 							...searchFilter.search,
-	// 							colorList: searchFilter?.search?.colorList?.filter((item: string) => item !== value),
-	// 						},
-	// 					})}`,
-	// 					{ scroll: false },
-	// 				);
-	// 			}
-
-	// 			console.log('propertyColorSelectHandler:', e.target.value);
-	// 		} catch (err: any) {
-	// 			console.log('ERROR, propertyColorSelectHandler:', err);
-	// 		}
-	// 	},
-	// 	[searchFilter, router],
-	// );
-
 
 	const propertyColorSelectHandler = useCallback(
 		async (event: SelectChangeEvent<string[]>) => {
