@@ -185,7 +185,7 @@ const Top = () => {
 
 	const isHome = router.pathname === '/';
 
-	const localInfoClass = `local-info ${isHome && colorChange ? 'scrolled-home' : ''}` as string;
+	// const localInfoClass = `local-info ${isHome && colorChange ? 'scrolled-home' : ''}` as string;
 	const navbarMainClass: string = `navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''} ${isHome ? 'dark-font' : 'light-font'}`;
 
     const containerClass: string = `container ${isHome ? (colorChange ? 'light-font' : 'dark-font') : ''}`;
@@ -221,7 +221,7 @@ const Top = () => {
 								<img src="/img/logo/111.png" alt="" />
 							</Link>
 						</Box>
-						<Box className={localInfoClass}>
+						<Box className={`local-info${isHome && colorChange ? ' scrolled-home' : ''}`}>
 							<div className="info-block">
 								<LocationOnIcon className="info-icon" />
 								<div className="info-text">
