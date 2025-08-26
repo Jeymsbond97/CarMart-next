@@ -221,6 +221,7 @@ const Top = () => {
 								<img src="/img/logo/111.png" alt="" />
 							</Link>
 						</Box>
+						{/* @ts-ignore */}
 						<Box className={`local-info ${isHome && colorChange ? ' scrolled-home' : ''}` as any}>
 							<div className="info-block">
 								<LocationOnIcon className="info-icon" />
