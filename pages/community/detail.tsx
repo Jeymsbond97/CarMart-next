@@ -242,7 +242,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 								</Stack>
 							</Stack>
 							<Tabs
-								orientation="horizantal"
+								orientation="horizontal"
 								aria-label="lab API tabs example"
 								TabIndicatorProps={{
 									style: { display: 'none' },
