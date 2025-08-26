@@ -186,6 +186,9 @@ const Top = () => {
 	const isHome = router.pathname === '/';
 
 	const localInfoClass = `local-info ${isHome && colorChange ? 'scrolled-home' : ''}` as string;
+	const navbarMainClass: string = `navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''} ${isHome ? 'dark-font' : 'light-font'}`;
+
+    const containerClass: string = `container ${isHome ? (colorChange ? 'light-font' : 'dark-font') : ''}`;
 
 
 	if (device == 'mobile') {
@@ -211,8 +214,8 @@ const Top = () => {
 	} else {
 		return (
 			<Stack className="navbar">
-				<Stack className={`navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''} ${isHome ? 'dark-font' : 'light-font'}`}>
-					<Stack className={`container ${isHome ? (colorChange ? 'light-font' : 'dark-font') : ''}`}>
+				<Stack className={navbarMainClass}>
+					<Stack className={containerClass}>
 						<Box component={'div'} className={'logo-box'}>
 							<Link href={'/'}>
 								<img src="/img/logo/111.png" alt="" />
