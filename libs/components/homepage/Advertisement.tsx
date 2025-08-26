@@ -6,7 +6,7 @@ import 'swiper/css';
 import { Canvas } from '@react-three/fiber'
 import { Environment, Lightformer, ContactShadows, OrbitControls } from '@react-three/drei'
 import { Lamborghini } from '../common/3Dmodels/Lamborghini'
-import { FaTachometerAlt, FaCogs, FaGasPump, FaDollarSign } from 'react-icons/fa';
+import { FaTachometerAlt, FaCogs, FaGasPump, FaDollarSign, FaBolt } from 'react-icons/fa';
 import { ArrowForward } from '@mui/icons-material';
 
 const Advertisement = () => {
@@ -48,7 +48,7 @@ const Advertisement = () => {
 					<div className="car-specs">
 						<div className="spec-item">
 							<div className='spec-gr'>
-								{<FaTachometerAlt className="icon" /> as any}
+								<FaBolt className="icon" />
 								<span className="label">0-100 km/h:</span>
 							</div>
 							<div className='spec-gr'>
@@ -57,7 +57,7 @@ const Advertisement = () => {
 						</div>
 						<div className="spec-item">
 							<div className='spec-gr'>
-								{<FaCogs className="icon" /> as any}
+								<FaCogs className="icon" />
 								<span className="label">Transmission:</span>
 							</div>
 							<div className='spec-gr'>
@@ -66,7 +66,7 @@ const Advertisement = () => {
 						</div>
 						<div className="spec-item">
 							<div className='spec-gr'>
-								{<FaGasPump className="icon" /> as any}
+								<FaGasPump className="icon" />
 								<span className="label">Fuel Type:</span>
 							</div>
 							<div className='spec-gr'>
@@ -75,7 +75,7 @@ const Advertisement = () => {
 						</div>
 						<div className="spec-item">
 							<div className='spec-gr'>
-								{<FaDollarSign className="icon" /> as any}
+								<FaDollarSign className="icon" />
 								<span className="label">Expected Price:</span>
 							</div>
 							<div className='spec-gr'>
