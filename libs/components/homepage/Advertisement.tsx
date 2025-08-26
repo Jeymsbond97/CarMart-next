@@ -58,6 +58,7 @@ const Advertisement = () => {
 						</div>
 						<div className="spec-item">
 							<div className='spec-gr'>
+								{/* @ts-ignore */}
 								<FaCogs className="icon" />
 								<span className="label">Transmission:</span>
 							</div>
@@ -67,6 +68,7 @@ const Advertisement = () => {
 						</div>
 						<div className="spec-item">
 							<div className='spec-gr'>
+								{/* @ts-ignore */}
 								<FaGasPump className="icon" />
 								<span className="label">Fuel Type:</span>
 							</div>
@@ -76,6 +78,7 @@ const Advertisement = () => {
 						</div>
 						<div className="spec-item">
 							<div className='spec-gr'>
+								{/* @ts-ignore */}
 								<FaDollarSign className="icon" />
 								<span className="label">Expected Price:</span>
 							</div>
