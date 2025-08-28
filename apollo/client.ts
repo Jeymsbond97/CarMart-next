@@ -21,6 +21,7 @@ function getHeaders() {
 	return headers;
 }
 
+// @ts-ignore
 const tokenRefreshLink = new TokenRefreshLink({
 	accessTokenField: 'accessToken',
 	isTokenValidOrUndefined: () => {
