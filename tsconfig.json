@@ -17,7 +17,7 @@
 		"incremental": true,
 		"noImplicitAny": false,  // ← Bu qatorni qo'shing
 		"strictNullChecks": false, // ← Bu qatorni qo'shing
-		"types": ["node", "minimatch"] // ← shu qatorda minimatch qo‘shildi
+		"types": ["node"] // ← shu qatorda minimatch qo‘shildi
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
 	// "exclude": ["node_modules"]
