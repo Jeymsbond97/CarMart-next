@@ -11,7 +11,8 @@
 		"changelog": "standard-version --skip.tag"
 	},
 	"resolutions": {
-		"@babel/runtime": "7.21.0"
+		"@babel/runtime": "7.21.0",
+		"three": "0.157.0"
 	},
 	"dependencies": {
 		"@apollo/client": "^3.5.10",
@@ -27,7 +28,7 @@
 		"@mui/styles": "^5.5.3",
 		"@mui/x-date-pickers-pro": "^5.0.0-beta.0",
 		"@pmndrs/branding": "0.0.8",
-		"@react-three/drei": "9.107.0",
+		"@react-three/drei": "9.88.0",
 		"@react-three/fiber": "^8.13.5",
 		"@splidejs/splide": "^4.1.4",
 		"@toast-ui/editor-plugin-color-syntax": "^3.0.3",
@@ -82,7 +83,6 @@
 		"sweetalert2": "^11.7.27",
 		"swiper": "^8.3.1",
 		"three": "0.150.1",
-		"three-mesh-bvh": "0.7.0",
 		"valtio": "1.10.3",
 		"view": "^1.1.1"
 	},

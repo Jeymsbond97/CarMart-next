@@ -26,6 +26,14 @@ const nextConfig = {
 				fullySpecified: false,
 			},
 		});
+
+		// Three.js uchun qo'shimcha konfiguratsiya
+		config.resolve.alias = {
+			...config.resolve.alias,
+			'three': require.resolve('three'),
+		};
+
+
 		return config;
 	},
 };
