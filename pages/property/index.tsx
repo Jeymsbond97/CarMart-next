@@ -64,26 +64,26 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 		setCurrentPage(searchFilter.page === undefined ? 1 : searchFilter.page);
 	}, [router.query.input]);
 
-	// useEffect(() => {
-	// 	if (router.query.input) {
-	// 		try {
-	// 			const inputObj = JSON.parse(router.query.input as string);
-	// 			// input JSON bilan hozirgi state bir xil bo‘lsa, qayta set qilmaymiz
-	// 			const current = JSON.stringify(searchFilter);
-	// 			const incoming = JSON.stringify(inputObj);
+	useEffect(() => {
+		if (router.query.input) {
+			try {
+				const inputObj = JSON.parse(router.query.input as string);
+				// input JSON bilan hozirgi state bir xil bo‘lsa, qayta set qilmaymiz
+				const current = JSON.stringify(searchFilter);
+				const incoming = JSON.stringify(inputObj);
 	
-	// 			if (current !== incoming) {
-	// 				setSearchFilter(inputObj);
-	// 				setCurrentPage(inputObj.page ?? 1);
-	// 			}
-	// 		} catch (err) {
-	// 			console.error("Invalid input in query:", err);
-	// 		}
-	// 	}
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [router.query.input]);
+				if (current !== incoming) {
+					setSearchFilter(inputObj);
+					setCurrentPage(inputObj.page ?? 1);
+				}
+			} catch (err) {
+				console.error("Invalid input in query:", err);
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [router.query.input]);
 	
-	useEffect(() => {}, [searchFilter]);
+	// useEffect(() => {}, [searchFilter]);
 
 	/** HANDLERS **/
 
@@ -105,17 +105,33 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 		}
 	}
 
+	// const handlePaginationChange = async (event: ChangeEvent<unknown>, value: number) => {
+	// 	searchFilter.page = value;
+	// 	await router.push(
+	// 		`/property?input=${JSON.stringify(searchFilter)}`,
+	// 		`/property?input=${JSON.stringify(searchFilter)}`,
+	// 		{
+	// 			scroll: false,
+	// 		},
+	// 	);
+	// 	setCurrentPage(value);
+	// };
+
 	const handlePaginationChange = async (event: ChangeEvent<unknown>, value: number) => {
-		searchFilter.page = value;
-		await router.push(
-			`/property?input=${JSON.stringify(searchFilter)}`,
-			`/property?input=${JSON.stringify(searchFilter)}`,
-			{
-				scroll: false,
-			},
-		);
-		setCurrentPage(value);
-	};
+  const newFilter = { ...searchFilter, page: value };
+
+  await router.push(
+    {
+      pathname: "/property",
+      query: { input: JSON.stringify(newFilter) },
+    },
+    undefined,
+    { scroll: false }
+  );
+
+  // searchFilter + data update useEffect orqali avtomatik bo‘ladi
+};
+
 
 	const sortingClickHandler = (e: MouseEvent<HTMLElement>) => {
 		setAnchorEl(e.currentTarget);
